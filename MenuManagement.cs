@@ -39,7 +39,7 @@ namespace MELTADO_CAFE
 
         private void PlaceHolder_TextLoad()
         {
-            txt_ItemName.PlaceholderText = "Enter Full Name";
+            txt_ItemName.PlaceholderText = "Enter Item Name";
             txt_Description.PlaceholderText = "Enter Item Description";
             txt_price.PlaceholderText = "Enter Item Price";
 

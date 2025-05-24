@@ -228,7 +228,7 @@
             label1.FlatStyle = FlatStyle.Popup;
             label1.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 0, 0);
-            label1.Location = new Point(352, 20);
+            label1.Location = new Point(511, 26);
             label1.Name = "label1";
             label1.Size = new Size(297, 35);
             label1.TabIndex = 10;
