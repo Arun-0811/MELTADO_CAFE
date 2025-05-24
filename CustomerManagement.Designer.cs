@@ -525,6 +525,7 @@
             grpbox_cuscmbbox.TabIndex = 6;
             grpbox_cuscmbbox.TabStop = false;
             grpbox_cuscmbbox.Text = "Customer Gender";
+            grpbox_cuscmbbox.Enter += grpbox_cuscmbbox_Enter;
             // 
             // groupBox1
             // 

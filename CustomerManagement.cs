@@ -26,7 +26,7 @@ namespace MELTADO_CAFE
 
         int selectedVisitTimeID = 0;
 
-        int selectedTierID = 0; 
+        int selectedTierID = 0;
 
         public CustomerManagement()
         {
@@ -56,7 +56,7 @@ namespace MELTADO_CAFE
 
             LoadGenders(); // Default load
             ShowControls("Gender");
-            HighlightActiveButton(btn_btn_genderclickload);          
+            HighlightActiveButton(btn_btn_genderclickload);
 
 
         }
@@ -298,11 +298,10 @@ namespace MELTADO_CAFE
 
         }
 
-        
+
 
         private void btn_btn_add_Click(object sender, EventArgs e)
         {
-            
 
             bool isAnyInput = false;
 
@@ -375,7 +374,7 @@ namespace MELTADO_CAFE
         private void btn_btn_SAVE_Click(object sender, EventArgs e)
         {
 
-            
+
 
 
             bool isAnyUpdated = false;
@@ -654,7 +653,7 @@ namespace MELTADO_CAFE
                 da.Fill(dt);
                 GridView_CustomerPreference.DataSource = dt;
                 currentDataType = LoadedDataType.Gender;
-;
+                ;
 
             }
         }
@@ -670,7 +669,7 @@ namespace MELTADO_CAFE
                 GridView_CustomerPreference.DataSource = dt;
                 currentDataType = LoadedDataType.DietaryPreference;
 
-                
+
             }
         }
 
@@ -684,7 +683,7 @@ namespace MELTADO_CAFE
                 da.Fill(dt);
                 GridView_CustomerPreference.DataSource = dt;
                 currentDataType = LoadedDataType.VisitTime;
-               
+
             }
         }
 
@@ -699,7 +698,7 @@ namespace MELTADO_CAFE
                 GridView_CustomerPreference.DataSource = dt;
                 currentDataType = LoadedDataType.MembershipTier;
 
-               
+
             }
         }
 
@@ -993,10 +992,9 @@ namespace MELTADO_CAFE
             }
         }
 
-        
+        private void grpbox_cuscmbbox_Enter(object sender, EventArgs e)
+        {
 
-
-
-       
+        }
     }
 }
