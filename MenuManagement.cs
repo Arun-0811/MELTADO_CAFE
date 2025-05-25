@@ -17,9 +17,10 @@ namespace MELTADO_CAFE
     {
         string ConnnectionString = ConfigurationManager.ConnectionStrings["DevConnection"].ConnectionString;
         private string uploadedImagePath = "";
-        private int selectedItemId = -1;
+        private int selectedItemId = 0;
         private int categoryId = 0;
-        
+        private string activeTable = "";  // Track which table is currently loaded
+        private int? selectedTableId = null;
 
 
         public MenuManagement()
@@ -28,6 +29,7 @@ namespace MELTADO_CAFE
             PlaceHolder_TextLoad();
             LoadCategories();
             LoadMenuCategories();
+            LoadCafeTables();
         }
 
         enum LoadedGridDataType
@@ -42,7 +44,12 @@ namespace MELTADO_CAFE
             txt_ItemName.PlaceholderText = "Enter Item Name";
             txt_Description.PlaceholderText = "Enter Item Description";
             txt_price.PlaceholderText = "Enter Item Price";
+            txt_categorycmblist.PlaceholderText = "Enter New Category Name";
+            txtSearch.PlaceholderText = "Search by Item Name or Category";
 
+            
+            txt_tablenumber.PlaceholderText = "Enter Table Number";
+            txtCapacity.PlaceholderText = "Enter table sitting capacity";
         }
         private void LoadCategories()
         {
@@ -303,13 +310,13 @@ namespace MELTADO_CAFE
             txt_price.Clear();
             txt_categorycmblist.Clear();
 
-            cmb_Category.SelectedIndex = -1;
+            cmb_Category.SelectedIndex = 0;
             checkBox_AVAILABLITY.Checked = false;
 
             picbox_upload.Image = null;
             uploadedImagePath = string.Empty;
 
-            selectedItemId = -1;
+            selectedItemId = 0;
             categoryId = 0;
         }
 
@@ -461,6 +468,7 @@ namespace MELTADO_CAFE
             LoadMenuCategories();
             ShowControls("Gender");
             HighlightActiveButton((Button)sender);
+            activeTable = "MenuCategory"; // Set active table
         }
 
         private void btn_btn_menuitems_Click(object sender, EventArgs e)
@@ -468,6 +476,7 @@ namespace MELTADO_CAFE
             LoadMenuItems();
             ShowControls("MenuItems");
             HighlightActiveButton((Button)sender);
+            activeTable = "MenuItem"; // Set active table
         }
 
         private void btn_clearItems_Click(object sender, EventArgs e)
@@ -477,6 +486,7 @@ namespace MELTADO_CAFE
             txt_Description.Clear();
             txt_price.Clear();
             txt_categorycmblist.Clear();
+            txtSearch.Clear();
 
             // Reset combo box and checkbox
             cmb_Category.SelectedIndex = -1;
@@ -487,10 +497,117 @@ namespace MELTADO_CAFE
             uploadedImagePath = string.Empty;
 
             // Reset IDs
-            selectedItemId = -1;
+            selectedItemId = 0;
             categoryId = 0;
         }
 
+        private void SearchData(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(activeTable))
+            {
+                MessageBox.Show("Please load a table first before searching.");
+                return;
+            }
+
+            using (SqlConnection con = new SqlConnection(ConnnectionString))
+            using (SqlCommand cmd = new SqlCommand("SearchMenuData", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TableName", activeTable);
+                cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                MenuItems_gridView.DataSource = dt;
+            }
+        }
+        private void btn_searchItems_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            SearchData(searchTerm);
+        }
+
+        private void btn_ADDTable_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(ConnnectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("InsertCafeTable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@TableNumber", txt_tablenumber.Text.Trim());
+                cmd.Parameters.AddWithValue("@Capacity", Convert.ToInt32(txtCapacity.Text.Trim()));
+                cmd.Parameters.AddWithValue("@Status", cmb_status.Text.Trim());
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+
+            MessageBox.Show("Table added successfully!");
+            LoadCafeTables();
+            txt_tablenumber.Clear();
+            txtCapacity.Clear();
+            cmb_status.SelectedIndex = -1;
+        }
+
+        private void btn_UpdateTable_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(ConnnectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("UpdateCafeTable", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@TableID", selectedTableId);
+                cmd.Parameters.AddWithValue("@TableNumber", txt_tablenumber.Text.Trim());
+                cmd.Parameters.AddWithValue("@Capacity", Convert.ToInt32(txtCapacity.Text.Trim()));
+                cmd.Parameters.AddWithValue("@Status", cmb_status.Text.Trim());
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+
+            MessageBox.Show("Table updated successfully!");
+            LoadCafeTables();
+            txt_tablenumber.Clear();
+            txtCapacity.Clear();
+            cmb_status.SelectedIndex = -1; // Reset the status dropdown
+        }
+
+        private void btn_clearTable_Click(object sender, EventArgs e)
+        {
+            txt_tablenumber.Clear();
+            txtCapacity.Clear();
+            cmb_status.SelectedIndex = -1;
+        }
+
+        private void dataGridTables_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridTables.Rows[e.RowIndex];
+
+                selectedTableId = Convert.ToInt32(row.Cells["TableID"].Value);
+                txt_tablenumber.Text = row.Cells["TableNumber"].Value.ToString();
+                txtCapacity.Text = row.Cells["Capacity"].Value.ToString();
+                cmb_status.Text = row.Cells["Status"].Value.ToString();
+            }
+        }
+
+        private void LoadCafeTables()
+        {
+            using (SqlConnection con = new SqlConnection(ConnnectionString))
+            {
+                string query = "SELECT TableID, TableNumber, Capacity, Status FROM CafeTable";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridTables.DataSource = dt;
+            }
+        }
     }
 
 }
