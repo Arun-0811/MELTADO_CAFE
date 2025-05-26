@@ -52,6 +52,7 @@ namespace MELTADO_CAFE
 
         public static class LoggedInUser
         {
+            public static int UserId { get; set; }
             public static string Username { get; set; }
             public static string Email { get; set; }
             public static int RoleId { get; set; }
@@ -85,6 +86,7 @@ namespace MELTADO_CAFE
                         if (reader.Read())
                         {
                             // Store in static class
+                            LoggedInUser.UserId = Convert.ToInt32(reader["UserId"]);
                             LoggedInUser.Username = reader["Username"].ToString();
                             LoggedInUser.Email = reader["Email"].ToString();
                             LoggedInUser.RoleId = Convert.ToInt32(reader["RoleId"]);
@@ -97,6 +99,9 @@ namespace MELTADO_CAFE
                                 //AdminForm adminForm = new AdminForm();
                                 //adminForm.Show();
                                 //this.Hide();
+                                FormOrderProcessing fop = new FormOrderProcessing();
+                                fop.Show();
+                                this.Hide();
                             }
                             else
                             {
@@ -105,6 +110,9 @@ namespace MELTADO_CAFE
                                 //CustomerForm customerForm = new CustomerForm();
                                 //customerForm.Show();
                                 //this.Hide();
+                                FormOrderProcessing fop = new FormOrderProcessing();
+                                fop.Show();
+                                this.Hide();
                             }
                         }
                         else
