@@ -96,12 +96,18 @@ namespace MELTADO_CAFE
             txtUniPrice.Clear();
             cmbPaymentMethod.SelectedIndex = -1; // Reset to no selection
             cmbTableNumber.SelectedIndex = -1; // Reset to no selection
+            dgvMenuItems.ClearSelection();
+
         }
 
 
         private void btnSearchBocItems_Click(object sender, EventArgs e)
         {
             string searchText = txtSearchItems.Text.Trim();
+            if (String.IsNullOrWhiteSpace(searchText))
+            {
+                MessageBox.Show("Search Input Empty, Please provide name to search...!");
+            }
 
             using (SqlConnection con = new SqlConnection(ConStr))
             {
@@ -206,6 +212,60 @@ namespace MELTADO_CAFE
             }
         }
 
+        //private void btnPlaceOrder_Click(object sender, EventArgs e)
+        //{
+        //    if (dataGridViewOrder.Rows.Count == 0)
+        //    {
+        //        MessageBox.Show("No items to place order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+
+        //    foreach (DataGridViewRow row in dataGridViewOrder.Rows)
+        //    {
+        //        if (row.IsNewRow) continue; // Skip new row placeholder
+
+        //        int tableNo = Convert.ToInt32(row.Cells["TableNo"].Value);
+        //        string itemName = row.Cells["ItemName"].Value?.ToString();
+        //        int qty = Convert.ToInt32(row.Cells["Quantity"].Value);
+        //        decimal unitPrice = Convert.ToDecimal(row.Cells["UnitPrice"].Value);
+        //        decimal total = Convert.ToDecimal(row.Cells["Total"].Value);
+        //        string paymentMethod = row.Cells["PayMode"].Value?.ToString();
+
+        //        InsertOrder(tableNo, itemName, qty, unitPrice, total, paymentMethod);
+        //    }
+
+        //    dataGridViewOrder.Rows.Clear();
+        //}
+
+        //private void InsertOrder(int tableNumber, string itemName, int qty, decimal unitPrice, decimal total, string paymentMethod)
+        //{
+        //    int currentUserId = LoggedInUser.UserId; // Assuming LoggedInUser.UserId is set after login
+        //    using (SqlConnection con = new SqlConnection(ConStr))
+        //    using (SqlCommand cmd = new SqlCommand("InsertOrder", con))
+        //    {
+        //        cmd.CommandType = CommandType.StoredProcedure;
+
+        //        cmd.Parameters.AddWithValue("@TableID", tableNumber);
+        //        cmd.Parameters.AddWithValue("@ItemName", itemName);
+        //        cmd.Parameters.AddWithValue("@ItemQty", qty);
+        //        cmd.Parameters.AddWithValue("@ItemUnitPrice", unitPrice);
+        //        cmd.Parameters.AddWithValue("@TotalAmount", total);
+        //        cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
+        //        cmd.Parameters.AddWithValue("@OrderStatus", "Placed"); // Static or use dropdown
+        //        cmd.Parameters.AddWithValue("@CreatedBy", currentUserId);
+
+
+        //        con.Open();
+        //        int rowsAffected = cmd.ExecuteNonQuery();
+
+        //        if (rowsAffected > 0)
+        //        {
+        //            MessageBox.Show("Order placed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        }
+
+        //    }
+        //}
+
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             if (dataGridViewOrder.Rows.Count == 0)
@@ -214,51 +274,82 @@ namespace MELTADO_CAFE
                 return;
             }
 
-            foreach (DataGridViewRow row in dataGridViewOrder.Rows)
+            try
             {
-                if (row.IsNewRow) continue; // Skip new row placeholder
+                List<int> generatedInvoiceIds = new List<int>();
 
-                int tableNo = Convert.ToInt32(row.Cells["TableNo"].Value);
-                string itemName = row.Cells["ItemName"].Value?.ToString();
-                int qty = Convert.ToInt32(row.Cells["Quantity"].Value);
-                decimal unitPrice = Convert.ToDecimal(row.Cells["UnitPrice"].Value);
-                decimal total = Convert.ToDecimal(row.Cells["Total"].Value);
-                string paymentMethod = row.Cells["PayMode"].Value?.ToString();
-
-                InsertOrder(tableNo, itemName, qty, unitPrice, total, paymentMethod);
-            }
-
-            dataGridViewOrder.Rows.Clear();
-        }
-
-        private void InsertOrder(int tableNumber, string itemName, int qty, decimal unitPrice, decimal total, string paymentMethod)
-        {
-            int currentUserId = LoggedInUser.UserId; // Assuming LoggedInUser.UserId is set after login
-            using (SqlConnection con = new SqlConnection(ConStr))
-            using (SqlCommand cmd = new SqlCommand("InsertOrder", con))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@TableID", tableNumber);
-                cmd.Parameters.AddWithValue("@ItemName", itemName);
-                cmd.Parameters.AddWithValue("@ItemQty", qty);
-                cmd.Parameters.AddWithValue("@ItemUnitPrice", unitPrice);
-                cmd.Parameters.AddWithValue("@TotalAmount", total);
-                cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
-                cmd.Parameters.AddWithValue("@OrderStatus", "Placed"); // Static or use dropdown
-                cmd.Parameters.AddWithValue("@CreatedBy", currentUserId);
-
-
-                con.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
+                using (SqlConnection con = new SqlConnection(ConStr))
                 {
-                    MessageBox.Show("Order placed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    con.Open();
 
+                    foreach (DataGridViewRow row in dataGridViewOrder.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        int tableNo = Convert.ToInt32(row.Cells["TableNo"].Value);
+                        string itemName = row.Cells["ItemName"].Value?.ToString();
+                        int qty = Convert.ToInt32(row.Cells["Quantity"].Value);
+                        decimal unitPrice = Convert.ToDecimal(row.Cells["UnitPrice"].Value);
+                        decimal total = Convert.ToDecimal(row.Cells["Total"].Value);
+                        string paymentMethod = row.Cells["PayMode"].Value?.ToString();
+                        int currentUserId = LoggedInUser.UserId;
+
+                        using (SqlCommand cmd = new SqlCommand("InsertOrder", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@TableID", tableNo);
+                            cmd.Parameters.AddWithValue("@ItemName", itemName);
+                            cmd.Parameters.AddWithValue("@ItemQty", qty);
+                            cmd.Parameters.AddWithValue("@ItemUnitPrice", unitPrice);
+                            cmd.Parameters.AddWithValue("@TotalAmount", total);
+                            cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
+                            cmd.Parameters.AddWithValue("@CreatedBy", currentUserId);
+
+                            // Read only InvoiceID and close the reader immediately
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    int invoiceId = Convert.ToInt32(reader["InvoiceID"]);
+                                    generatedInvoiceIds.Add(invoiceId);
+                                }
+                            }
+                        }
+                    }
+
+                    dataGridViewOrder.Rows.Clear();
+                } // connection is closed here
+
+                // Now it's safe to open the invoice form
+                if (generatedInvoiceIds.Count > 0)
+                {
+                    string invoiceMessage = generatedInvoiceIds.Count == 1
+                        ? $"Order placed successfully! Invoice ID: {generatedInvoiceIds[0]}"
+                        : $"Order placed successfully! Generated {generatedInvoiceIds.Count} invoices.";
+
+                    MessageBox.Show(invoiceMessage, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Open the invoice form AFTER connection is closed
+                    OpenInvoiceForm(generatedInvoiceIds[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error placing order: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+        private void OpenInvoiceForm(int invoiceId)
+        {
+            InvoiceForm invoiceForm = new InvoiceForm(invoiceId);
+            invoiceForm.Show(); // or ShowDialog() if you want it modal
+        }
+
+
+
 
         private void btnClearAll_Click(object sender, EventArgs e)
         {

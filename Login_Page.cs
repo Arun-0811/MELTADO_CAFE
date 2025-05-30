@@ -96,23 +96,19 @@ namespace MELTADO_CAFE
                             {
                                 // Redirect to Admin page
                                 MessageBox.Show($"{selectedRole} login successful!");
-                                //AdminForm adminForm = new AdminForm();
-                                //adminForm.Show();
-                                //this.Hide();
-                                FormOrderProcessing fop = new FormOrderProcessing();
-                                fop.Show();
+                                AdminForm adminForm = new AdminForm();
+                                adminForm.Show();
                                 this.Hide();
+                                
                             }
                             else
                             {
                                 // Redirect to Customer page
                                 MessageBox.Show($"{selectedRole} login successful!");
-                                //CustomerForm customerForm = new CustomerForm();
-                                //customerForm.Show();
-                                //this.Hide();
-                                FormOrderProcessing fop = new FormOrderProcessing();
-                                fop.Show();
+                                CustomerForm customerForm = new CustomerForm();
+                                customerForm.Show();
                                 this.Hide();
+                                
                             }
                         }
                         else

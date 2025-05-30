@@ -278,6 +278,7 @@
             dataGridTables.RowHeadersWidth = 51;
             dataGridTables.Size = new Size(372, 203);
             dataGridTables.TabIndex = 12;
+            dataGridTables.CellClick += dataGridTables_CellClick;
             // 
             // groupBox1
             // 
@@ -304,6 +305,7 @@
             btn_clearTable.TabIndex = 8;
             btn_clearTable.Text = "CLEAR";
             btn_clearTable.UseVisualStyleBackColor = true;
+            btn_clearTable.Click += btn_clearTable_Click;
             // 
             // cmb_status
             // 
@@ -322,6 +324,7 @@
             btn_UpdateTable.TabIndex = 8;
             btn_UpdateTable.Text = "UPDATE";
             btn_UpdateTable.UseVisualStyleBackColor = true;
+            btn_UpdateTable.Click += btn_UpdateTable_Click;
             // 
             // btn_ADDTable
             // 
@@ -331,6 +334,7 @@
             btn_ADDTable.TabIndex = 8;
             btn_ADDTable.Text = "ADD";
             btn_ADDTable.UseVisualStyleBackColor = true;
+            btn_ADDTable.Click += btn_ADDTable_Click;
             // 
             // txtCapacity
             // 

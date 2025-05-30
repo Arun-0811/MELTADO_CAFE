@@ -11,7 +11,7 @@ namespace MELTADO_CAFE
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new InventoryManagementForm());
+            Application.Run(new AdminForm());
         }
     }
 }

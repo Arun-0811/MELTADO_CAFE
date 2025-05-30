@@ -35,10 +35,10 @@
             // dgvLowStock
             // 
             dgvLowStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLowStock.Location = new Point(269, 134);
+            dgvLowStock.Location = new Point(57, 90);
             dgvLowStock.Name = "dgvLowStock";
             dgvLowStock.RowHeadersWidth = 51;
-            dgvLowStock.Size = new Size(300, 188);
+            dgvLowStock.Size = new Size(710, 286);
             dgvLowStock.TabIndex = 0;
             // 
             // LowStockReportForm
