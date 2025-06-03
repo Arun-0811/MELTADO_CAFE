@@ -1,3 +1,5 @@
+using MELTADO_CAFE.AdminAccess;
+
 namespace MELTADO_CAFE
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace MELTADO_CAFE
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AdminForm());
+            Application.Run(new Login_Page());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MELTADO_CAFE.AdminAccess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,6 +51,16 @@ namespace MELTADO_CAFE
         private void btnInventoryManagment_Click(object sender, EventArgs e)
         {
             OpenChildForm(new InventoryManagementForm(), sender);
+        }
+
+        private void btnStaffShedule_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new StaffScheduling(), sender);
+        }
+
+        private void btnAddStaffs_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new SignUp_Page(), sender);
         }
     }
 }

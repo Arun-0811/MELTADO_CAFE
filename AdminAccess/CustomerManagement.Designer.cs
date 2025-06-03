@@ -43,9 +43,9 @@
             txtCardNo = new TextBox();
             cmbTier = new ComboBox();
             grpbox_Preferences = new GroupBox();
-            txtTable = new TextBox();
-            txtFavorites = new TextBox();
+            cmbTable = new ComboBox();
             cmbTime = new ComboBox();
+            cmbFavorites = new ComboBox();
             cmbDietary = new ComboBox();
             grpbox_cusdetails = new GroupBox();
             dtpDOB = new DateTimePicker();
@@ -80,6 +80,7 @@
             btn_btn_usualtimeload = new Button();
             btn_btn_dietaryclickload = new Button();
             btn_btn_genderclickload = new Button();
+            btnRefresh = new Button();
             CustomerManagment_panel.SuspendLayout();
             grpbox_Address.SuspendLayout();
             grpbox_HistoryFeedback.SuspendLayout();
@@ -231,9 +232,9 @@
             // 
             grpbox_Preferences.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             grpbox_Preferences.BackColor = Color.FromArgb(255, 192, 192);
-            grpbox_Preferences.Controls.Add(txtTable);
-            grpbox_Preferences.Controls.Add(txtFavorites);
+            grpbox_Preferences.Controls.Add(cmbTable);
             grpbox_Preferences.Controls.Add(cmbTime);
+            grpbox_Preferences.Controls.Add(cmbFavorites);
             grpbox_Preferences.Controls.Add(cmbDietary);
             grpbox_Preferences.Location = new Point(258, 14);
             grpbox_Preferences.Name = "grpbox_Preferences";
@@ -242,21 +243,13 @@
             grpbox_Preferences.TabStop = false;
             grpbox_Preferences.Text = "Preferences";
             // 
-            // txtTable
+            // cmbTable
             // 
-            txtTable.Location = new Point(20, 115);
-            txtTable.Name = "txtTable";
-            txtTable.Size = new Size(193, 27);
-            txtTable.TabIndex = 11;
-            PopUptoolTip.SetToolTip(txtTable, "Enter Your Preffered Table (Number Only)");
-            // 
-            // txtFavorites
-            // 
-            txtFavorites.Location = new Point(20, 26);
-            txtFavorites.Name = "txtFavorites";
-            txtFavorites.Size = new Size(193, 27);
-            txtFavorites.TabIndex = 9;
-            PopUptoolTip.SetToolTip(txtFavorites, "Enter Your Favorite item");
+            cmbTable.FormattingEnabled = true;
+            cmbTable.Location = new Point(20, 113);
+            cmbTable.Name = "cmbTable";
+            cmbTable.Size = new Size(193, 28);
+            cmbTable.TabIndex = 12;
             // 
             // cmbTime
             // 
@@ -266,6 +259,14 @@
             cmbTime.Size = new Size(193, 28);
             cmbTime.TabIndex = 12;
             PopUptoolTip.SetToolTip(cmbTime, "Select Your Prefferable Time");
+            // 
+            // cmbFavorites
+            // 
+            cmbFavorites.FormattingEnabled = true;
+            cmbFavorites.Location = new Point(20, 28);
+            cmbFavorites.Name = "cmbFavorites";
+            cmbFavorites.Size = new Size(193, 28);
+            cmbFavorites.TabIndex = 10;
             // 
             // cmbDietary
             // 
@@ -348,6 +349,7 @@
             // 
             btn_save.BackColor = SystemColors.Highlight;
             btn_save.FlatStyle = FlatStyle.Popup;
+            btn_save.Font = new Font("Georgia", 10.2F);
             btn_save.Location = new Point(195, 474);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(134, 52);
@@ -361,6 +363,7 @@
             // 
             btn_delete.BackColor = Color.Red;
             btn_delete.FlatStyle = FlatStyle.Popup;
+            btn_delete.Font = new Font("Georgia", 10.2F);
             btn_delete.Location = new Point(367, 474);
             btn_delete.Name = "btn_delete";
             btn_delete.Size = new Size(122, 52);
@@ -374,6 +377,7 @@
             // 
             btn_clear.BackColor = SystemColors.Info;
             btn_clear.FlatStyle = FlatStyle.Popup;
+            btn_clear.Font = new Font("Georgia", 10.2F);
             btn_clear.Location = new Point(524, 474);
             btn_clear.Name = "btn_clear";
             btn_clear.Size = new Size(128, 52);
@@ -386,6 +390,7 @@
             // btn_search
             // 
             btn_search.FlatStyle = FlatStyle.Popup;
+            btn_search.Font = new Font("Georgia", 10.2F);
             btn_search.Location = new Point(25, 404);
             btn_search.Name = "btn_search";
             btn_search.Size = new Size(115, 43);
@@ -398,6 +403,7 @@
             // 
             btn_add.BackColor = Color.ForestGreen;
             btn_add.FlatStyle = FlatStyle.Popup;
+            btn_add.Font = new Font("Georgia", 10.2F);
             btn_add.Location = new Point(25, 474);
             btn_add.Name = "btn_add";
             btn_add.Size = new Size(134, 52);
@@ -525,7 +531,6 @@
             grpbox_cuscmbbox.TabIndex = 6;
             grpbox_cuscmbbox.TabStop = false;
             grpbox_cuscmbbox.Text = "Customer Gender";
-            grpbox_cuscmbbox.Enter += grpbox_cuscmbbox_Enter;
             // 
             // groupBox1
             // 
@@ -562,6 +567,7 @@
             // 
             // panelMain
             // 
+            panelMain.AutoScroll = true;
             panelMain.AutoSize = true;
             panelMain.BackColor = Color.FromArgb(192, 192, 255);
             panelMain.Controls.Add(txtSearchCustomer);
@@ -579,6 +585,7 @@
             panelMain.Controls.Add(btn_btn_ADD);
             panelMain.Controls.Add(dgvCustomers);
             panelMain.Controls.Add(CustomerManagment_panel);
+            panelMain.Controls.Add(btnRefresh);
             panelMain.Controls.Add(btn_search);
             panelMain.Controls.Add(btn_delete);
             panelMain.Controls.Add(btn_save);
@@ -594,7 +601,7 @@
             // txtSearchCustomer
             // 
             txtSearchCustomer.Font = new Font("Georgia", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearchCustomer.Location = new Point(204, 404);
+            txtSearchCustomer.Location = new Point(178, 403);
             txtSearchCustomer.Name = "txtSearchCustomer";
             txtSearchCustomer.Size = new Size(323, 38);
             txtSearchCustomer.TabIndex = 8;
@@ -640,6 +647,19 @@
             btn_btn_genderclickload.UseVisualStyleBackColor = true;
             btn_btn_genderclickload.Click += btn_btn_genderclickload_Click;
             // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = Color.FromArgb(255, 192, 128);
+            btnRefresh.FlatStyle = FlatStyle.Popup;
+            btnRefresh.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRefresh.Location = new Point(537, 403);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(115, 43);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "REFRESH";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // CustomerManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -661,7 +681,6 @@
             grpbox_LoyaltyInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numPoints).EndInit();
             grpbox_Preferences.ResumeLayout(false);
-            grpbox_Preferences.PerformLayout();
             grpbox_cusdetails.ResumeLayout(false);
             grpbox_cusdetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();
@@ -689,8 +708,6 @@
         private TextBox txtEmail;
         private TextBox txtPhone;
         private TextBox txtName;
-        private TextBox txtTable;
-        private TextBox txtFavorites;
         private ComboBox cmbTime;
         private ComboBox cmbDietary;
         private GroupBox grpbox_HistoryFeedback;
@@ -732,5 +749,8 @@
         private Button btn_btn_dietaryclickload;
         private Button btn_btn_genderclickload;
         private TextBox txtSearchCustomer;
+        private ComboBox cmbFavorites;
+        private ComboBox cmbTable;
+        private Button btnRefresh;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MELTADO_CAFE
+﻿namespace MELTADO_CAFE.StaffAccess
 {
     partial class InvoiceForm
     {
@@ -28,189 +28,365 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblSubtotal = new Label();
-            lblTax = new Label();
-            lblTotal = new Label();
-            lblInvoiceTitle = new Label();
-            lblDate = new Label();
-            lblStatus = new Label();
-            dgvItems = new DataGridView();
-            dgvPayments = new DataGridView();
-            dgvHeader = new DataGridView();
-            btnPrint = new Button();
-            btnMarkAsPaid = new Button();
-            btnClose = new Button();
-            lblInvoiceGeneration = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgvItems).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvPayments).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvHeader).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceForm));
+            dgvInvoiceItems = new DataGridView();
+            lblInvoiceNo = new Label();
+            lblOrderDate = new Label();
+            lblCustomerName = new Label();
+            lblTableID = new Label();
+            lblPaymentMethod = new Label();
+            lblOrderStatus = new Label();
+            label1 = new Label();
+            label2 = new Label();
+            TableID = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            lblSubTotal = new Label();
+            lblTaxPercentage = new Label();
+            lblDiscount = new Label();
+            lblgrandTotal = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            pictureBoxLogo = new PictureBox();
+            label7 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            btnSaveInvoice = new Button();
+            btnPrintInvoice = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvInvoiceItems).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             SuspendLayout();
             // 
-            // lblSubtotal
+            // dgvInvoiceItems
             // 
-            lblSubtotal.AutoSize = true;
-            lblSubtotal.Location = new Point(34, 808);
-            lblSubtotal.Name = "lblSubtotal";
-            lblSubtotal.Size = new Size(16, 20);
-            lblSubtotal.TabIndex = 0;
-            lblSubtotal.Text = "?";
+            dgvInvoiceItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInvoiceItems.Location = new Point(71, 275);
+            dgvInvoiceItems.Name = "dgvInvoiceItems";
+            dgvInvoiceItems.RowHeadersWidth = 51;
+            dgvInvoiceItems.Size = new Size(557, 117);
+            dgvInvoiceItems.TabIndex = 0;
             // 
-            // lblTax
+            // lblInvoiceNo
             // 
-            lblTax.AutoSize = true;
-            lblTax.Location = new Point(34, 862);
-            lblTax.Name = "lblTax";
-            lblTax.Size = new Size(16, 20);
-            lblTax.TabIndex = 0;
-            lblTax.Text = "?";
+            lblInvoiceNo.AutoSize = true;
+            lblInvoiceNo.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblInvoiceNo.Location = new Point(398, 129);
+            lblInvoiceNo.Name = "lblInvoiceNo";
+            lblInvoiceNo.Size = new Size(17, 20);
+            lblInvoiceNo.TabIndex = 1;
+            lblInvoiceNo.Text = "?";
             // 
-            // lblTotal
+            // lblOrderDate
             // 
-            lblTotal.AutoSize = true;
-            lblTotal.Location = new Point(34, 904);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(16, 20);
-            lblTotal.TabIndex = 0;
-            lblTotal.Text = "?";
+            lblOrderDate.AutoSize = true;
+            lblOrderDate.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOrderDate.Location = new Point(398, 170);
+            lblOrderDate.Name = "lblOrderDate";
+            lblOrderDate.Size = new Size(17, 20);
+            lblOrderDate.TabIndex = 1;
+            lblOrderDate.Text = "?";
             // 
-            // lblInvoiceTitle
+            // lblCustomerName
             // 
-            lblInvoiceTitle.AutoSize = true;
-            lblInvoiceTitle.Location = new Point(34, 107);
-            lblInvoiceTitle.Name = "lblInvoiceTitle";
-            lblInvoiceTitle.Size = new Size(16, 20);
-            lblInvoiceTitle.TabIndex = 0;
-            lblInvoiceTitle.Text = "?";
+            lblCustomerName.AutoSize = true;
+            lblCustomerName.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCustomerName.Location = new Point(168, 223);
+            lblCustomerName.Name = "lblCustomerName";
+            lblCustomerName.Size = new Size(17, 20);
+            lblCustomerName.TabIndex = 1;
+            lblCustomerName.Text = "?";
             // 
-            // lblDate
+            // lblTableID
             // 
-            lblDate.AutoSize = true;
-            lblDate.Location = new Point(34, 155);
-            lblDate.Name = "lblDate";
-            lblDate.Size = new Size(16, 20);
-            lblDate.TabIndex = 0;
-            lblDate.Text = "?";
+            lblTableID.AutoSize = true;
+            lblTableID.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTableID.Location = new Point(495, 223);
+            lblTableID.Name = "lblTableID";
+            lblTableID.Size = new Size(17, 20);
+            lblTableID.TabIndex = 1;
+            lblTableID.Text = "?";
             // 
-            // lblStatus
+            // lblPaymentMethod
             // 
-            lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(1214, 107);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(16, 20);
-            lblStatus.TabIndex = 0;
-            lblStatus.Text = "?";
+            lblPaymentMethod.AutoSize = true;
+            lblPaymentMethod.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPaymentMethod.Location = new Point(144, 449);
+            lblPaymentMethod.Name = "lblPaymentMethod";
+            lblPaymentMethod.Size = new Size(17, 20);
+            lblPaymentMethod.TabIndex = 1;
+            lblPaymentMethod.Text = "?";
             // 
-            // dgvItems
+            // lblOrderStatus
             // 
-            dgvItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItems.Location = new Point(34, 522);
-            dgvItems.Name = "dgvItems";
-            dgvItems.RowHeadersWidth = 51;
-            dgvItems.Size = new Size(626, 238);
-            dgvItems.TabIndex = 1;
+            lblOrderStatus.AutoSize = true;
+            lblOrderStatus.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblOrderStatus.Location = new Point(144, 500);
+            lblOrderStatus.Name = "lblOrderStatus";
+            lblOrderStatus.Size = new Size(17, 20);
+            lblOrderStatus.TabIndex = 1;
+            lblOrderStatus.Text = "?";
             // 
-            // dgvPayments
+            // label1
             // 
-            dgvPayments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPayments.Location = new Point(703, 522);
-            dgvPayments.Name = "dgvPayments";
-            dgvPayments.RowHeadersWidth = 51;
-            dgvPayments.Size = new Size(1061, 238);
-            dgvPayments.TabIndex = 1;
+            label1.AutoSize = true;
+            label1.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(447, 66);
+            label1.Name = "label1";
+            label1.Size = new Size(157, 35);
+            label1.TabIndex = 1;
+            label1.Text = "INVOICE";
             // 
-            // dgvHeader
+            // label2
             // 
-            dgvHeader.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvHeader.Location = new Point(34, 223);
-            dgvHeader.Name = "dgvHeader";
-            dgvHeader.RowHeadersWidth = 51;
-            dgvHeader.Size = new Size(1730, 251);
-            dgvHeader.TabIndex = 1;
+            label2.AutoSize = true;
+            label2.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(71, 223);
+            label2.Name = "label2";
+            label2.Size = new Size(91, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Customer :";
             // 
-            // btnPrint
+            // TableID
             // 
-            btnPrint.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnPrint.Location = new Point(534, 796);
-            btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(126, 47);
-            btnPrint.TabIndex = 2;
-            btnPrint.Text = "Print";
-            btnPrint.UseVisualStyleBackColor = true;
-            btnPrint.Click += btnPrint_Click;
+            TableID.AutoSize = true;
+            TableID.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TableID.Location = new Point(398, 223);
+            TableID.Name = "TableID";
+            TableID.Size = new Size(85, 20);
+            TableID.TabIndex = 1;
+            TableID.Text = "Table ID :";
             // 
-            // btnMarkAsPaid
+            // label3
             // 
-            btnMarkAsPaid.Font = new Font("Georgia", 12F);
-            btnMarkAsPaid.Location = new Point(703, 796);
-            btnMarkAsPaid.Name = "btnMarkAsPaid";
-            btnMarkAsPaid.Size = new Size(212, 47);
-            btnMarkAsPaid.TabIndex = 2;
-            btnMarkAsPaid.Text = "Mark As Paid";
-            btnMarkAsPaid.UseVisualStyleBackColor = true;
-            btnMarkAsPaid.Click += btnMarkAsPaid_Click;
+            label3.AutoSize = true;
+            label3.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(367, 415);
+            label3.Name = "label3";
+            label3.Size = new Size(129, 20);
+            label3.TabIndex = 1;
+            label3.Text = "Subtotal :         ₹";
             // 
-            // btnClose
+            // label4
             // 
-            btnClose.Font = new Font("Georgia", 12F);
-            btnClose.Location = new Point(534, 879);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(132, 47);
-            btnClose.TabIndex = 2;
-            btnClose.Text = "Close";
-            btnClose.UseVisualStyleBackColor = true;
-            btnClose.Click += btnClose_Click;
+            label4.AutoSize = true;
+            label4.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(403, 449);
+            label4.Name = "label4";
+            label4.Size = new Size(93, 20);
+            label4.TabIndex = 1;
+            label4.Text = "Tax :         ₹";
             // 
-            // lblInvoiceGeneration
+            // label5
             // 
-            lblInvoiceGeneration.AutoSize = true;
-            lblInvoiceGeneration.Font = new Font("Georgia", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblInvoiceGeneration.ForeColor = Color.FromArgb(128, 64, 0);
-            lblInvoiceGeneration.Location = new Point(598, 29);
-            lblInvoiceGeneration.Name = "lblInvoiceGeneration";
-            lblInvoiceGeneration.Size = new Size(392, 35);
-            lblInvoiceGeneration.TabIndex = 0;
-            lblInvoiceGeneration.Text = "INVOICE GENERATION";
+            label5.AutoSize = true;
+            label5.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(367, 486);
+            label5.Name = "label5";
+            label5.Size = new Size(128, 20);
+            label5.TabIndex = 1;
+            label5.Text = "Discount :        ₹";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(324, 524);
+            label6.Name = "label6";
+            label6.Size = new Size(172, 20);
+            label6.TabIndex = 1;
+            label6.Text = "Grand Total :        ₹";
+            // 
+            // lblSubTotal
+            // 
+            lblSubTotal.AutoSize = true;
+            lblSubTotal.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubTotal.Location = new Point(501, 415);
+            lblSubTotal.Name = "lblSubTotal";
+            lblSubTotal.Size = new Size(17, 20);
+            lblSubTotal.TabIndex = 1;
+            lblSubTotal.Text = "?";
+            // 
+            // lblTaxPercentage
+            // 
+            lblTaxPercentage.AutoSize = true;
+            lblTaxPercentage.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTaxPercentage.Location = new Point(501, 449);
+            lblTaxPercentage.Name = "lblTaxPercentage";
+            lblTaxPercentage.Size = new Size(17, 20);
+            lblTaxPercentage.TabIndex = 1;
+            lblTaxPercentage.Text = "?";
+            // 
+            // lblDiscount
+            // 
+            lblDiscount.AutoSize = true;
+            lblDiscount.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDiscount.Location = new Point(501, 486);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.Size = new Size(17, 20);
+            lblDiscount.TabIndex = 1;
+            lblDiscount.Text = "?";
+            // 
+            // lblgrandTotal
+            // 
+            lblgrandTotal.AutoSize = true;
+            lblgrandTotal.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblgrandTotal.Location = new Point(502, 524);
+            lblgrandTotal.Name = "lblgrandTotal";
+            lblgrandTotal.Size = new Size(17, 20);
+            lblgrandTotal.TabIndex = 1;
+            lblgrandTotal.Text = "?";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(267, 129);
+            label8.Name = "label8";
+            label8.Size = new Size(125, 20);
+            label8.TabIndex = 1;
+            label8.Text = "Invoice #: INV-";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(334, 170);
+            label9.Name = "label9";
+            label9.Size = new Size(58, 20);
+            label9.TabIndex = 1;
+            label9.Text = "Date : ";
+            // 
+            // pictureBoxLogo
+            // 
+            pictureBoxLogo.Image = (Image)resources.GetObject("pictureBoxLogo.Image");
+            pictureBoxLogo.Location = new Point(46, 69);
+            pictureBoxLogo.Name = "pictureBoxLogo";
+            pictureBoxLogo.Size = new Size(155, 128);
+            pictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxLogo.TabIndex = 2;
+            pictureBoxLogo.TabStop = false;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(46, 449);
+            label7.Name = "label7";
+            label7.Size = new Size(92, 20);
+            label7.TabIndex = 1;
+            label7.Text = "Pay Mode :";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Location = new Point(71, 500);
+            label10.Name = "label10";
+            label10.Size = new Size(66, 20);
+            label10.TabIndex = 1;
+            label10.Text = "Status :";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Georgia", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(144, 615);
+            label11.Name = "label11";
+            label11.Size = new Size(328, 32);
+            label11.TabIndex = 1;
+            label11.Text = "Thank You for Visiting...!";
+            // 
+            // btnSaveInvoice
+            // 
+            btnSaveInvoice.Location = new Point(39, 733);
+            btnSaveInvoice.Name = "btnSaveInvoice";
+            btnSaveInvoice.Size = new Size(146, 42);
+            btnSaveInvoice.TabIndex = 3;
+            btnSaveInvoice.Text = "Insert to Database";
+            btnSaveInvoice.UseVisualStyleBackColor = true;
+            btnSaveInvoice.Click += btnSaveInvoice_Click;
+            // 
+            // btnPrintInvoice
+            // 
+            btnPrintInvoice.Location = new Point(246, 733);
+            btnPrintInvoice.Name = "btnPrintInvoice";
+            btnPrintInvoice.Size = new Size(146, 42);
+            btnPrintInvoice.TabIndex = 3;
+            btnPrintInvoice.Text = "Print Invoice";
+            btnPrintInvoice.UseVisualStyleBackColor = true;
+            btnPrintInvoice.Click += btnPrintInvoice_Click;
             // 
             // InvoiceForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1843, 1055);
-            Controls.Add(btnClose);
-            Controls.Add(btnMarkAsPaid);
-            Controls.Add(btnPrint);
-            Controls.Add(dgvHeader);
-            Controls.Add(dgvPayments);
-            Controls.Add(dgvItems);
-            Controls.Add(lblTotal);
-            Controls.Add(lblTax);
-            Controls.Add(lblSubtotal);
-            Controls.Add(lblStatus);
-            Controls.Add(lblDate);
-            Controls.Add(lblInvoiceGeneration);
-            Controls.Add(lblInvoiceTitle);
+            AutoScroll = true;
+            ClientSize = new Size(662, 834);
+            Controls.Add(btnPrintInvoice);
+            Controls.Add(btnSaveInvoice);
+            Controls.Add(pictureBoxLogo);
+            Controls.Add(label10);
+            Controls.Add(label11);
+            Controls.Add(lblOrderStatus);
+            Controls.Add(label3);
+            Controls.Add(label4);
+            Controls.Add(label5);
+            Controls.Add(label6);
+            Controls.Add(lblSubTotal);
+            Controls.Add(lblgrandTotal);
+            Controls.Add(lblDiscount);
+            Controls.Add(lblTaxPercentage);
+            Controls.Add(label7);
+            Controls.Add(lblPaymentMethod);
+            Controls.Add(TableID);
+            Controls.Add(lblTableID);
+            Controls.Add(label2);
+            Controls.Add(lblCustomerName);
+            Controls.Add(label9);
+            Controls.Add(lblOrderDate);
+            Controls.Add(label1);
+            Controls.Add(label8);
+            Controls.Add(lblInvoiceNo);
+            Controls.Add(dgvInvoiceItems);
             Name = "InvoiceForm";
             Text = "InvoiceForm";
-            ((System.ComponentModel.ISupportInitialize)dgvItems).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvPayments).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvHeader).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvInvoiceItems).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label lblSubtotal;
-        private Label lblTax;
-        private Label lblTotal;
-        private Label lblInvoiceTitle;
-        private Label lblDate;
-        private Label lblStatus;
-        private DataGridView dgvItems;
-        private DataGridView dgvPayments;
-        private DataGridView dgvHeader;
-        private Button btnPrint;
-        private Button btnMarkAsPaid;
-        private Button btnClose;
-        private Label lblInvoiceGeneration;
+
+        private DataGridView dgvInvoiceItems;
+        private Label lblInvoiceNo;
+        private Label lblOrderDate;
+        private Label lblCustomerName;
+        private Label lblTableID;
+        private Label lblPaymentMethod;
+        private Label lblOrderStatus;
+        private Label lblGrandTotal;
+        private Label label1;
+        private Label label2;
+        private Label TableID;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label lblSubTotal;
+        private Label lblTaxPercentage;
+        private Label lblDiscount;
+        private Label lblgrandTotal;
+        private Label label8;
+        private Label label9;
+        private PictureBox pictureBoxLogo;
+        private Label label7;
+        private Label label10;
+        private Label label11;
+        private Button btnSaveInvoice;
+        private Button btnPrintInvoice;
+        //private Label lblGrandTotal;
     }
 }

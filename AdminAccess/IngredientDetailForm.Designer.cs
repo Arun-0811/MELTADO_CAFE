@@ -98,6 +98,7 @@
             txtName.Name = "txtName";
             txtName.Size = new Size(230, 31);
             txtName.TabIndex = 7;
+            toolTip1.SetToolTip(txtName, "Ingreditent Name Enter Here");
             // 
             // txtDescription
             // 
@@ -106,6 +107,7 @@
             txtDescription.Name = "txtDescription";
             txtDescription.Size = new Size(230, 31);
             txtDescription.TabIndex = 7;
+            toolTip1.SetToolTip(txtDescription, "Ingredient Description here");
             // 
             // txtSupplier
             // 
@@ -114,6 +116,7 @@
             txtSupplier.Name = "txtSupplier";
             txtSupplier.Size = new Size(230, 31);
             txtSupplier.TabIndex = 7;
+            toolTip1.SetToolTip(txtSupplier, "Enter Supplier Name for Future Communication");
             // 
             // cmbUnit
             // 
@@ -153,6 +156,7 @@
             numCost.Name = "numCost";
             numCost.Size = new Size(228, 30);
             numCost.TabIndex = 9;
+            toolTip1.SetToolTip(numCost, "Cost per quantity enter here");
             // 
             // numReorderLevel
             // 

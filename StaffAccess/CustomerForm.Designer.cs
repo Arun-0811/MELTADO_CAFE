@@ -35,9 +35,9 @@
             btnTableReservation = new Button();
             btnOrderProcessing = new Button();
             panel2 = new Panel();
+            lblTitle = new Label();
             lblDashboard = new Label();
             PanelDesktop = new Panel();
-            lblTitle = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -68,7 +68,7 @@
             // btnInventoryManagment
             // 
             btnInventoryManagment.Font = new Font("Georgia", 12F, FontStyle.Bold);
-            btnInventoryManagment.Location = new Point(6, 314);
+            btnInventoryManagment.Location = new Point(3, 359);
             btnInventoryManagment.Name = "btnInventoryManagment";
             btnInventoryManagment.Size = new Size(247, 65);
             btnInventoryManagment.TabIndex = 0;
@@ -79,7 +79,7 @@
             // btnTableReservation
             // 
             btnTableReservation.Font = new Font("Georgia", 12F, FontStyle.Bold);
-            btnTableReservation.Location = new Point(6, 243);
+            btnTableReservation.Location = new Point(6, 217);
             btnTableReservation.Name = "btnTableReservation";
             btnTableReservation.Size = new Size(247, 65);
             btnTableReservation.TabIndex = 0;
@@ -90,7 +90,7 @@
             // btnOrderProcessing
             // 
             btnOrderProcessing.Font = new Font("Georgia", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOrderProcessing.Location = new Point(6, 172);
+            btnOrderProcessing.Location = new Point(3, 288);
             btnOrderProcessing.Name = "btnOrderProcessing";
             btnOrderProcessing.Size = new Size(247, 65);
             btnOrderProcessing.TabIndex = 0;
@@ -107,6 +107,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(994, 87);
             panel2.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.Location = new Point(629, 39);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(258, 27);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "STAFF DASHBOARD";
             // 
             // lblDashboard
             // 
@@ -126,20 +136,11 @@
             PanelDesktop.Size = new Size(994, 446);
             PanelDesktop.TabIndex = 2;
             // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(629, 39);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(258, 27);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "STAFF DASHBOARD";
-            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(1250, 533);
             Controls.Add(PanelDesktop);
             Controls.Add(panel2);

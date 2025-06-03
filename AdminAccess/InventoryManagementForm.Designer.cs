@@ -75,6 +75,7 @@
             btnLowStock.Size = new Size(146, 44);
             btnLowStock.TabIndex = 1;
             btnLowStock.Text = "🔔View Low Stock";
+            toolTip1.SetToolTip(btnLowStock, "Low stock Indication Click here");
             btnLowStock.UseVisualStyleBackColor = true;
             btnLowStock.Click += btnLowStock_Click;
             // 
@@ -107,6 +108,7 @@
             button2.Size = new Size(128, 44);
             button2.TabIndex = 1;
             button2.Text = "📊 Adjust Stock";
+            toolTip1.SetToolTip(button2, "Wastage adjustment click here");
             button2.UseVisualStyleBackColor = true;
             button2.Click += btnAdjustStock_Click;
             // 
@@ -127,6 +129,7 @@
             button4.Size = new Size(117, 44);
             button4.TabIndex = 1;
             button4.Text = "Print Report";
+            toolTip1.SetToolTip(button4, "Print Available Stock Report Click Here");
             button4.UseVisualStyleBackColor = true;
             button4.Click += btnPrintReport_Click;
             // 

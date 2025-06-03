@@ -1,414 +1,223 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Org.BouncyCastle.Asn1.Cmp;
-using System;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Printing;
 using System.Windows.Forms;
 using static MELTADO_CAFE.Login_Page;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.IO;
+using System.Drawing.Printing;
+using System.Windows.Forms.VisualStyles;
 
-namespace MELTADO_CAFE
+namespace MELTADO_CAFE.StaffAccess
 {
     public partial class InvoiceForm : Form
     {
-        private readonly string _connectionString;
-        private readonly int _invoiceId;
 
-        public InvoiceForm(int invoiceId)
+        string ConStr = ConfigurationManager.ConnectionStrings["DevConnection"].ConnectionString;
+        private int orderId;
+        PrintDocument printDoc = new PrintDocument();
+        Font printFont = new Font("Arial", 10);
+
+        public InvoiceForm(int orderId)
         {
             InitializeComponent();
-            _connectionString = ConfigurationManager.ConnectionStrings["DevConnection"].ConnectionString;
-            _invoiceId = invoiceId;
-
-            // Configure form appearance
-            this.Text = $"Invoice #{invoiceId}";
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-
-            SetupDataGridViews();
-            LoadInvoiceData();
+            this.orderId = orderId;
+            LoadInvoiceDetails(orderId);
         }
 
-        private void SetupDataGridViews()
+        private void LoadInvoiceDetails(int orderId)
         {
-            // Configure header DataGridView
-            dgvHeader.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9);
-            dgvHeader.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvHeader.RowHeadersVisible = false;
-            dgvHeader.AllowUserToAddRows = false;
-            dgvHeader.ReadOnly = true;
-            dgvHeader.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Configure items DataGridView
-            dgvItems.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9);
-            dgvItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvItems.RowHeadersVisible = false;
-            dgvItems.AllowUserToAddRows = false;
-            dgvItems.ReadOnly = true;
-            dgvItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Configure payment DataGridView
-            dgvPayments.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9);
-            dgvPayments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvPayments.RowHeadersVisible = false;
-            dgvPayments.AllowUserToAddRows = false;
-            dgvPayments.ReadOnly = true;
-            dgvPayments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        }
-
-        private void LoadInvoiceData()
-        {
-            try
+            using (SqlConnection con = new SqlConnection(ConStr))
             {
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                using (SqlCommand cmd = new SqlCommand("sp_GetInvoiceDetails", connection))
+                SqlCommand cmd = new SqlCommand("sp_GetInvoiceDetails", con)
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@InvoiceID", _invoiceId);
-                    connection.Open();
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        // 1. Load Header Data
-                        if (reader.HasRows)
-                        {
-                            DataTable headerTable = new DataTable();
-                            headerTable.Load(reader);
-                            dgvHeader.DataSource = headerTable;
-
-                            if (headerTable.Rows.Count > 0)
-                            {
-                                DataRow row = headerTable.Rows[0];
-                                lblInvoiceTitle.Text = $"INVOICE #{row["InvoiceNumber"]}";
-                                lblDate.Text = $"Date: {Convert.ToDateTime(row["InvoiceDate"]):dd/MM/yyyy}";
-                                lblStatus.Text = $"Status: {row["PaymentStatus"]}";
-                                lblSubtotal.Text = $"Subtotal: {Convert.ToDecimal(row["Subtotal"]):C}";
-                                lblTax.Text = $"Tax: {Convert.ToDecimal(row["TaxAmount"]):C}";
-                                lblTotal.Text = $"Total: {Convert.ToDecimal(row["TotalAmount"]):C}";
-                            }
-                        }
-
-                        // 2. Load Items Data
-                        if (reader.HasRows)
-                        {
-                            DataTable itemsTable = new DataTable();
-                            itemsTable.Load(reader);
-                            dgvItems.DataSource = itemsTable;
-                        }
-
-                        // 3. Load Payments Data
-                        if (reader.HasRows)
-                        {
-                            DataTable paymentsTable = new DataTable();
-                            paymentsTable.Load(reader);
-                            dgvPayments.DataSource = paymentsTable;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading invoice data: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // Optionally disable buttons to prevent further use
-                btnMarkAsPaid.Enabled = true;
-                btnPrint.Enabled = false;
-
-                // Do NOT close the form here
-                // this.Close();  ← Remove this
-            }
-
-        }
-
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            ExportInvoiceAsPDF();
-        }
-
-        private void ExportInvoiceAsPDF()
-        {
-            try
-            {
-                using (SaveFileDialog saveFileDialog = new SaveFileDialog
-                {
-                    Filter = "PDF files (*.pdf)|*.pdf",
-                    Title = "Save Invoice",
-                    FileName = $"MeltadoCafe_Invoice_{_invoiceId}_{DateTime.Now:yyyyMMdd}.pdf"
-                })
-                {
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
-                        {
-                            Document document = new Document(PageSize.A4, 25, 25, 30, 30);
-                            PdfWriter.GetInstance(document, fs);
-                            document.Open();
-
-                            // Title
-                            Paragraph title = new Paragraph("MELTADO CAFE - CUSTOMER INVOICE",
-                                FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.DarkGray))
-                            {
-                                Alignment = Element.ALIGN_CENTER
-                            };
-                            document.Add(title);
-
-                            // Invoice Info
-                            Paragraph info = new Paragraph(
-                                $"Invoice ID: {_invoiceId}\nGenerated on: {DateTime.Now:yyyy-MM-dd HH:mm}\n",
-                                FontFactory.GetFont(FontFactory.HELVETICA, 10, BaseColor.Gray))
-                            {
-                                Alignment = Element.ALIGN_CENTER
-                            };
-                            document.Add(info);
-                            document.Add(new Paragraph("\n"));
-
-                            // --- Header Info Table ---
-                            if (dgvHeader.DataSource is DataTable headerTable && headerTable.Rows.Count > 0)
-                            {
-                                PdfPTable headerPdfTable = new PdfPTable(headerTable.Columns.Count)
-                                {
-                                    WidthPercentage = 100
-                                };
-
-                                foreach (DataColumn col in headerTable.Columns)
-                                {
-                                    PdfPCell headerCell = new PdfPCell(new Phrase(col.ColumnName,
-                                        FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 9)))
-                                    {
-                                        BackgroundColor = new BaseColor(230, 230, 230),
-                                        Padding = 4,
-                                        HorizontalAlignment = Element.ALIGN_CENTER
-                                    };
-                                    headerPdfTable.AddCell(headerCell);
-                                }
-
-                                foreach (DataRow row in headerTable.Rows)
-                                {
-                                    foreach (object cell in row.ItemArray)
-                                    {
-                                        headerPdfTable.AddCell(new PdfPCell(new Phrase(cell.ToString(),
-                                            FontFactory.GetFont(FontFactory.HELVETICA, 9)))
-                                        { Padding = 4 });
-                                    }
-                                }
-
-                                document.Add(headerPdfTable);
-                                document.Add(new Paragraph("\n"));
-                            }
-
-                            // --- Items Table ---
-                            if (dgvItems.DataSource is DataTable itemsTable && itemsTable.Rows.Count > 0)
-                            {
-                                Paragraph itemSection = new Paragraph("Ordered Items",
-                                    FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.Black));
-                                document.Add(itemSection);
-                                document.Add(new Paragraph("\n"));
-
-                                PdfPTable itemPdfTable = new PdfPTable(itemsTable.Columns.Count)
-                                {
-                                    WidthPercentage = 100
-                                };
-
-                                foreach (DataColumn col in itemsTable.Columns)
-                                {
-                                    PdfPCell headerCell = new PdfPCell(new Phrase(col.ColumnName,
-                                        FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 9)))
-                                    {
-                                        BackgroundColor = new BaseColor(230, 230, 230),
-                                        Padding = 4,
-                                        HorizontalAlignment = Element.ALIGN_CENTER
-                                    };
-                                    itemPdfTable.AddCell(headerCell);
-                                }
-
-                                foreach (DataRow row in itemsTable.Rows)
-                                {
-                                    foreach (object cell in row.ItemArray)
-                                    {
-                                        itemPdfTable.AddCell(new PdfPCell(new Phrase(cell.ToString(),
-                                            FontFactory.GetFont(FontFactory.HELVETICA, 9)))
-                                        { Padding = 4 });
-                                    }
-                                }
-
-                                document.Add(itemPdfTable);
-                                document.Add(new Paragraph("\n"));
-                            }
-
-                            // --- Payment Info Table ---
-                            if (dgvPayments.DataSource is DataTable paymentsTable && paymentsTable.Rows.Count > 0)
-                            {
-                                Paragraph paymentSection = new Paragraph("Payment Details",
-                                    FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12, BaseColor.Black));
-                                document.Add(paymentSection);
-                                document.Add(new Paragraph("\n"));
-
-                                PdfPTable paymentPdfTable = new PdfPTable(paymentsTable.Columns.Count)
-                                {
-                                    WidthPercentage = 100
-                                };
-
-                                foreach (DataColumn col in paymentsTable.Columns)
-                                {
-                                    PdfPCell headerCell = new PdfPCell(new Phrase(col.ColumnName,
-                                        FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 9)))
-                                    {
-                                        BackgroundColor = new BaseColor(230, 230, 230),
-                                        Padding = 4,
-                                        HorizontalAlignment = Element.ALIGN_CENTER
-                                    };
-                                    paymentPdfTable.AddCell(headerCell);
-                                }
-
-                                foreach (DataRow row in paymentsTable.Rows)
-                                {
-                                    foreach (object cell in row.ItemArray)
-                                    {
-                                        paymentPdfTable.AddCell(new PdfPCell(new Phrase(cell.ToString(),
-                                            FontFactory.GetFont(FontFactory.HELVETICA, 9)))
-                                        { Padding = 4 });
-                                    }
-                                }
-
-                                document.Add(paymentPdfTable);
-                            }
-
-                            document.Close();
-                        }
-
-                        MessageBox.Show($"Invoice saved successfully to:\n{saveFileDialog.FileName}",
-                            "Invoice Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error generating invoice:\n{ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnMarkAsPaid_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (PaymentDialog paymentDialog = new PaymentDialog(_invoiceId))
-                {
-                    if (paymentDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        using (SqlConnection connection = new SqlConnection(_connectionString))
-                        using (SqlCommand cmd = new SqlCommand("sp_UpdateInvoicePayment", connection))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@InvoiceID", _invoiceId);
-                            cmd.Parameters.AddWithValue("@PaymentStatus", "Paid");
-                            cmd.Parameters.AddWithValue("@PaymentMethod", paymentDialog.PaymentMethod);
-                            cmd.Parameters.AddWithValue("@Notes", $"Paid on {DateTime.Now:g}");
-                            cmd.Parameters.AddWithValue("@UpdatedBy", LoggedInUser.UserId);
-
-                            connection.Open();
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show("Invoice marked as paid successfully!", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Refresh the display
-                        LoadInvoiceData();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error updating payment status: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        
-    }
-
-    // Simple payment dialog (create as separate form)
-    public class PaymentDialog : Form
-        {
-            public string PaymentMethod { get; private set; }
-            private readonly int _invoiceId;
-
-            public PaymentDialog(int invoiceId)
-            {
-                _invoiceId = invoiceId;
-                InitializeComponents();
-            }
-
-            private void InitializeComponents()
-            {
-                this.Text = "Record Payment";
-                this.Size = new Size(300, 200);
-                this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                this.StartPosition = FormStartPosition.CenterParent;
-
-                Label lblAmount = new Label { Text = "Amount:", Left = 20, Top = 20 };
-                TextBox txtAmount = new TextBox { Left = 100, Top = 20, Width = 150, ReadOnly = true };
-
-                Label lblMethod = new Label { Text = "Method:", Left = 20, Top = 50 };
-                ComboBox cmbMethod = new ComboBox { Left = 100, Top = 50, Width = 150 };
-                cmbMethod.Items.AddRange(new[] { "Cash", "Credit Card", "Debit Card", "Bank Transfer" });
-
-                Button btnOK = new Button { Text = "OK", Left = 100, Top = 100, DialogResult = DialogResult.OK };
-                Button btnCancel = new Button { Text = "Cancel", Left = 180, Top = 100, DialogResult = DialogResult.Cancel };
-
-                // Load invoice amount
-                try
-                {
-                    string connStr = ConfigurationManager.ConnectionStrings["DevConnection"].ConnectionString;
-                    using (SqlConnection connection = new SqlConnection(connStr))
-                    using (SqlCommand cmd = new SqlCommand("SELECT TotalAmount FROM Invoices WHERE InvoiceID = @InvoiceID", connection))
-                    {
-                        cmd.Parameters.AddWithValue("@InvoiceID", _invoiceId);
-                        connection.Open();
-                        decimal amount = Convert.ToDecimal(cmd.ExecuteScalar());
-                        txtAmount.Text = amount.ToString("C");
-                    }
-                }
-                catch { /* Handle error */ }
-
-                this.Controls.AddRange(new Control[] { lblAmount, txtAmount, lblMethod, cmbMethod, btnOK, btnCancel });
-
-                btnOK.Click += (s, e) =>
-                {
-                    if (cmbMethod.SelectedItem == null)
-                    {
-                        MessageBox.Show("Please select a payment method", "Warning",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        this.DialogResult = DialogResult.None;
-                        return;
-                    }
-
-                    PaymentMethod = cmbMethod.SelectedItem.ToString();
+                    CommandType = CommandType.StoredProcedure
                 };
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    // Header Data
+                    lblInvoiceNo.Text = "Invoice #: INV-" + orderId.ToString("D4");
+                    lblOrderDate.Text = Convert.ToDateTime(dt.Rows[0]["OrderDate"]).ToString("yyyy-MM-dd");
+                    lblCustomerName.Text = dt.Rows[0]["CustomerName"].ToString();
+                    lblTableID.Text = dt.Rows[0]["TableNumber"].ToString();
+                    lblPaymentMethod.Text = dt.Rows[0]["PaymentMethod"].ToString();
+                    lblOrderStatus.Text = dt.Rows[0]["OrderStatus"].ToString();
+
+                    // Prepare grid display table
+                    DataTable displayTable = new DataTable();
+                    displayTable.Columns.Add("Item Name", typeof(string));
+                    displayTable.Columns.Add("Quantity", typeof(int));
+                    displayTable.Columns.Add("Unit Price", typeof(decimal));
+                    displayTable.Columns.Add("Line Total", typeof(decimal));
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        displayTable.Rows.Add(
+                            row["ItemName"],
+                            row["Quantity"],
+                            row["UnitPrice"],
+                            row["TotalPrice"]
+                        );
+                    }
+
+                    dgvInvoiceItems.DataSource = displayTable;
+
+                    // Format Grid
+                    dgvInvoiceItems.Columns["Item Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvInvoiceItems.Columns["Unit Price"].DefaultCellStyle.Format = "0.00";
+                    dgvInvoiceItems.Columns["Line Total"].DefaultCellStyle.Format = "0.00";
+
+                    dgvInvoiceItems.ReadOnly = true;
+                    dgvInvoiceItems.AllowUserToAddRows = false;
+                    dgvInvoiceItems.RowHeadersVisible = false;
+
+                    // Totals Calculation
+                    decimal subtotal = displayTable.AsEnumerable().Sum(r => r.Field<decimal>("Line Total"));
+                    decimal tax = Math.Round(subtotal * 0.08m, 2); // 8% tax
+                    decimal discount = 0m; // Optional
+                    decimal grandTotal = subtotal + tax - discount;
+
+                    lblSubTotal.Text = subtotal.ToString("0.00");
+                    lblTaxPercentage.Text = tax.ToString("0.00");
+                    lblDiscount.Text = discount.ToString("0.00");
+                    lblgrandTotal.Text = grandTotal.ToString("0.00");
+                }
+                else
+                {
+                    MessageBox.Show("Invoice data not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-    
+
+        private void btnSaveInvoice_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(ConStr))
+            {
+                SqlCommand cmd = new SqlCommand("sp_InsertInvoice", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@OrderID", orderId);
+                cmd.Parameters.AddWithValue("@InvoiceNumber", "INV-" + orderId.ToString("D4"));
+                cmd.Parameters.AddWithValue("@CustomerName", lblCustomerName.Text);
+                cmd.Parameters.AddWithValue("@TableNumber", lblTableID.Text);
+                cmd.Parameters.AddWithValue("@PaymentMethod", lblPaymentMethod.Text);
+                cmd.Parameters.AddWithValue("@OrderStatus", lblOrderStatus.Text);
+                cmd.Parameters.AddWithValue("@Subtotal", Decimal.Parse(lblSubTotal.Text));
+                cmd.Parameters.AddWithValue("@Tax", Decimal.Parse(lblTaxPercentage.Text));
+                cmd.Parameters.AddWithValue("@Discount", Decimal.Parse(lblDiscount.Text));
+                cmd.Parameters.AddWithValue("@GrandTotal", Decimal.Parse(lblgrandTotal.Text));
+                cmd.Parameters.AddWithValue("@CreatedBy", LoggedInUser.UserId); // ✅ This is where you place it
+
+                SqlParameter outId = new SqlParameter("@InvoiceID", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outId);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                int invoiceId = (int)outId.Value;
+
+                MessageBox.Show($"Invoice #{invoiceId} saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnPrintInvoice_Click(object sender, EventArgs e)
+        {
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+            printDoc.PrintPage += new PrintPageEventHandler(PrintDoc_PrintPage);
+            previewDialog.Document = printDoc;
+            previewDialog.ShowDialog();
+        }
+
+        private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            float contentWidth = 500;
+            float x = e.MarginBounds.Left + (e.MarginBounds.Width - contentWidth) / 2; // Center X
+            float y = 20;
+            float lineHeight = printFont.GetHeight(e.Graphics) + 6;
+
+            float logoX = x + contentWidth - 110; // Push logo to right inside the border
+            float logoY = y + 20;
+
+            // Draw outer border
+            e.Graphics.DrawRectangle(Pens.Black, x - 10, y - 10, contentWidth, 600); // Adjust height as needed
+
+            // Optional Logo (Top-Right inside border)
+            if (pictureBoxLogo.Image != null)
+            {
+                e.Graphics.DrawImage(pictureBoxLogo.Image, new Rectangle((int)logoX, (int)logoY, 100, 100));
+            }
+
+            // Title - Centered
+            string title = "MELTADO CAFE - INVOICE";
+            SizeF titleSize = e.Graphics.MeasureString(title, new Font("Arial", 16, FontStyle.Bold));
+            float titleX = x + (contentWidth - titleSize.Width) / 2;
+            e.Graphics.DrawString(title, new Font("Arial", 16, FontStyle.Bold), Brushes.DarkSlateBlue, titleX, y);
+            y += lineHeight * 2;
+
+            // Header Info Box
+            RectangleF headerBox = new RectangleF(x, y, contentWidth - 20, lineHeight * 6);
+            e.Graphics.DrawRectangle(Pens.Gray, Rectangle.Round(headerBox));
+
+            e.Graphics.DrawString(lblInvoiceNo.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString(lblOrderDate.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString("Customer: " + lblCustomerName.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString("Table: " + lblTableID.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString("Payment: " + lblPaymentMethod.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString("Status: " + lblOrderStatus.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight + 5;
+
+            // Item Header Box
+            e.Graphics.FillRectangle(Brushes.LightGray, x, y, contentWidth - 20, lineHeight);
+            e.Graphics.DrawRectangle(Pens.Black, x, y, contentWidth - 20, lineHeight);
+
+            e.Graphics.DrawString("Item", printFont, Brushes.Black, x + 5, y);
+            e.Graphics.DrawString("Qty", printFont, Brushes.Black, x + 200, y);
+            e.Graphics.DrawString("Rate", printFont, Brushes.Black, x + 280, y);
+            e.Graphics.DrawString("Total", printFont, Brushes.Black, x + 370, y);
+            y += lineHeight;
+
+            // Items
+            foreach (DataGridViewRow row in dgvInvoiceItems.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                e.Graphics.DrawString(row.Cells[0].Value?.ToString(), printFont, Brushes.Black, x + 5, y);
+                e.Graphics.DrawString(row.Cells[1].Value?.ToString(), printFont, Brushes.Black, x + 200, y);
+                e.Graphics.DrawString(Convert.ToDecimal(row.Cells[2].Value).ToString("0.00"), printFont, Brushes.Black, x + 280, y);
+                e.Graphics.DrawString(Convert.ToDecimal(row.Cells[3].Value).ToString("0.00"), printFont, Brushes.Black, x + 370, y);
+                y += lineHeight;
+            }
+
+            y += 10;
+            e.Graphics.DrawLine(Pens.Black, x, y, x + contentWidth - 20, y);
+            y += 10;
+
+            // Totals Box
+            RectangleF totalBox = new RectangleF(x, y, contentWidth - 20, lineHeight * 4.5f);
+            e.Graphics.DrawRectangle(Pens.Gray, Rectangle.Round(totalBox));
+
+            e.Graphics.DrawString(lblSubTotal.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString(lblTaxPercentage.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString(lblDiscount.Text, printFont, Brushes.Black, x + 10, y); y += lineHeight;
+            e.Graphics.DrawString(lblgrandTotal.Text, new Font("Arial", 11, FontStyle.Bold), Brushes.DarkRed, x + 10, y);
+            y += lineHeight + 10;
+
+            // Footer Message - Padded
+            float footerY = y + 20;
+            string footer = "Thank you for visiting MELTADO Cafe!";
+            SizeF footerSize = e.Graphics.MeasureString(footer, new Font("Arial", 10, FontStyle.Italic));
+            float footerX = x + (contentWidth - footerSize.Width) / 2;
+
+            e.Graphics.DrawString(footer, new Font("Arial", 10, FontStyle.Italic), Brushes.DarkGreen, footerX, footerY);
+        }
+
+    }
 }

@@ -48,6 +48,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(dgvLowStock);
             Name = "LowStockReportForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LowStockReportForm";
             ((System.ComponentModel.ISupportInitialize)dgvLowStock).EndInit();
             ResumeLayout(false);

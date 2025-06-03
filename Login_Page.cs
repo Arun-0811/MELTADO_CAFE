@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -12,7 +12,31 @@ namespace MELTADO_CAFE
         {
             InitializeComponent();
         }
+        public void RoleSelect()
+        {
+            using (SqlConnection conn = new SqlConnection(ConnnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("GetRoleNames", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // Add default item at the top
+                DataRow defaultRow = dt.NewRow();
+                defaultRow["RoleName"] = "-- Select Role --";
+                dt.Rows.InsertAt(defaultRow, 0);
+
+                // Bind to ComboBox
+                cmb_role.DataSource = dt;
+                cmb_role.DisplayMember = "RoleName";
+                cmb_role.ValueMember = "RoleId"; // Or RoleId if available
+                cmb_role.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            }
+        }
         private void lmklbl_signup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             SignUp_Page signUp_Page = new SignUp_Page();
@@ -49,6 +73,13 @@ namespace MELTADO_CAFE
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        private void ClearTextBoxes()
+        {
+            txt_uname.Clear();
+            txt_pwd.Clear();
+            cmb_role.SelectedIndex = 0; // Reset to first role like "Admin"
+            txt_uname.Focus(); // Optional: Set focus back to username
+        }
 
         public static class LoggedInUser
         {
@@ -56,32 +87,42 @@ namespace MELTADO_CAFE
             public static string Username { get; set; }
             public static string Email { get; set; }
             public static int RoleId { get; set; }
+
         }
 
         private void btn_signin_Click(object sender, EventArgs e)
         {
             string username = txt_uname.Text.Trim();
             string password = txt_pwd.Text.Trim();
-            string selectedRole = toggleBtn.Checked? "Admin" : "Staff"; // Toggle button for Admin
+            int roleId = 0;
+
+            if (cmb_role.SelectedValue != null && cmb_role.SelectedValue != DBNull.Value)
+            {
+                roleId = Convert.ToInt32(cmb_role.SelectedValue);
+            } // e.g., "Admin", "Manager", "Staff"
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {                
+            {
                 MessageBox.Show("Please enter username and password.");
                 return;
             }
+
+
 
             using (SqlConnection conn = new SqlConnection(ConnnectionString))
             {
                 try
                 {
                     conn.Open();
-
                     using (SqlCommand cmd = new SqlCommand("ValidateUserLogin", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Correct parameter names and values
                         cmd.Parameters.AddWithValue("@Username", username);
                         cmd.Parameters.AddWithValue("@Password", password);
-                        cmd.Parameters.AddWithValue("@RoleName", selectedRole);
+                        cmd.Parameters.AddWithValue("@RoleId", roleId); // ✅ FIXED
+
                         SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
                         {
@@ -90,30 +131,33 @@ namespace MELTADO_CAFE
                             LoggedInUser.Username = reader["Username"].ToString();
                             LoggedInUser.Email = reader["Email"].ToString();
                             LoggedInUser.RoleId = Convert.ToInt32(reader["RoleId"]);
-
-                            // Admin credentials check (Example: hardcoded)
-                            if (username == "Admin" && password == "12345" && selectedRole == "Admin")
+                            string roleName = reader["RoleName"].ToString(); // ✅ Include RoleName from your SELECT
+                            int IsActive = Convert.ToInt32(reader["IsActive"]);
+                            if (IsActive == 0)
                             {
-                                // Redirect to Admin page
-                                MessageBox.Show($"{selectedRole} login successful!");
+                                MessageBox.Show($"You are Inactive User {username}");
+                            }
+
+                            MessageBox.Show($"{roleName} login successful!");
+
+                            // Redirect based on role
+                            if (roleName == "Admin" || roleName == "Manager")
+                            {
+                                
                                 AdminForm adminForm = new AdminForm();
                                 adminForm.Show();
-                                this.Hide();
-                                
                             }
-                            else
+                            else if (roleName == "Staff")
                             {
-                                // Redirect to Customer page
-                                MessageBox.Show($"{selectedRole} login successful!");
-                                CustomerForm customerForm = new CustomerForm();
-                                customerForm.Show();
-                                this.Hide();
-                                
+                                CustomerForm staffForm = new CustomerForm();
+                                staffForm.Show();
                             }
+
+                            this.Hide();
                         }
                         else
                         {
-                            MessageBox.Show("Invalid username or password.");
+                            MessageBox.Show("Invalid username, password, or role.");
                         }
                     }
                 }
@@ -122,6 +166,19 @@ namespace MELTADO_CAFE
                     MessageBox.Show("Login failed: " + ex.Message);
                 }
             }
+
+        }
+
+
+
+        private void btnClearall_Click(object sender, EventArgs e)
+        {
+            ClearTextBoxes();
+        }
+
+        private void Login_Page_Load(object sender, EventArgs e)
+        {
+            RoleSelect();
         }
     }
 }

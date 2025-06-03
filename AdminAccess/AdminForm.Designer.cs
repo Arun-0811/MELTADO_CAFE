@@ -35,6 +35,8 @@
             lblDashboard = new Label();
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
+            btnAddStaffs = new Button();
+            btnStaffShedule = new Button();
             btnInventoryManagment = new Button();
             btnMenuManagement = new Button();
             btnCustomerManagement = new Button();
@@ -86,6 +88,8 @@
             // panel1
             // 
             panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(btnAddStaffs);
+            panel1.Controls.Add(btnStaffShedule);
             panel1.Controls.Add(btnInventoryManagment);
             panel1.Controls.Add(btnMenuManagement);
             panel1.Controls.Add(btnCustomerManagement);
@@ -104,6 +108,28 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            // 
+            // btnAddStaffs
+            // 
+            btnAddStaffs.Font = new Font("Georgia", 12F, FontStyle.Bold);
+            btnAddStaffs.Location = new Point(6, 456);
+            btnAddStaffs.Name = "btnAddStaffs";
+            btnAddStaffs.Size = new Size(247, 65);
+            btnAddStaffs.TabIndex = 0;
+            btnAddStaffs.Text = "Add Admin / Staff's";
+            btnAddStaffs.UseVisualStyleBackColor = true;
+            btnAddStaffs.Click += btnAddStaffs_Click;
+            // 
+            // btnStaffShedule
+            // 
+            btnStaffShedule.Font = new Font("Georgia", 12F, FontStyle.Bold);
+            btnStaffShedule.Location = new Point(3, 385);
+            btnStaffShedule.Name = "btnStaffShedule";
+            btnStaffShedule.Size = new Size(247, 65);
+            btnStaffShedule.TabIndex = 0;
+            btnStaffShedule.Text = "Staff Shedule";
+            btnStaffShedule.UseVisualStyleBackColor = true;
+            btnStaffShedule.Click += btnStaffShedule_Click;
             // 
             // btnInventoryManagment
             // 
@@ -142,6 +168,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(1193, 559);
             Controls.Add(PanelDesktop);
             Controls.Add(panel1);
@@ -166,5 +193,7 @@
         private Label lblTitle;
         private Label lblDashboard;
         private Panel panel2;
+        private Button btnStaffShedule;
+        private Button btnAddStaffs;
     }
 }

@@ -142,7 +142,7 @@
             MenuItems_gridView.Location = new Point(315, 174);
             MenuItems_gridView.Name = "MenuItems_gridView";
             MenuItems_gridView.RowHeadersWidth = 51;
-            MenuItems_gridView.Size = new Size(634, 224);
+            MenuItems_gridView.Size = new Size(387, 224);
             MenuItems_gridView.TabIndex = 5;
             MenuItems_gridView.CellClick += MenuItems_gridView_CellClick;
             // 
@@ -150,7 +150,7 @@
             // 
             btn_saveItem.BackColor = SystemColors.Highlight;
             btn_saveItem.FlatStyle = FlatStyle.Popup;
-            btn_saveItem.Location = new Point(519, 432);
+            btn_saveItem.Location = new Point(559, 430);
             btn_saveItem.Name = "btn_saveItem";
             btn_saveItem.Size = new Size(143, 42);
             btn_saveItem.TabIndex = 3;
@@ -162,7 +162,7 @@
             // 
             btn_deleteItem.BackColor = Color.Red;
             btn_deleteItem.FlatStyle = FlatStyle.Popup;
-            btn_deleteItem.Location = new Point(315, 516);
+            btn_deleteItem.Location = new Point(315, 527);
             btn_deleteItem.Name = "btn_deleteItem";
             btn_deleteItem.Size = new Size(149, 42);
             btn_deleteItem.TabIndex = 3;
@@ -174,7 +174,7 @@
             // 
             btn_clearItems.BackColor = SystemColors.Info;
             btn_clearItems.FlatStyle = FlatStyle.Popup;
-            btn_clearItems.Location = new Point(519, 516);
+            btn_clearItems.Location = new Point(559, 527);
             btn_clearItems.Name = "btn_clearItems";
             btn_clearItems.Size = new Size(143, 42);
             btn_clearItems.TabIndex = 3;
@@ -186,9 +186,9 @@
             // 
             btn_searchItems.BackgroundImageLayout = ImageLayout.Center;
             btn_searchItems.FlatStyle = FlatStyle.Popup;
-            btn_searchItems.Location = new Point(728, 608);
+            btn_searchItems.Location = new Point(717, 222);
             btn_searchItems.Name = "btn_searchItems";
-            btn_searchItems.Size = new Size(221, 42);
+            btn_searchItems.Size = new Size(119, 42);
             btn_searchItems.TabIndex = 3;
             btn_searchItems.Text = "SEARCH";
             btn_searchItems.UseVisualStyleBackColor = true;
@@ -198,7 +198,7 @@
             // 
             btn_btn_menuitems.Location = new Point(315, 99);
             btn_btn_menuitems.Name = "btn_btn_menuitems";
-            btn_btn_menuitems.Size = new Size(203, 44);
+            btn_btn_menuitems.Size = new Size(149, 44);
             btn_btn_menuitems.TabIndex = 9;
             btn_btn_menuitems.Text = "Menu Items Load";
             btn_btn_menuitems.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@
             // 
             grpbox_cuscmbbox.BackColor = Color.FromArgb(255, 192, 192);
             grpbox_cuscmbbox.Controls.Add(txt_categorycmblist);
-            grpbox_cuscmbbox.Location = new Point(693, 430);
+            grpbox_cuscmbbox.Location = new Point(717, 319);
             grpbox_cuscmbbox.Name = "grpbox_cuscmbbox";
             grpbox_cuscmbbox.Size = new Size(256, 79);
             grpbox_cuscmbbox.TabIndex = 8;
@@ -225,9 +225,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(586, 99);
+            button1.Location = new Point(530, 99);
             button1.Name = "button1";
-            button1.Size = new Size(203, 44);
+            button1.Size = new Size(172, 44);
             button1.TabIndex = 9;
             button1.Text = "Menu Categories Load";
             button1.UseVisualStyleBackColor = true;
@@ -265,7 +265,7 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearch.Location = new Point(728, 540);
+            txtSearch.Location = new Point(717, 176);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(221, 30);
             txtSearch.TabIndex = 6;
@@ -354,6 +354,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(1460, 705);
             Controls.Add(dataGridTables);
@@ -371,6 +372,7 @@
             Controls.Add(btn_addItems);
             Controls.Add(panel1);
             Name = "MenuManagement";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MenuManagement";
             ((System.ComponentModel.ISupportInitialize)picbox_upload).EndInit();
             ((System.ComponentModel.ISupportInitialize)MenuItems_gridView).EndInit();

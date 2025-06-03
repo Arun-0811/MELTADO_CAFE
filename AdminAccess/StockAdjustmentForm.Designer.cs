@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockAdjustmentForm));
             lblUnit = new Label();
             txtNotes = new TextBox();
@@ -41,6 +42,7 @@
             lblWarning = new Label();
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -61,6 +63,7 @@
             txtNotes.Name = "txtNotes";
             txtNotes.Size = new Size(290, 101);
             txtNotes.TabIndex = 1;
+            toolTip1.SetToolTip(txtNotes, "Here you ccan enter product wastage Commants");
             // 
             // cmbReason
             // 
@@ -70,6 +73,7 @@
             cmbReason.Name = "cmbReason";
             cmbReason.Size = new Size(179, 28);
             cmbReason.TabIndex = 2;
+            toolTip1.SetToolTip(cmbReason, "Select Reason Why this much wastage Occoured..!");
             // 
             // numQuantity
             // 
@@ -77,6 +81,7 @@
             numQuantity.Name = "numQuantity";
             numQuantity.Size = new Size(181, 27);
             numQuantity.TabIndex = 3;
+            toolTip1.SetToolTip(numQuantity, "number of quantity wasted...!");
             // 
             // rdoRemove
             // 
@@ -87,6 +92,7 @@
             rdoRemove.TabIndex = 4;
             rdoRemove.TabStop = true;
             rdoRemove.Text = "Remove Stock";
+            toolTip1.SetToolTip(rdoRemove, "remove wasteage stock ");
             rdoRemove.UseVisualStyleBackColor = true;
             // 
             // lblIngredient
@@ -107,6 +113,7 @@
             rdoAdd.TabIndex = 4;
             rdoAdd.TabStop = true;
             rdoAdd.Text = "Add Stock";
+            toolTip1.SetToolTip(rdoAdd, "Product Came for trial Purposses");
             rdoAdd.UseVisualStyleBackColor = true;
             // 
             // btnConfirm
@@ -177,6 +184,7 @@
             Controls.Add(lblWarning);
             Controls.Add(lblUnit);
             Name = "StockAdjustmentForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "StockAdjustmentForm";
             Load += StockAdjustmentForm_Load;
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
@@ -199,5 +207,6 @@
         private Label lblWarning;
         private PictureBox pictureBox1;
         private Label label1;
+        private ToolTip toolTip1;
     }
 }

@@ -55,6 +55,7 @@ namespace MELTADO_CAFE
             // Full Name
             txtNotes.PlaceholderText = "Enter stock wastage or deprecated Related Details Here";
 
+
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
