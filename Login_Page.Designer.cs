@@ -50,7 +50,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(224, 224, 224);
+            panel1.BackColor = Color.SkyBlue;
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(cmb_role);
             panel1.Controls.Add(btn_close);
@@ -83,6 +83,8 @@
             // 
             // cmb_role
             // 
+            cmb_role.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_role.FlatStyle = FlatStyle.Popup;
             cmb_role.FormattingEnabled = true;
             cmb_role.Location = new Point(199, 261);
             cmb_role.Name = "cmb_role";
@@ -128,9 +130,10 @@
             // lnklbl_forgotpwd
             // 
             lnklbl_forgotpwd.AutoSize = true;
-            lnklbl_forgotpwd.Location = new Point(22, 324);
+            lnklbl_forgotpwd.Font = new Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnklbl_forgotpwd.Location = new Point(179, 360);
             lnklbl_forgotpwd.Name = "lnklbl_forgotpwd";
-            lnklbl_forgotpwd.Size = new Size(134, 20);
+            lnklbl_forgotpwd.Size = new Size(138, 18);
             lnklbl_forgotpwd.TabIndex = 5;
             lnklbl_forgotpwd.TabStop = true;
             lnklbl_forgotpwd.Text = "Forgot Password...?";
@@ -138,9 +141,11 @@
             // 
             // btnClearall
             // 
-            btnClearall.Location = new Point(186, 315);
+            btnClearall.FlatStyle = FlatStyle.Popup;
+            btnClearall.Font = new Font("Georgia", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClearall.Location = new Point(179, 315);
             btnClearall.Name = "btnClearall";
-            btnClearall.Size = new Size(74, 29);
+            btnClearall.Size = new Size(82, 29);
             btnClearall.TabIndex = 4;
             btnClearall.Text = "Clear All";
             btnClearall.UseVisualStyleBackColor = true;
@@ -148,9 +153,11 @@
             // 
             // btn_signin
             // 
-            btn_signin.Location = new Point(305, 315);
+            btn_signin.FlatStyle = FlatStyle.Popup;
+            btn_signin.Font = new Font("Georgia", 9F, FontStyle.Bold);
+            btn_signin.Location = new Point(295, 315);
             btn_signin.Name = "btn_signin";
-            btn_signin.Size = new Size(75, 29);
+            btn_signin.Size = new Size(85, 29);
             btn_signin.TabIndex = 4;
             btn_signin.Text = "Sign In";
             btn_signin.UseVisualStyleBackColor = true;
@@ -193,20 +200,20 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(159, 45);
             label4.Name = "label4";
-            label4.Size = new Size(179, 31);
+            label4.Size = new Size(211, 27);
             label4.TabIndex = 0;
             label4.Text = "MELTADO CAFE";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(211, 110);
             label1.Name = "label1";
-            label1.Size = new Size(99, 31);
+            label1.Size = new Size(110, 27);
             label1.TabIndex = 0;
             label1.Text = "SIGN IN";
             // 

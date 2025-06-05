@@ -35,7 +35,8 @@ namespace MELTADO_CAFE
             PanelDesktop.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            lblTitle.Text = childForm.Text;
+            //lblTitle.Text = childForm.Text;
+            lbltitle.Text = childForm.Text;
         }
 
         private void btnCustomerManagement_Click(object sender, EventArgs e)
@@ -61,6 +62,49 @@ namespace MELTADO_CAFE
         private void btnAddStaffs_Click(object sender, EventArgs e)
         {
             OpenChildForm(new SignUp_Page(), sender);
+        }
+
+        private void btnReportingAnalytics_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Reporting_Analytics(), sender);
+        }
+
+        private void btnIngredientDetails_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new IngredientDetailForm(), sender);
+        }
+
+        private void btnCustomerFeedback_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new CustomerFeedBackForm(), sender);
+        }
+
+        private void btn_min_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btn_max_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            this.Dispose();
+        }
+
+        private void btnAdminDashboard_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new AdminDashboardForm(), sender);
         }
     }
 }

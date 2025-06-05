@@ -127,11 +127,7 @@ namespace MELTADO_CAFE
 
             if (cmb_role.SelectedValue != null && cmb_role.SelectedValue != DBNull.Value)
             {
-                roleId = Convert.ToInt32(cmb_role.SelectedValue);
-                if (roleId == 2 || roleId > 3)
-                {
-                    MessageBox.Show("You are not an Admin or Manager to to Add Staff's");
-                }
+                roleId = Convert.ToInt32(cmb_role.SelectedValue);                
             }
 
             int createdBy = LoggedInUser.UserId; // Get from login session
@@ -179,10 +175,12 @@ namespace MELTADO_CAFE
                 cmb_role.Focus();
                 return;
             }
-            if (password == confirmPassword)
+            if (password != confirmPassword)
             {
                 MessageBox.Show("Passwords do not match.");
             }
+            
+
 
             using (SqlConnection conn = new SqlConnection(ConnnectionString))
             {
@@ -190,7 +188,7 @@ namespace MELTADO_CAFE
                 {
                     conn.Open();
 
-                    using (SqlCommand cmd = new SqlCommand("RegisterUser", conn))
+                    using (SqlCommand cmd = new SqlCommand("RegisterUserByRole", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
@@ -200,11 +198,11 @@ namespace MELTADO_CAFE
                         cmd.Parameters.AddWithValue("@PasswordHash", password);
                         cmd.Parameters.AddWithValue("@RoleId", roleId);
                         cmd.Parameters.AddWithValue("@CreatedBy", createdBy);
-                        cmd.Parameters.AddWithValue("@IsValid", isValid);
+                        cmd.Parameters.AddWithValue("@IsActive", isValid);
 
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("User registered successfully.");
-
+                        LoadUsersToGrid();
                         // Clear inputs
                         txt_uname.Clear();
                         txt_email.Clear();

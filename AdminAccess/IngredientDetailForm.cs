@@ -260,5 +260,28 @@ namespace MELTADO_CAFE
         {
             PlaceHolder_TextLoad();
         }
+
+        private void btn_min_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btn_max_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
+        }
     }
 }

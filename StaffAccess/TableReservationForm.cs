@@ -22,12 +22,19 @@ namespace MELTADO_CAFE
         public TableReservationForm()
         {
             InitializeComponent();
-            
-            
+
+            PlaceHolder_TextLoad();
             LoadReservationGrid();
             LoadComboBoxes();
         }
 
+        private void PlaceHolder_TextLoad()
+        {
+            // Full Name
+            txtSearch.PlaceholderText = "--Search Here--";           
+
+
+        }
         private void LoadComboBoxes()
         {
             // === Load Tables ===

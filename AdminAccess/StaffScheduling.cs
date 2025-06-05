@@ -12,10 +12,12 @@ namespace MELTADO_CAFE.AdminAccess
         string ConStr = ConfigurationManager.ConnectionStrings["DevConnection"].ConnectionString;
         private int currentStaffId = -1;
         private int currentScheduleId = -1;
+        private int currentAttendanceId = 0;
 
         public StaffScheduling()
         {
             InitializeComponent();
+            PlaceHolder_TextLoad(); // Load placeholder text for input fields
             // Configure the DateTimePicker to show only date (dd/MM/yyyy)
             dtpDateOfBirth.Format = DateTimePickerFormat.Custom;
             dtpDateOfBirth.CustomFormat = "dd/MM/yyyy";
@@ -38,7 +40,19 @@ namespace MELTADO_CAFE.AdminAccess
             dtpTimeOut.ShowUpDown = true;
 
         }
+        private void PlaceHolder_TextLoad()
+        {
+            // Full Name
+            txtSearchStaff.PlaceholderText = "--Staff search here--";
 
+            // Phone Number
+            txtSearchSchedule.PlaceholderText = "--Schedule search here--";
+
+            // Email
+            txtSearchAttendance.PlaceholderText = "--Attendance Search here--";
+
+            txtNotes.PlaceholderText = "Enter Notes...!";
+        }
         private void StaffScheduling_Load(object sender, EventArgs e)
         {
             LoadUsersToComboBox();
@@ -139,6 +153,7 @@ namespace MELTADO_CAFE.AdminAccess
                     s.StaffID,
                     u.UserId,
                     u.Username,
+                    s.GenderID,
                     s.DateOfBirth,
                     s.HireDate,
                     g.GenderName,
@@ -194,7 +209,12 @@ namespace MELTADO_CAFE.AdminAccess
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
+                    {
                         MessageBox.Show("Staff record added successfully.");
+                        ClearFormControls();         // Clear the inputs
+                        LoadStaffRecords();
+                    }
+
                     else
                         MessageBox.Show("Insert failed.");
                 }
@@ -202,6 +222,37 @@ namespace MELTADO_CAFE.AdminAccess
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void ClearFormControls()
+        {
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is TextBox)
+                    ((TextBox)ctrl).Clear();
+                else if (ctrl is ComboBox)
+                    ((ComboBox)ctrl).SelectedIndex = -1;
+                else if (ctrl is DateTimePicker)
+                    ((DateTimePicker)ctrl).Value = DateTime.Today;
+
+                if (ctrl.HasChildren)
+                    ClearFormControlsRecursive(ctrl);
+            }
+        }
+
+        private void ClearFormControlsRecursive(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is TextBox)
+                    ((TextBox)ctrl).Clear();
+                else if (ctrl is ComboBox)
+                    ((ComboBox)ctrl).SelectedIndex = -1;
+                else if (ctrl is DateTimePicker)
+                    ((DateTimePicker)ctrl).Value = DateTime.Today;
+
+                if (ctrl.HasChildren)
+                    ClearFormControlsRecursive(ctrl);
             }
         }
 
@@ -231,12 +282,10 @@ namespace MELTADO_CAFE.AdminAccess
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@StaffID", staffId);
-                    // If UserId can be updated (usually no), uncomment this
-                    // cmd.Parameters.AddWithValue("@UserId", selectedUserId);
+                    cmd.Parameters.AddWithValue("@UserId", selectedUserId);  // ✅ REQUIRED for your procedure
                     cmd.Parameters.AddWithValue("@GenderID", selectedGenderId);
                     cmd.Parameters.AddWithValue("@DateOfBirth", dob);
                     cmd.Parameters.AddWithValue("@HireDate", hireDate);
-                    // Pass ModifiedBy if your proc expects it, otherwise skip
                     cmd.Parameters.AddWithValue("@ModifiedBy", modifiedBy);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
@@ -244,7 +293,10 @@ namespace MELTADO_CAFE.AdminAccess
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Staff record updated successfully.");
-                        LoadStaffRecords();  // refresh grid
+                        ClearFormControls();
+                        LoadStaffRecords();
+                        currentStaffId = -1; // refresh grid                                
+
                     }
                     else
                     {
@@ -291,7 +343,9 @@ namespace MELTADO_CAFE.AdminAccess
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Staff record deleted successfully.");
-                            LoadStaffRecords(); // Refresh the DataGridView after deletion
+                            ClearFormControls();
+                            currentStaffId = -1;
+                            LoadStaffRecords();
                         }
                         else
                         {
@@ -368,60 +422,94 @@ namespace MELTADO_CAFE.AdminAccess
         {
             using (SqlConnection conn = new SqlConnection(ConStr))
             {
+                conn.Open(); // Ensure the connection is explicitly opened
+
                 string query = @"
-            SELECT s.StaffID, u.Username AS FullName
-            FROM Staff s
-            INNER JOIN Users u ON s.UserId = u.UserId
-            WHERE u.IsActive = 1";  // Filter active users only
+                SELECT s.StaffID, u.Username AS FullName
+                FROM Staff s
+                INNER JOIN Users u ON s.UserId = u.UserId
+                WHERE u.IsActive = 1";  // Filter active users
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
-                cmbStaff.DataSource = dt;
-                cmbStaff.DisplayMember = "FullName";
-                cmbStaff.ValueMember = "StaffID";
-                cmbStaff.SelectedIndex = -1;
+                if (dt.Rows.Count > 0)
+                {
+                    cmbStaff.DataSource = dt;
+                    cmbStaff.DisplayMember = "FullName";
+                    cmbStaff.ValueMember = "StaffID";
+                    cmbStaff.SelectedIndex = -1;  // Optional: no selection initially
+                }
+                else
+                {
+                    MessageBox.Show("No active staff members found.");
+                }
             }
+
         }
 
         private void LoadStaffComboBoxForAttendances()
         {
-            using (SqlConnection conn = new SqlConnection(ConStr))
+            try
             {
-                string query = @"
-            SELECT s.StaffID, u.Username AS FullName
-            FROM Staff s
-            INNER JOIN Users u ON s.UserId = u.UserId
-            WHERE u.IsActive = 1";  // Filter active users only
+                using (SqlConnection conn = new SqlConnection(ConStr))
+                {
+                    string query = @"
+                SELECT s.StaffID, u.Username AS FullName
+                FROM Staff s
+                INNER JOIN Users u ON s.UserId = u.UserId
+                WHERE u.IsActive = 1";
 
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
 
-                cmbStaffAttendence.DataSource = dt;
-                cmbStaffAttendence.DisplayMember = "FullName";
-                cmbStaffAttendence.ValueMember = "StaffID";
-                cmbStaffAttendence.SelectedIndex = -1;
+                    cmbStaffAttendence.DataSource = dt;
+                    cmbStaffAttendence.DisplayMember = "FullName";
+                    cmbStaffAttendence.ValueMember = "StaffID";
+                    cmbStaffAttendence.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading staff list: " + ex.Message);
             }
         }
+
         private void LoadShiftComboBox()
         {
-            using (SqlConnection conn = new SqlConnection(ConStr))
+            try
             {
-                string query = "SELECT ShiftID, ShiftName FROM ShiftTypes";
+                using (SqlConnection conn = new SqlConnection(ConStr))
+                {
+                    string query = "SELECT ShiftID, ShiftName FROM ShiftTypes";
 
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
 
-                cmbShift.DataSource = dt;
-                cmbShift.DisplayMember = "ShiftName";  // What user sees
-                cmbShift.ValueMember = "ShiftID";      // Actual value
-                cmbShift.SelectedIndex = -1;           // No default selection
+                        // Ensure data is loaded before setting the DataSource
+                        if (dt.Rows.Count > 0)
+                        {
+                            cmbShift.DataSource = dt;
+                            cmbShift.DisplayMember = "ShiftName";  // What user sees
+                            cmbShift.ValueMember = "ShiftID";      // Actual value
+                            cmbShift.SelectedIndex = -1;           // No default selection
+                        }
+                        else
+                        {
+                            MessageBox.Show("No shifts found!");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading shifts: " + ex.Message);
             }
         }
-
         private void btnAssignSchedule_Click(object sender, EventArgs e)
         {
             if (cmbStaff.SelectedIndex == -1)
@@ -459,8 +547,11 @@ namespace MELTADO_CAFE.AdminAccess
                         conn.Close();
 
                         MessageBox.Show("Schedule assigned successfully!");
-
-                        // Optionally, refresh the schedule grid/list here
+                        // ✅ Clear the fields
+                        cmbStaff.SelectedIndex = -1;
+                        cmbShift.SelectedIndex = -1;
+                        dtpScheduleDate.Value = DateTime.Today;
+                        LoadAssignedSchedules();
                     }
                 }
             }
@@ -472,80 +563,54 @@ namespace MELTADO_CAFE.AdminAccess
 
         private void LoadAssignedSchedules()
         {
+            string query = @"
+                    SELECT TOP (1000) [ScheduleID],
+                          [StaffID],
+                          [ScheduleDate],
+                          [ShiftID],
+                          [CreatedBy],
+                          [CreatedAt]
+                    FROM [MELTADO_CAFE_DB].[dbo].[StaffSchedules]";
+
             using (SqlConnection conn = new SqlConnection(ConStr))
             {
-                string query = @"
-            SELECT 
-                ss.ScheduleID,
-                s.StaffID,
-                u.Username AS StaffName,
-                ss.ScheduleDate,
-                st.ShiftName,
-                st.StartTime,
-                st.EndTime,
-                ss.CreatedAt
-            FROM StaffSchedules ss
-            INNER JOIN Staff s ON ss.StaffID = s.StaffID
-            INNER JOIN Users u ON s.UserId = u.UserId
-            INNER JOIN ShiftTypes st ON ss.ShiftID = st.ShiftID
-            ORDER BY ss.ScheduleDate DESC, u.Username";
-
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-
                 dataGridViewSchedules.DataSource = dt;
-
-                // Optional: Customize columns header text
-                dataGridViewSchedules.Columns["ScheduleID"].Visible = false;
-                dataGridViewSchedules.Columns["StaffID"].Visible = false;
-
-                dataGridViewSchedules.Columns["StaffName"].HeaderText = "Staff";
-                dataGridViewSchedules.Columns["ScheduleDate"].HeaderText = "Schedule Date";
-                dataGridViewSchedules.Columns["ShiftName"].HeaderText = "Shift";
-                dataGridViewSchedules.Columns["StartTime"].HeaderText = "Shift Start";
-                dataGridViewSchedules.Columns["EndTime"].HeaderText = "Shift End";
-                dataGridViewSchedules.Columns["CreatedAt"].HeaderText = "Assigned On";
-
-                // Format Date and Time columns if needed
-                dataGridViewSchedules.Columns["ScheduleDate"].DefaultCellStyle.Format = "dd MMM yyyy";
-                dataGridViewSchedules.Columns["StartTime"].DefaultCellStyle.Format = "hh\\:mm tt";
-                dataGridViewSchedules.Columns["EndTime"].DefaultCellStyle.Format = "hh\\:mm tt";
-                dataGridViewSchedules.Columns["CreatedAt"].DefaultCellStyle.Format = "dd MMM yyyy HH:mm";
             }
         }
 
         private void dataGridViewSchedules_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // avoid header row
+            if (e.RowIndex >= 0 && dataGridViewSchedules.Rows[e.RowIndex].Cells["ScheduleID"].Value != null)
             {
                 DataGridViewRow row = dataGridViewSchedules.Rows[e.RowIndex];
 
                 // Get ScheduleID
                 currentScheduleId = Convert.ToInt32(row.Cells["ScheduleID"].Value);
 
-                // Set Staff ComboBox (assumes StaffID column exists but hidden)
-                int staffId = Convert.ToInt32(row.Cells["StaffID"].Value);
-                cmbStaff.SelectedValue = staffId;
+                // Set Staff ComboBox (assuming StaffID column exists and cmbStaff is bound with ValueMember = "StaffID")
+                if (row.Cells["StaffID"].Value != DBNull.Value)
+                {
+                    cmbStaff.SelectedValue = Convert.ToInt32(row.Cells["StaffID"].Value);
+                }
 
                 // Set Schedule Date
-                DateTime scheduleDate = Convert.ToDateTime(row.Cells["ScheduleDate"].Value);
-                dtpScheduleDate.Value = scheduleDate;
-
-                // Set Shift ComboBox (assumes ShiftName column present)
-                string shiftName = row.Cells["ShiftName"].Value.ToString();
-
-                // Select the shift in cmbShift based on shiftName
-                foreach (DataRowView item in cmbShift.Items)
+                if (row.Cells["ScheduleDate"].Value != DBNull.Value)
                 {
-                    if (item["ShiftName"].ToString() == shiftName)
-                    {
-                        cmbShift.SelectedItem = item;
-                        break;
-                    }
+                    dtpScheduleDate.Value = Convert.ToDateTime(row.Cells["ScheduleDate"].Value);
                 }
+
+                // Set Shift ComboBox by ShiftID (recommended for accuracy)
+                if (row.Cells["ShiftID"].Value != DBNull.Value)
+                {
+                    cmbShift.SelectedValue = Convert.ToInt32(row.Cells["ShiftID"].Value);
+                }
+
             }
         }
+
 
         private void btnUpdateSchedule_Click(object sender, EventArgs e)
         {
@@ -644,21 +709,28 @@ namespace MELTADO_CAFE.AdminAccess
         }
         private void ClearAttendanceForm()
         {
-            cmbStaff.SelectedIndex = -1;
+            // Reset ComboBox
+            cmbStaffAttendence.SelectedIndex = -1;
+
+            // Reset DateTimePickers to today's date and default time (e.g., 9:00 AM for TimeIn, 6:00 PM for TimeOut)
+            dtpAttendanceDate.Value = DateTime.Today;
+            dtpTimeIn.Value = DateTime.Today.AddHours(9);  // or any default time
+            dtpTimeOut.Value = DateTime.Today.AddHours(18); // or any default time
+
+            // Clear notes textbox
             txtNotes.Clear();
-            dtpTimeIn.Value = DateTime.Now;
-            dtpTimeOut.Value = DateTime.Now;
         }
+
 
         private void btnSubmitAttendance_Click(object sender, EventArgs e)
         {
-            if (cmbStaff.SelectedValue == null)
+            if (cmbStaffAttendence.SelectedValue == null)
             {
                 MessageBox.Show("Please select a staff member.");
                 return;
             }
 
-            int staffId = Convert.ToInt32(cmbStaff.SelectedValue);
+            int staffId = Convert.ToInt32(cmbStaffAttendence.SelectedValue);
             DateTime attendanceDate = dtpAttendanceDate.Value.Date;
             DateTime timeIn = dtpTimeIn.Value;
             DateTime timeOut = dtpTimeOut.Value;
@@ -749,6 +821,126 @@ namespace MELTADO_CAFE.AdminAccess
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridViewAttendance.DataSource = dt;
+            }
+        }
+
+
+
+        private void dataGridViewAttendance_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridViewAttendance.Rows[e.RowIndex].Cells["AttendanceID"].Value != null)
+            {
+                DataGridViewRow row = dataGridViewAttendance.Rows[e.RowIndex];
+
+                // Get AttendanceID
+                currentAttendanceId = Convert.ToInt32(row.Cells["AttendanceID"].Value);
+
+                // Set Staff ComboBox (assuming StaffID column exists and cmbStaffAttendence is bound with ValueMember = "StaffID")
+                if (row.Cells["StaffID"].Value != DBNull.Value)
+                {
+                    cmbStaffAttendence.SelectedValue = Convert.ToInt32(row.Cells["StaffID"].Value);
+                }
+
+                // Set Attendance Date
+                if (row.Cells["AttendanceDate"].Value != DBNull.Value)
+                {
+                    dtpAttendanceDate.Value = Convert.ToDateTime(row.Cells["AttendanceDate"].Value);
+                }
+
+                // Set TimeIn
+                if (row.Cells["TimeIn"].Value != DBNull.Value)
+                {
+                    dtpTimeIn.Value = Convert.ToDateTime(row.Cells["TimeIn"].Value);
+                }
+
+                // Set TimeOut
+                if (row.Cells["TimeOut"].Value != DBNull.Value)
+                {
+                    dtpTimeOut.Value = Convert.ToDateTime(row.Cells["TimeOut"].Value);
+                }
+
+                // Set Notes
+                if (row.Cells["Notes"].Value != DBNull.Value)
+                {
+                    txtNotes.Text = row.Cells["Notes"].Value.ToString();
+                }
+                else
+                {
+                    txtNotes.Clear();
+                }
+            }
+        }
+
+        private void btnUpdateAttendance_Click(object sender, EventArgs e)
+        {
+            if (currentAttendanceId == 0)
+            {
+                MessageBox.Show("Please select an attendance record to update.");
+                return;
+            }
+
+            if (cmbStaffAttendence.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a staff member.");
+                return;
+            }
+
+            int staffId = Convert.ToInt32(cmbStaffAttendence.SelectedValue);
+            DateTime attendanceDate = dtpAttendanceDate.Value.Date;
+            DateTime timeIn = dtpTimeIn.Value;
+            DateTime timeOut = dtpTimeOut.Value;
+            string notes = txtNotes.Text.Trim();
+
+            using (SqlConnection conn = new SqlConnection(ConStr))
+            {
+                using (SqlCommand cmd = new SqlCommand("UpdateStaffAttendance", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@AttendanceID", currentAttendanceId);
+                    cmd.Parameters.AddWithValue("@StaffID", staffId);
+                    cmd.Parameters.AddWithValue("@AttendanceDate", attendanceDate);
+                    cmd.Parameters.AddWithValue("@TimeIn", timeIn);
+                    cmd.Parameters.AddWithValue("@TimeOut", timeOut);
+                    cmd.Parameters.AddWithValue("@Notes", notes);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    MessageBox.Show("Attendance updated successfully.");
+                    LoadAttendanceHistory(); // Refresh grid
+                    ClearAttendanceForm();   // Clear form
+                }
+            }
+        }
+
+        private void btnDeleteAttendance_Click(object sender, EventArgs e)
+        {
+            if (currentAttendanceId == 0)
+            {
+                MessageBox.Show("Please select an attendance record to delete.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = new SqlConnection(ConStr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("DeleteStaffAttendance", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@AttendanceID", currentAttendanceId);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+
+                        MessageBox.Show("Attendance deleted successfully.");
+                        LoadAttendanceHistory(); // Refresh grid
+                        ClearAttendanceForm();   // Clear form
+                    }
+                }
             }
         }
 

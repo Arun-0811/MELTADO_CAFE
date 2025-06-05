@@ -45,6 +45,7 @@
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btn_close
@@ -86,45 +87,51 @@
             // lbl_email
             // 
             lbl_email.AutoSize = true;
+            lbl_email.BackColor = Color.SkyBlue;
+            lbl_email.Font = new Font("Georgia", 9F);
             lbl_email.Location = new Point(219, 173);
             lbl_email.Name = "lbl_email";
-            lbl_email.Size = new Size(86, 20);
+            lbl_email.Size = new Size(92, 18);
             lbl_email.TabIndex = 28;
             lbl_email.Text = "User Email :";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(288, 38);
+            label4.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(244, 38);
             label4.Name = "label4";
-            label4.Size = new Size(179, 31);
+            label4.Size = new Size(277, 35);
             label4.TabIndex = 32;
             label4.Text = "MELTADO CAFE";
             // 
             // txt_email
             // 
             txt_email.BorderStyle = BorderStyle.FixedSingle;
+            txt_email.Font = new Font("Georgia", 9F);
             txt_email.Location = new Point(328, 171);
             txt_email.Name = "txt_email";
-            txt_email.Size = new Size(183, 27);
+            txt_email.Size = new Size(183, 25);
             txt_email.TabIndex = 21;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.BackColor = Color.SkyBlue;
+            label3.Font = new Font("Georgia", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(288, 110);
             label3.Name = "label3";
-            label3.Size = new Size(186, 28);
+            label3.Size = new Size(246, 27);
             label3.TabIndex = 31;
             label3.Text = "RESET PASSWORD";
             // 
             // btn_movesignin
             // 
-            btn_movesignin.Location = new Point(207, 358);
+            btn_movesignin.FlatStyle = FlatStyle.Popup;
+            btn_movesignin.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            btn_movesignin.Location = new Point(190, 358);
             btn_movesignin.Name = "btn_movesignin";
-            btn_movesignin.Size = new Size(123, 29);
+            btn_movesignin.Size = new Size(138, 29);
             btn_movesignin.TabIndex = 30;
             btn_movesignin.Text = "Move to Sign In";
             btn_movesignin.UseVisualStyleBackColor = true;
@@ -132,26 +139,31 @@
             // txt_newpwd
             // 
             txt_newpwd.BorderStyle = BorderStyle.FixedSingle;
+            txt_newpwd.Font = new Font("Georgia", 9F);
             txt_newpwd.Location = new Point(328, 235);
             txt_newpwd.Name = "txt_newpwd";
             txt_newpwd.PasswordChar = '*';
-            txt_newpwd.Size = new Size(183, 27);
+            txt_newpwd.Size = new Size(183, 25);
             txt_newpwd.TabIndex = 23;
             // 
             // lbl_pwd
             // 
             lbl_pwd.AutoSize = true;
+            lbl_pwd.BackColor = Color.SkyBlue;
+            lbl_pwd.Font = new Font("Georgia", 9F);
             lbl_pwd.Location = new Point(190, 242);
             lbl_pwd.Name = "lbl_pwd";
-            lbl_pwd.Size = new Size(115, 20);
+            lbl_pwd.Size = new Size(119, 18);
             lbl_pwd.TabIndex = 26;
             lbl_pwd.Text = "New Password : ";
             // 
             // btn_save
             // 
-            btn_save.Location = new Point(417, 358);
+            btn_save.FlatStyle = FlatStyle.Popup;
+            btn_save.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            btn_save.Location = new Point(423, 358);
             btn_save.Name = "btn_save";
-            btn_save.Size = new Size(94, 29);
+            btn_save.Size = new Size(86, 29);
             btn_save.TabIndex = 24;
             btn_save.Text = "SAVE";
             btn_save.UseVisualStyleBackColor = true;
@@ -160,25 +172,28 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.SkyBlue;
+            label1.Font = new Font("Georgia", 9F);
             label1.Location = new Point(171, 300);
             label1.Name = "label1";
-            label1.Size = new Size(134, 20);
+            label1.Size = new Size(140, 18);
             label1.TabIndex = 26;
             label1.Text = "Confirm Password :";
             // 
             // txt_confirmpwd
             // 
             txt_confirmpwd.BorderStyle = BorderStyle.FixedSingle;
+            txt_confirmpwd.Font = new Font("Georgia", 9F);
             txt_confirmpwd.Location = new Point(328, 293);
             txt_confirmpwd.Name = "txt_confirmpwd";
             txt_confirmpwd.PasswordChar = '*';
-            txt_confirmpwd.Size = new Size(183, 27);
+            txt_confirmpwd.Size = new Size(183, 25);
             txt_confirmpwd.TabIndex = 23;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(54, 38);
+            pictureBox1.Location = new Point(27, 21);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(117, 92);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -187,6 +202,11 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(btn_movesignin);
+            panel1.Controls.Add(btn_save);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -198,25 +218,23 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(696, 450);
-            Controls.Add(pictureBox1);
             Controls.Add(btn_close);
             Controls.Add(btn_max);
             Controls.Add(btn_min);
             Controls.Add(lbl_email);
-            Controls.Add(label4);
             Controls.Add(txt_email);
             Controls.Add(label3);
-            Controls.Add(btn_movesignin);
             Controls.Add(txt_confirmpwd);
             Controls.Add(label1);
             Controls.Add(txt_newpwd);
             Controls.Add(lbl_pwd);
-            Controls.Add(btn_save);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ResetPassword_Page";
             StartPosition = FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

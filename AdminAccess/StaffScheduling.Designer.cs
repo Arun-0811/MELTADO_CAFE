@@ -84,7 +84,7 @@
             // 
             // btnSave
             // 
-            btnSave.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSave.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             btnSave.Location = new Point(464, 299);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 39);
@@ -107,7 +107,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnDelete.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             btnDelete.Location = new Point(755, 299);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 39);
@@ -207,7 +207,7 @@
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button1.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             button1.Location = new Point(609, 299);
             button1.Name = "button1";
             button1.Size = new Size(94, 39);
@@ -220,7 +220,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(399, 25);
+            label1.Location = new Point(399, 32);
             label1.Name = "label1";
             label1.Size = new Size(339, 32);
             label1.TabIndex = 5;
@@ -236,7 +236,7 @@
             // 
             // btnSearchStaff
             // 
-            btnSearchStaff.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSearchStaff.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSearchStaff.Location = new Point(883, 169);
             btnSearchStaff.Name = "btnSearchStaff";
             btnSearchStaff.Size = new Size(94, 39);
@@ -318,10 +318,10 @@
             // 
             // button3
             // 
-            button3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button3.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             button3.Location = new Point(883, 375);
             button3.Name = "button3";
-            button3.Size = new Size(145, 39);
+            button3.Size = new Size(167, 39);
             button3.TabIndex = 0;
             button3.Text = "Assign Shedule ";
             button3.UseVisualStyleBackColor = true;
@@ -329,10 +329,10 @@
             // 
             // button4
             // 
-            button4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button4.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             button4.Location = new Point(883, 431);
             button4.Name = "button4";
-            button4.Size = new Size(145, 39);
+            button4.Size = new Size(167, 39);
             button4.TabIndex = 0;
             button4.Text = "Update Shedule ";
             button4.UseVisualStyleBackColor = true;
@@ -340,10 +340,10 @@
             // 
             // button5
             // 
-            button5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button5.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             button5.Location = new Point(883, 485);
             button5.Name = "button5";
-            button5.Size = new Size(145, 39);
+            button5.Size = new Size(167, 39);
             button5.TabIndex = 0;
             button5.Text = "Delete Shedule ";
             button5.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@
             // 
             // btnSearchSchedule
             // 
-            btnSearchSchedule.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSearchSchedule.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             btnSearchSchedule.Location = new Point(756, 551);
             btnSearchSchedule.Name = "btnSearchSchedule";
             btnSearchSchedule.Size = new Size(94, 39);
@@ -504,10 +504,11 @@
             dataGridViewAttendance.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewAttendance.Size = new Size(395, 260);
             dataGridViewAttendance.TabIndex = 13;
+            dataGridViewAttendance.CellClick += dataGridViewAttendance_CellClick;
             // 
             // btnSearchAttendance
             // 
-            btnSearchAttendance.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSearchAttendance.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSearchAttendance.Location = new Point(881, 672);
             btnSearchAttendance.Name = "btnSearchAttendance";
             btnSearchAttendance.Size = new Size(94, 39);
@@ -518,30 +519,32 @@
             // 
             // button8
             // 
-            button8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            button8.Location = new Point(756, 891);
+            button8.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            button8.Location = new Point(822, 907);
             button8.Name = "button8";
-            button8.Size = new Size(108, 67);
+            button8.Size = new Size(153, 51);
             button8.TabIndex = 10;
             button8.Text = "Delete Attendence";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += btnDeleteAttendance_Click;
             // 
             // button9
             // 
-            button9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            button9.Location = new Point(620, 891);
+            button9.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            button9.Location = new Point(644, 907);
             button9.Name = "button9";
-            button9.Size = new Size(118, 67);
+            button9.Size = new Size(158, 51);
             button9.TabIndex = 11;
             button9.Text = "Update Attendence";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += btnUpdateAttendance_Click;
             // 
             // btnSubmitAttendance
             // 
-            btnSubmitAttendance.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            btnSubmitAttendance.Location = new Point(464, 891);
+            btnSubmitAttendance.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            btnSubmitAttendance.Location = new Point(464, 907);
             btnSubmitAttendance.Name = "btnSubmitAttendance";
-            btnSubmitAttendance.Size = new Size(122, 67);
+            btnSubmitAttendance.Size = new Size(160, 51);
             btnSubmitAttendance.TabIndex = 12;
             btnSubmitAttendance.Text = "Submit Attendence";
             btnSubmitAttendance.UseVisualStyleBackColor = true;
@@ -552,7 +555,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1105, 1019);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(1105, 1044);
             Controls.Add(txtSearchAttendance);
             Controls.Add(dataGridViewAttendance);
             Controls.Add(btnSearchAttendance);
@@ -575,6 +579,7 @@
             Controls.Add(button3);
             Controls.Add(button1);
             Controls.Add(btnSave);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "StaffScheduling";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "StaffScheduling";

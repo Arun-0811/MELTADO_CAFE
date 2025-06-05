@@ -34,6 +34,13 @@
             btnReserve = new Button();
             datePicker = new DateTimePicker();
             groupbox_ReservInputSec = new GroupBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label9 = new Label();
             cmb_TimesOfDay = new ComboBox();
             cmb_tableStatus = new ComboBox();
             comboBoxCustomer = new ComboBox();
@@ -45,13 +52,6 @@
             btnRefreshGrid = new Button();
             btnSearch = new Button();
             txtSearch = new TextBox();
-            label9 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)numPartySize).BeginInit();
             groupbox_ReservInputSec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridReservations).BeginInit();
@@ -60,6 +60,7 @@
             // comboBoxTable
             // 
             comboBoxTable.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTable.FlatStyle = FlatStyle.Popup;
             comboBoxTable.Font = new Font("Georgia", 10.2F);
             comboBoxTable.FormattingEnabled = true;
             comboBoxTable.Location = new Point(194, 36);
@@ -86,6 +87,7 @@
             // 
             // btnReserve
             // 
+            btnReserve.Font = new Font("Georgia", 9F);
             btnReserve.Location = new Point(510, 410);
             btnReserve.Name = "btnReserve";
             btnReserve.Size = new Size(198, 50);
@@ -126,8 +128,80 @@
             groupbox_ReservInputSec.TabStop = false;
             groupbox_ReservInputSec.Text = "Reservation Input Section";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Georgia", 10.2F);
+            label7.Location = new Point(6, 426);
+            label7.Name = "label7";
+            label7.Size = new Size(150, 20);
+            label7.TabIndex = 8;
+            label7.Text = "Time Of Booking  :";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Georgia", 10.2F);
+            label6.Location = new Point(39, 360);
+            label6.Name = "label6";
+            label6.Size = new Size(117, 20);
+            label6.TabIndex = 8;
+            label6.Text = "Table Status  :";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Georgia", 10.2F);
+            label5.Location = new Point(31, 301);
+            label5.Name = "label5";
+            label5.Size = new Size(125, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Seat Capacity  :";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Georgia", 10.2F);
+            label4.Location = new Point(53, 236);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 20);
+            label4.TabIndex = 8;
+            label4.Text = "Book Time  :";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Georgia", 10.2F);
+            label3.Location = new Point(56, 171);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 20);
+            label3.TabIndex = 8;
+            label3.Text = "Book Date  :";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Georgia", 10.2F);
+            label2.Location = new Point(56, 106);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 20);
+            label2.TabIndex = 8;
+            label2.Text = "Customer  :";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Georgia", 10.2F);
+            label9.Location = new Point(86, 44);
+            label9.Name = "label9";
+            label9.Size = new Size(65, 20);
+            label9.TabIndex = 8;
+            label9.Text = "Table  :";
+            // 
             // cmb_TimesOfDay
             // 
+            cmb_TimesOfDay.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_TimesOfDay.FlatStyle = FlatStyle.Popup;
             cmb_TimesOfDay.Font = new Font("Georgia", 10.2F);
             cmb_TimesOfDay.FormattingEnabled = true;
             cmb_TimesOfDay.Location = new Point(192, 418);
@@ -139,6 +213,7 @@
             // cmb_tableStatus
             // 
             cmb_tableStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_tableStatus.FlatStyle = FlatStyle.Popup;
             cmb_tableStatus.Font = new Font("Georgia", 10.2F);
             cmb_tableStatus.FormattingEnabled = true;
             cmb_tableStatus.Items.AddRange(new object[] { "Confirmed", "Pending", "Cancelled", "Completed", "No-Show", "Seated", "Rescheduled" });
@@ -151,6 +226,7 @@
             // comboBoxCustomer
             // 
             comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCustomer.FlatStyle = FlatStyle.Popup;
             comboBoxCustomer.Font = new Font("Georgia", 10.2F);
             comboBoxCustomer.FormattingEnabled = true;
             comboBoxCustomer.Location = new Point(193, 98);
@@ -171,6 +247,7 @@
             // 
             // btnCancel
             // 
+            btnCancel.Font = new Font("Georgia", 9F);
             btnCancel.Location = new Point(510, 490);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(198, 50);
@@ -181,6 +258,7 @@
             // 
             // btnRefresh
             // 
+            btnRefresh.Font = new Font("Georgia", 9F);
             btnRefresh.Location = new Point(764, 490);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(198, 50);
@@ -191,6 +269,7 @@
             // 
             // btnUpdate
             // 
+            btnUpdate.Font = new Font("Georgia", 9F);
             btnUpdate.Location = new Point(764, 410);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(198, 50);
@@ -203,7 +282,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(192, 192, 255);
+            label1.BackColor = Color.WhiteSmoke;
             label1.FlatStyle = FlatStyle.Popup;
             label1.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 0, 0);
@@ -215,6 +294,7 @@
             // 
             // btnRefreshGrid
             // 
+            btnRefreshGrid.Font = new Font("Georgia", 9F);
             btnRefreshGrid.Location = new Point(1067, 337);
             btnRefreshGrid.Name = "btnRefreshGrid";
             btnRefreshGrid.Size = new Size(106, 43);
@@ -225,6 +305,7 @@
             // 
             // btnSearch
             // 
+            btnSearch.Font = new Font("Georgia", 9F);
             btnSearch.Location = new Point(510, 329);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(106, 43);
@@ -241,82 +322,12 @@
             txtSearch.Size = new Size(226, 31);
             txtSearch.TabIndex = 0;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Georgia", 10.2F);
-            label9.Location = new Point(86, 44);
-            label9.Name = "label9";
-            label9.Size = new Size(65, 20);
-            label9.TabIndex = 8;
-            label9.Text = "Table  :";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Georgia", 10.2F);
-            label2.Location = new Point(56, 106);
-            label2.Name = "label2";
-            label2.Size = new Size(95, 20);
-            label2.TabIndex = 8;
-            label2.Text = "Customer  :";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Georgia", 10.2F);
-            label3.Location = new Point(56, 171);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 20);
-            label3.TabIndex = 8;
-            label3.Text = "Book Date  :";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Georgia", 10.2F);
-            label4.Location = new Point(53, 236);
-            label4.Name = "label4";
-            label4.Size = new Size(103, 20);
-            label4.TabIndex = 8;
-            label4.Text = "Book Time  :";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Georgia", 10.2F);
-            label5.Location = new Point(31, 301);
-            label5.Name = "label5";
-            label5.Size = new Size(125, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Seat Capacity  :";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Georgia", 10.2F);
-            label6.Location = new Point(39, 360);
-            label6.Name = "label6";
-            label6.Size = new Size(117, 20);
-            label6.TabIndex = 8;
-            label6.Text = "Table Status  :";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Georgia", 10.2F);
-            label7.Location = new Point(6, 426);
-            label7.Name = "label7";
-            label7.Size = new Size(150, 20);
-            label7.TabIndex = 8;
-            label7.Text = "Time Of Booking  :";
-            // 
             // TableReservationForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            BackColor = Color.FromArgb(192, 192, 255);
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1370, 633);
             Controls.Add(label1);
             Controls.Add(btnSearch);
@@ -328,7 +339,7 @@
             Controls.Add(btnUpdate);
             Controls.Add(btnCancel);
             Controls.Add(groupbox_ReservInputSec);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "TableReservationForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TableReservationForm";

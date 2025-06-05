@@ -43,6 +43,9 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             toolTip1 = new ToolTip(components);
+            btn_close = new Button();
+            btn_max = new Button();
+            btn_min = new Button();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -50,45 +53,52 @@
             // lblUnit
             // 
             lblUnit.AutoSize = true;
-            lblUnit.Location = new Point(111, 216);
+            lblUnit.Font = new Font("Georgia", 10.2F);
+            lblUnit.Location = new Point(67, 242);
             lblUnit.Name = "lblUnit";
-            lblUnit.Size = new Size(16, 20);
+            lblUnit.Size = new Size(17, 20);
             lblUnit.TabIndex = 0;
             lblUnit.Text = "?";
             // 
             // txtNotes
             // 
-            txtNotes.Location = new Point(419, 378);
+            txtNotes.BorderStyle = BorderStyle.FixedSingle;
+            txtNotes.Location = new Point(419, 403);
             txtNotes.Multiline = true;
             txtNotes.Name = "txtNotes";
-            txtNotes.Size = new Size(290, 101);
+            txtNotes.Size = new Size(383, 144);
             txtNotes.TabIndex = 1;
             toolTip1.SetToolTip(txtNotes, "Here you ccan enter product wastage Commants");
             // 
             // cmbReason
             // 
+            cmbReason.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbReason.FlatStyle = FlatStyle.Popup;
+            cmbReason.Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbReason.FormattingEnabled = true;
             cmbReason.Items.AddRange(new object[] { "Wastage/Spoilage", "Received Free Sample", "Inventory Count Error", "Theft/Loss", " Other" });
-            cmbReason.Location = new Point(419, 314);
+            cmbReason.Location = new Point(419, 339);
             cmbReason.Name = "cmbReason";
-            cmbReason.Size = new Size(179, 28);
+            cmbReason.Size = new Size(229, 29);
             cmbReason.TabIndex = 2;
             toolTip1.SetToolTip(cmbReason, "Select Reason Why this much wastage Occoured..!");
             // 
             // numQuantity
             // 
-            numQuantity.Location = new Point(417, 265);
+            numQuantity.Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            numQuantity.Location = new Point(417, 290);
             numQuantity.Name = "numQuantity";
-            numQuantity.Size = new Size(181, 27);
+            numQuantity.Size = new Size(231, 28);
             numQuantity.TabIndex = 3;
             toolTip1.SetToolTip(numQuantity, "number of quantity wasted...!");
             // 
             // rdoRemove
             // 
             rdoRemove.AutoSize = true;
-            rdoRemove.Location = new Point(514, 214);
+            rdoRemove.Font = new Font("Georgia", 10.8F);
+            rdoRemove.Location = new Point(598, 239);
             rdoRemove.Name = "rdoRemove";
-            rdoRemove.Size = new Size(124, 24);
+            rdoRemove.Size = new Size(145, 25);
             rdoRemove.TabIndex = 4;
             rdoRemove.TabStop = true;
             rdoRemove.Text = "Remove Stock";
@@ -98,18 +108,20 @@
             // lblIngredient
             // 
             lblIngredient.AutoSize = true;
-            lblIngredient.Location = new Point(416, 142);
+            lblIngredient.Font = new Font("Georgia", 10.2F);
+            lblIngredient.Location = new Point(416, 167);
             lblIngredient.Name = "lblIngredient";
-            lblIngredient.Size = new Size(16, 20);
+            lblIngredient.Size = new Size(17, 20);
             lblIngredient.TabIndex = 0;
             lblIngredient.Text = "?";
             // 
             // rdoAdd
             // 
             rdoAdd.AutoSize = true;
-            rdoAdd.Location = new Point(416, 214);
+            rdoAdd.Font = new Font("Georgia", 10.8F);
+            rdoAdd.Location = new Point(416, 239);
             rdoAdd.Name = "rdoAdd";
-            rdoAdd.Size = new Size(98, 24);
+            rdoAdd.Size = new Size(111, 25);
             rdoAdd.TabIndex = 4;
             rdoAdd.TabStop = true;
             rdoAdd.Text = "Add Stock";
@@ -118,7 +130,9 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(416, 536);
+            btnConfirm.FlatStyle = FlatStyle.Popup;
+            btnConfirm.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            btnConfirm.Location = new Point(419, 597);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(94, 29);
             btnConfirm.TabIndex = 5;
@@ -128,7 +142,9 @@
             // 
             // btn_cancel
             // 
-            btn_cancel.Location = new Point(569, 536);
+            btn_cancel.FlatStyle = FlatStyle.Popup;
+            btn_cancel.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
+            btn_cancel.Location = new Point(572, 597);
             btn_cancel.Name = "btn_cancel";
             btn_cancel.Size = new Size(94, 29);
             btn_cancel.TabIndex = 5;
@@ -139,16 +155,17 @@
             // lblWarning
             // 
             lblWarning.AutoSize = true;
-            lblWarning.Location = new Point(111, 265);
+            lblWarning.Font = new Font("Georgia", 10.2F);
+            lblWarning.Location = new Point(67, 290);
             lblWarning.Name = "lblWarning";
-            lblWarning.Size = new Size(16, 20);
+            lblWarning.Size = new Size(17, 20);
             lblWarning.TabIndex = 0;
             lblWarning.Text = "?";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(15, 16);
+            pictureBox1.Location = new Point(15, 41);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(125, 91);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -160,17 +177,57 @@
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(128, 64, 0);
-            label1.Location = new Point(257, 28);
+            label1.Location = new Point(205, 56);
             label1.Name = "label1";
             label1.Size = new Size(555, 32);
             label1.TabIndex = 6;
             label1.Text = "Stock Adjustment / Spoiled / Wastage";
             // 
+            // btn_close
+            // 
+            btn_close.BackColor = Color.Red;
+            btn_close.FlatStyle = FlatStyle.Popup;
+            btn_close.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_close.Location = new Point(931, 3);
+            btn_close.Name = "btn_close";
+            btn_close.Size = new Size(21, 19);
+            btn_close.TabIndex = 14;
+            btn_close.UseVisualStyleBackColor = false;
+            btn_close.Click += btn_close_Click;
+            // 
+            // btn_max
+            // 
+            btn_max.BackColor = Color.Lime;
+            btn_max.FlatStyle = FlatStyle.Popup;
+            btn_max.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_max.Location = new Point(904, 3);
+            btn_max.Name = "btn_max";
+            btn_max.Size = new Size(21, 19);
+            btn_max.TabIndex = 15;
+            btn_max.UseVisualStyleBackColor = false;
+            btn_max.Click += btn_max_Click;
+            // 
+            // btn_min
+            // 
+            btn_min.BackColor = Color.Yellow;
+            btn_min.FlatStyle = FlatStyle.Popup;
+            btn_min.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_min.Location = new Point(877, 3);
+            btn_min.Name = "btn_min";
+            btn_min.Size = new Size(21, 19);
+            btn_min.TabIndex = 16;
+            btn_min.UseVisualStyleBackColor = false;
+            btn_min.Click += btn_min_Click;
+            // 
             // StockAdjustmentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(957, 588);
+            BackColor = Color.SkyBlue;
+            ClientSize = new Size(957, 661);
+            Controls.Add(btn_close);
+            Controls.Add(btn_max);
+            Controls.Add(btn_min);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(btn_cancel);
@@ -183,6 +240,7 @@
             Controls.Add(lblIngredient);
             Controls.Add(lblWarning);
             Controls.Add(lblUnit);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "StockAdjustmentForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "StockAdjustmentForm";
@@ -208,5 +266,8 @@
         private PictureBox pictureBox1;
         private Label label1;
         private ToolTip toolTip1;
+        private Button btn_close;
+        private Button btn_max;
+        private Button btn_min;
     }
 }

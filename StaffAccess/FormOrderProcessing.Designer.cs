@@ -30,8 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             label1 = new Label();
-            lblOrderId = new Label();
-            lblOrderDate = new Label();
             grpbox_custOrderDetails = new GroupBox();
             txtCustomerName = new TextBox();
             txtTableNumber = new TextBox();
@@ -56,6 +54,7 @@
             txtPhone = new TextBox();
             txtUnitPrice = new TextBox();
             btnSaveOrder = new Button();
+            lblOrderDate = new Label();
             grpbox_custOrderDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMenuItems).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridOrderItems).BeginInit();
@@ -66,37 +65,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Georgia", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(310, 29);
             label1.Name = "label1";
-            label1.Size = new Size(442, 38);
+            label1.Size = new Size(482, 32);
             label1.TabIndex = 0;
             label1.Text = "Order Processing - Meltado Cafe";
             // 
-            // lblOrderId
-            // 
-            lblOrderId.AutoSize = true;
-            lblOrderId.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblOrderId.ForeColor = Color.Black;
-            lblOrderId.Location = new Point(20, 41);
-            lblOrderId.Name = "lblOrderId";
-            lblOrderId.Size = new Size(121, 23);
-            lblOrderId.TabIndex = 1;
-            lblOrderId.Text = "Order ID: 1001";
-            // 
-            // lblOrderDate
-            // 
-            lblOrderDate.AutoSize = true;
-            lblOrderDate.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblOrderDate.ForeColor = Color.Black;
-            lblOrderDate.Location = new Point(814, 44);
-            lblOrderDate.Name = "lblOrderDate";
-            lblOrderDate.Size = new Size(235, 23);
-            lblOrderDate.TabIndex = 1;
-            lblOrderDate.Text = "Order Date: 26/05/2025 15:04";
-            // 
             // grpbox_custOrderDetails
             // 
+            grpbox_custOrderDetails.BackColor = Color.FromArgb(255, 192, 192);
             grpbox_custOrderDetails.Controls.Add(txtCustomerName);
             grpbox_custOrderDetails.Controls.Add(txtTableNumber);
             grpbox_custOrderDetails.Controls.Add(comboBoxReservation);
@@ -113,6 +91,7 @@
             // 
             // txtCustomerName
             // 
+            txtCustomerName.BorderStyle = BorderStyle.FixedSingle;
             txtCustomerName.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCustomerName.Location = new Point(24, 177);
             txtCustomerName.Name = "txtCustomerName";
@@ -122,6 +101,7 @@
             // 
             // txtTableNumber
             // 
+            txtTableNumber.BorderStyle = BorderStyle.FixedSingle;
             txtTableNumber.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTableNumber.Location = new Point(27, 106);
             txtTableNumber.Name = "txtTableNumber";
@@ -169,31 +149,33 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Georgia", 10.2F);
             label3.Location = new Point(27, 242);
             label3.Name = "label3";
-            label3.Size = new Size(105, 23);
+            label3.Size = new Size(106, 20);
             label3.TabIndex = 0;
             label3.Text = "Order Status";
             // 
             // lbl_selectPaymethod
             // 
             lbl_selectPaymethod.AutoSize = true;
-            lbl_selectPaymethod.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_selectPaymethod.Font = new Font("Georgia", 10.2F);
             lbl_selectPaymethod.Location = new Point(27, 332);
             lbl_selectPaymethod.Name = "lbl_selectPaymethod";
-            lbl_selectPaymethod.Size = new Size(191, 23);
+            lbl_selectPaymethod.Size = new Size(187, 20);
             lbl_selectPaymethod.TabIndex = 0;
             lbl_selectPaymethod.Text = "Select Payment Method";
             // 
             // btnAddToCart
             // 
+            btnAddToCart.BackColor = Color.FromArgb(192, 255, 192);
+            btnAddToCart.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddToCart.Location = new Point(333, 411);
             btnAddToCart.Name = "btnAddToCart";
             btnAddToCart.Size = new Size(280, 36);
             btnAddToCart.TabIndex = 4;
             btnAddToCart.Text = "Add to Cart";
-            btnAddToCart.UseVisualStyleBackColor = true;
+            btnAddToCart.UseVisualStyleBackColor = false;
             btnAddToCart.Click += btnAddToCart_Click;
             // 
             // dgvMenuItems
@@ -208,30 +190,36 @@
             // 
             // btn_RemoveItem
             // 
+            btn_RemoveItem.BackColor = Color.Red;
+            btn_RemoveItem.Font = new Font("Georgia", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_RemoveItem.ForeColor = Color.White;
             btn_RemoveItem.Location = new Point(518, 464);
             btn_RemoveItem.Name = "btn_RemoveItem";
             btn_RemoveItem.Size = new Size(95, 36);
             btn_RemoveItem.TabIndex = 4;
             btn_RemoveItem.Text = "REMOVE";
-            btn_RemoveItem.UseVisualStyleBackColor = true;
+            btn_RemoveItem.UseVisualStyleBackColor = false;
             btn_RemoveItem.Click += btn_RemoveItem_Click;
             // 
             // txtSearchItems
             // 
+            txtSearchItems.BorderStyle = BorderStyle.FixedSingle;
             txtSearchItems.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearchItems.Location = new Point(1010, 108);
             txtSearchItems.Name = "txtSearchItems";
-            txtSearchItems.Size = new Size(197, 30);
+            txtSearchItems.Size = new Size(226, 30);
             txtSearchItems.TabIndex = 2;
             // 
             // btnSearchBocItems
             // 
+            btnSearchBocItems.BackColor = Color.LightCoral;
+            btnSearchBocItems.Font = new Font("Georgia", 10.2F);
             btnSearchBocItems.Location = new Point(1112, 152);
             btnSearchBocItems.Name = "btnSearchBocItems";
-            btnSearchBocItems.Size = new Size(95, 36);
+            btnSearchBocItems.Size = new Size(124, 36);
             btnSearchBocItems.TabIndex = 4;
             btnSearchBocItems.Text = "SEARCH";
-            btnSearchBocItems.UseVisualStyleBackColor = true;
+            btnSearchBocItems.UseVisualStyleBackColor = false;
             btnSearchBocItems.Click += btnSearchBocItems_Click;
             // 
             // dataGridOrderItems
@@ -247,12 +235,15 @@
             // 
             // btnClearAll
             // 
-            btnClearAll.Location = new Point(1112, 214);
+            btnClearAll.BackColor = Color.Silver;
+            btnClearAll.BackgroundImageLayout = ImageLayout.Center;
+            btnClearAll.Font = new Font("Georgia", 10.2F);
+            btnClearAll.Location = new Point(1112, 208);
             btnClearAll.Name = "btnClearAll";
-            btnClearAll.Size = new Size(95, 36);
+            btnClearAll.Size = new Size(124, 42);
             btnClearAll.TabIndex = 4;
             btnClearAll.Text = "CLEAR ALL";
-            btnClearAll.UseVisualStyleBackColor = true;
+            btnClearAll.UseVisualStyleBackColor = false;
             btnClearAll.Click += btnClearAll_Click;
             // 
             // timer1
@@ -262,15 +253,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(1154, 539);
             label2.Name = "label2";
-            label2.Size = new Size(193, 23);
+            label2.Size = new Size(193, 20);
             label2.TabIndex = 5;
             label2.Text = "Grand Total Amount :  ₹";
             // 
             // txtGrandTotal
             // 
+            txtGrandTotal.BorderStyle = BorderStyle.FixedSingle;
             txtGrandTotal.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtGrandTotal.Location = new Point(1379, 534);
             txtGrandTotal.Name = "txtGrandTotal";
@@ -280,6 +272,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.FromArgb(255, 192, 192);
             groupBox1.Controls.Add(numericUpDownQuantity);
             groupBox1.Controls.Add(txtMenuItem);
             groupBox1.Controls.Add(txtPhone);
@@ -301,6 +294,7 @@
             // 
             // txtMenuItem
             // 
+            txtMenuItem.BorderStyle = BorderStyle.FixedSingle;
             txtMenuItem.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtMenuItem.Location = new Point(34, 41);
             txtMenuItem.Name = "txtMenuItem";
@@ -310,6 +304,7 @@
             // 
             // txtPhone
             // 
+            txtPhone.BorderStyle = BorderStyle.FixedSingle;
             txtPhone.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhone.Location = new Point(34, 103);
             txtPhone.Name = "txtPhone";
@@ -319,6 +314,7 @@
             // 
             // txtUnitPrice
             // 
+            txtUnitPrice.BorderStyle = BorderStyle.FixedSingle;
             txtUnitPrice.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUnitPrice.Location = new Point(34, 152);
             txtUnitPrice.Name = "txtUnitPrice";
@@ -328,13 +324,24 @@
             // 
             // btnSaveOrder
             // 
+            btnSaveOrder.BackColor = Color.FromArgb(192, 192, 255);
+            btnSaveOrder.Font = new Font("Georgia", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSaveOrder.Location = new Point(679, 539);
             btnSaveOrder.Name = "btnSaveOrder";
             btnSaveOrder.Size = new Size(145, 36);
             btnSaveOrder.TabIndex = 4;
             btnSaveOrder.Text = "Save Order";
-            btnSaveOrder.UseVisualStyleBackColor = true;
+            btnSaveOrder.UseVisualStyleBackColor = false;
             btnSaveOrder.Click += btnSaveOrder_Click;
+            // 
+            // lblOrderDate
+            // 
+            lblOrderDate.AutoSize = true;
+            lblOrderDate.Location = new Point(890, 36);
+            lblOrderDate.Name = "lblOrderDate";
+            lblOrderDate.Size = new Size(93, 20);
+            lblOrderDate.TabIndex = 8;
+            lblOrderDate.Text = "Date & Time  :";
             // 
             // FormOrderProcessing
             // 
@@ -343,6 +350,7 @@
             AutoScroll = true;
             BackColor = Color.White;
             ClientSize = new Size(1703, 681);
+            Controls.Add(lblOrderDate);
             Controls.Add(btnSaveOrder);
             Controls.Add(btnAddToCart);
             Controls.Add(groupBox1);
@@ -355,10 +363,9 @@
             Controls.Add(dgvMenuItems);
             Controls.Add(grpbox_custOrderDetails);
             Controls.Add(txtSearchItems);
-            Controls.Add(lblOrderDate);
-            Controls.Add(lblOrderId);
             Controls.Add(label1);
             ForeColor = Color.Navy;
+            FormBorderStyle = FormBorderStyle.None;
             Location = new Point(350, 10);
             Name = "FormOrderProcessing";
             StartPosition = FormStartPosition.CenterScreen;
@@ -378,8 +385,6 @@
         #endregion
 
         private Label label1;
-        private Label lblOrderId;
-        private Label lblOrderDate;
         private GroupBox grpbox_custOrderDetails;
         private DataGridView dgvMenuItems;
         private Button btn_RemoveItem;
@@ -404,5 +409,6 @@
         private TextBox txtPhone;
         private TextBox txtMenuItem;
         private Label label3;
+        private Label lblOrderDate;
     }
 }

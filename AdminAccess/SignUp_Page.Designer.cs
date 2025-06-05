@@ -37,9 +37,6 @@
             cmb_role = new ComboBox();
             label2 = new Label();
             label4 = new Label();
-            btn_close = new Button();
-            btn_max = new Button();
-            btn_min = new Button();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             dataGridViewUsers = new DataGridView();
@@ -134,42 +131,6 @@
             label4.TabIndex = 13;
             label4.Text = "MELTADO CAFE";
             // 
-            // btn_close
-            // 
-            btn_close.BackColor = Color.Red;
-            btn_close.FlatStyle = FlatStyle.Popup;
-            btn_close.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_close.Location = new Point(996, 3);
-            btn_close.Name = "btn_close";
-            btn_close.Size = new Size(21, 19);
-            btn_close.TabIndex = 14;
-            btn_close.UseVisualStyleBackColor = false;
-            btn_close.Click += btn_close_click;
-            // 
-            // btn_max
-            // 
-            btn_max.BackColor = Color.Lime;
-            btn_max.FlatStyle = FlatStyle.Popup;
-            btn_max.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_max.Location = new Point(969, 3);
-            btn_max.Name = "btn_max";
-            btn_max.Size = new Size(21, 19);
-            btn_max.TabIndex = 15;
-            btn_max.UseVisualStyleBackColor = false;
-            btn_max.Click += btn_max_Click;
-            // 
-            // btn_min
-            // 
-            btn_min.BackColor = Color.Yellow;
-            btn_min.FlatStyle = FlatStyle.Popup;
-            btn_min.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_min.Location = new Point(942, 3);
-            btn_min.Name = "btn_min";
-            btn_min.Size = new Size(21, 19);
-            btn_min.TabIndex = 16;
-            btn_min.UseVisualStyleBackColor = false;
-            btn_min.Click += btn_min_Click;
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
@@ -182,11 +143,9 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(dataGridViewUsers);
-            panel1.Controls.Add(btn_close);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(btn_max);
-            panel1.Controls.Add(btn_min);
             panel1.Controls.Add(toggleBtn);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(btnClearAll);
@@ -197,9 +156,10 @@
             panel1.Controls.Add(lnklbl_signin);
             panel1.Controls.Add(lblIsActive);
             panel1.Controls.Add(groupBox1);
+            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1021, 508);
+            panel1.Size = new Size(1038, 599);
             panel1.TabIndex = 18;
             // 
             // dataGridViewUsers
@@ -343,9 +303,6 @@
         private ComboBox cmb_role;
         private Label label2;
         private Label label4;
-        private Button btn_close;
-        private Button btn_max;
-        private Button btn_min;
         private PictureBox pictureBox1;
         private Panel panel1;
         private TextBox txtPnoneNo;

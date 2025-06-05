@@ -59,6 +59,7 @@
             // 
             // btnAdd
             // 
+            btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Location = new Point(122, 477);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(144, 44);
@@ -70,6 +71,7 @@
             // 
             // btnLowStock
             // 
+            btnLowStock.FlatStyle = FlatStyle.Popup;
             btnLowStock.Location = new Point(589, 477);
             btnLowStock.Name = "btnLowStock";
             btnLowStock.Size = new Size(146, 44);
@@ -84,7 +86,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(128, 64, 0);
-            label1.Location = new Point(340, 34);
+            label1.Location = new Point(344, 54);
             label1.Name = "label1";
             label1.Size = new Size(518, 32);
             label1.TabIndex = 2;
@@ -92,6 +94,7 @@
             // 
             // button1
             // 
+            button1.FlatStyle = FlatStyle.Popup;
             button1.Location = new Point(287, 477);
             button1.Name = "button1";
             button1.Size = new Size(141, 44);
@@ -103,6 +106,7 @@
             // 
             // button2
             // 
+            button2.FlatStyle = FlatStyle.Popup;
             button2.Location = new Point(444, 477);
             button2.Name = "button2";
             button2.Size = new Size(128, 44);
@@ -114,6 +118,7 @@
             // 
             // button3
             // 
+            button3.FlatStyle = FlatStyle.Popup;
             button3.Location = new Point(751, 477);
             button3.Name = "button3";
             button3.Size = new Size(95, 44);
@@ -124,6 +129,7 @@
             // 
             // button4
             // 
+            button4.FlatStyle = FlatStyle.Popup;
             button4.Location = new Point(862, 477);
             button4.Name = "button4";
             button4.Size = new Size(117, 44);
@@ -178,6 +184,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1152, 623);
             Controls.Add(lblLowStockAlert);
             Controls.Add(lblRecordCount);
@@ -191,6 +198,7 @@
             Controls.Add(button1);
             Controls.Add(btnAdd);
             Controls.Add(dgvIngredients);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "InventoryManagementForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "InventoryManagementForm";

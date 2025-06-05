@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MELTADO_CAFE.StaffAccess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,7 +36,7 @@ namespace MELTADO_CAFE
             childForm.Show();
             lblTitle.Text = childForm.Text;
         }
-        
+
 
         private void btnOrderProcessing_Click(object sender, EventArgs e)
         {
@@ -50,6 +51,39 @@ namespace MELTADO_CAFE
         private void btnInventoryManagment_Click(object sender, EventArgs e)
         {
             OpenChildForm(new InventoryManagementForm(), sender);
+        }
+
+        private void btnFeedback_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FeedbackForm(), sender);
+        }
+
+        private void btn_min_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btn_max_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            this.Dispose();
+        }
+
+        private void btnCustomerDashboard_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new CustomerDashboardForm(), sender);
         }
     }
 }

@@ -48,6 +48,8 @@
             // 
             // btn_sendotp
             // 
+            btn_sendotp.FlatStyle = FlatStyle.Popup;
+            btn_sendotp.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             btn_sendotp.Location = new Point(135, 349);
             btn_sendotp.Name = "btn_sendotp";
             btn_sendotp.Size = new Size(94, 29);
@@ -59,43 +61,51 @@
             // txt_otp
             // 
             txt_otp.BorderStyle = BorderStyle.FixedSingle;
+            txt_otp.Font = new Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_otp.Location = new Point(232, 268);
             txt_otp.Name = "txt_otp";
             txt_otp.PasswordChar = '*';
-            txt_otp.Size = new Size(183, 27);
+            txt_otp.Size = new Size(183, 25);
             txt_otp.TabIndex = 3;
             // 
             // txt_email
             // 
             txt_email.BorderStyle = BorderStyle.FixedSingle;
+            txt_email.Font = new Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_email.Location = new Point(232, 204);
             txt_email.Name = "txt_email";
-            txt_email.Size = new Size(183, 27);
+            txt_email.Size = new Size(183, 25);
             txt_email.TabIndex = 1;
             // 
             // lbl_pwd
             // 
             lbl_pwd.AutoSize = true;
+            lbl_pwd.FlatStyle = FlatStyle.Popup;
+            lbl_pwd.Font = new Font("Georgia", 7.8F);
             lbl_pwd.Location = new Point(167, 275);
             lbl_pwd.Name = "lbl_pwd";
-            lbl_pwd.Size = new Size(42, 20);
+            lbl_pwd.Size = new Size(39, 16);
             lbl_pwd.TabIndex = 5;
             lbl_pwd.Text = "OTP :";
             // 
             // lbl_email
             // 
             lbl_email.AutoSize = true;
+            lbl_email.FlatStyle = FlatStyle.Popup;
+            lbl_email.Font = new Font("Georgia", 7.8F);
             lbl_email.Location = new Point(123, 206);
             lbl_email.Name = "lbl_email";
-            lbl_email.Size = new Size(86, 20);
+            lbl_email.Size = new Size(81, 16);
             lbl_email.TabIndex = 6;
             lbl_email.Text = "User Email :";
             // 
             // btn_movesignin
             // 
+            btn_movesignin.FlatStyle = FlatStyle.Popup;
+            btn_movesignin.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_movesignin.Location = new Point(12, 12);
             btn_movesignin.Name = "btn_movesignin";
-            btn_movesignin.Size = new Size(123, 29);
+            btn_movesignin.Size = new Size(136, 29);
             btn_movesignin.TabIndex = 8;
             btn_movesignin.Text = "Move to Sign In";
             btn_movesignin.UseVisualStyleBackColor = true;
@@ -111,6 +121,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.SkyBlue;
             panel2.Controls.Add(btn_close);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
@@ -168,25 +179,29 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(182, 54);
+            label4.FlatStyle = FlatStyle.Popup;
+            label4.Font = new Font("Georgia", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(182, 38);
             label4.Name = "label4";
-            label4.Size = new Size(179, 31);
+            label4.Size = new Size(255, 32);
             label4.TabIndex = 20;
             label4.Text = "MELTADO CAFE";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(169, 127);
+            label3.FlatStyle = FlatStyle.Popup;
+            label3.Font = new Font("Georgia", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(182, 127);
             label3.Name = "label3";
-            label3.Size = new Size(206, 28);
+            label3.Size = new Size(233, 24);
             label3.TabIndex = 19;
             label3.Text = "FORGOT PASSWORD";
             // 
             // btn_verifyotp
             // 
+            btn_verifyotp.FlatStyle = FlatStyle.Popup;
+            btn_verifyotp.Font = new Font("Georgia", 10.2F, FontStyle.Bold);
             btn_verifyotp.Location = new Point(321, 349);
             btn_verifyotp.Name = "btn_verifyotp";
             btn_verifyotp.Size = new Size(94, 29);

@@ -44,6 +44,9 @@
             numReorderLevel = new NumericUpDown();
             lblStockStatus = new Label();
             toolTip1 = new ToolTip(components);
+            btn_close = new Button();
+            btn_max = new Button();
+            btn_min = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCurrentStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
@@ -52,6 +55,7 @@
             // 
             // btnCancel
             // 
+            btnCancel.Anchor = AnchorStyles.None;
             btnCancel.Location = new Point(574, 570);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(77, 32);
@@ -62,6 +66,7 @@
             // 
             // btnSave
             // 
+            btnSave.Anchor = AnchorStyles.None;
             btnSave.Location = new Point(305, 558);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(228, 44);
@@ -82,6 +87,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Georgia", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(128, 64, 0);
@@ -93,6 +99,7 @@
             // 
             // txtName
             // 
+            txtName.Anchor = AnchorStyles.None;
             txtName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtName.Location = new Point(305, 146);
             txtName.Name = "txtName";
@@ -102,6 +109,7 @@
             // 
             // txtDescription
             // 
+            txtDescription.Anchor = AnchorStyles.None;
             txtDescription.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescription.Location = new Point(305, 192);
             txtDescription.Name = "txtDescription";
@@ -111,8 +119,9 @@
             // 
             // txtSupplier
             // 
+            txtSupplier.Anchor = AnchorStyles.None;
             txtSupplier.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSupplier.Location = new Point(305, 385);
+            txtSupplier.Location = new Point(305, 384);
             txtSupplier.Name = "txtSupplier";
             txtSupplier.Size = new Size(230, 31);
             txtSupplier.TabIndex = 7;
@@ -120,6 +129,9 @@
             // 
             // cmbUnit
             // 
+            cmbUnit.Anchor = AnchorStyles.None;
+            cmbUnit.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUnit.FlatStyle = FlatStyle.Popup;
             cmbUnit.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbUnit.FormattingEnabled = true;
             cmbUnit.Location = new Point(305, 286);
@@ -130,6 +142,7 @@
             // 
             // numCurrentStock
             // 
+            numCurrentStock.Anchor = AnchorStyles.None;
             numCurrentStock.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             numCurrentStock.Location = new Point(305, 238);
             numCurrentStock.Name = "numCurrentStock";
@@ -140,6 +153,7 @@
             // 
             // chkActive
             // 
+            chkActive.Anchor = AnchorStyles.None;
             chkActive.AutoSize = true;
             chkActive.Location = new Point(310, 491);
             chkActive.Name = "chkActive";
@@ -151,6 +165,7 @@
             // 
             // numCost
             // 
+            numCost.Anchor = AnchorStyles.None;
             numCost.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             numCost.Location = new Point(305, 435);
             numCost.Name = "numCost";
@@ -160,6 +175,7 @@
             // 
             // numReorderLevel
             // 
+            numReorderLevel.Anchor = AnchorStyles.None;
             numReorderLevel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             numReorderLevel.Location = new Point(305, 334);
             numReorderLevel.Name = "numReorderLevel";
@@ -177,11 +193,51 @@
             lblStockStatus.Text = "?";
             toolTip1.SetToolTip(lblStockStatus, "Current Stock Status");
             // 
+            // btn_close
+            // 
+            btn_close.BackColor = Color.Red;
+            btn_close.FlatStyle = FlatStyle.Popup;
+            btn_close.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_close.Location = new Point(825, 2);
+            btn_close.Name = "btn_close";
+            btn_close.Size = new Size(21, 19);
+            btn_close.TabIndex = 14;
+            btn_close.UseVisualStyleBackColor = false;
+            btn_close.Click += btn_close_Click;
+            // 
+            // btn_max
+            // 
+            btn_max.BackColor = Color.Lime;
+            btn_max.FlatStyle = FlatStyle.Popup;
+            btn_max.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_max.Location = new Point(798, 2);
+            btn_max.Name = "btn_max";
+            btn_max.Size = new Size(21, 19);
+            btn_max.TabIndex = 15;
+            btn_max.UseVisualStyleBackColor = false;
+            btn_max.Click += btn_max_Click;
+            // 
+            // btn_min
+            // 
+            btn_min.BackColor = Color.Yellow;
+            btn_min.FlatStyle = FlatStyle.Popup;
+            btn_min.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_min.Location = new Point(771, 2);
+            btn_min.Name = "btn_min";
+            btn_min.Size = new Size(21, 19);
+            btn_min.TabIndex = 16;
+            btn_min.UseVisualStyleBackColor = false;
+            btn_min.Click += btn_min_Click;
+            // 
             // IngredientDetailForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SkyBlue;
             ClientSize = new Size(848, 657);
+            Controls.Add(btn_close);
+            Controls.Add(btn_max);
+            Controls.Add(btn_min);
             Controls.Add(lblStockStatus);
             Controls.Add(chkActive);
             Controls.Add(numReorderLevel);
@@ -195,6 +251,7 @@
             Controls.Add(label1);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "IngredientDetailForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "IngredientDetailForm";
@@ -223,5 +280,8 @@
         private NumericUpDown numReorderLevel;
         private Label lblStockStatus;
         private ToolTip toolTip1;
+        private Button btn_close;
+        private Button btn_max;
+        private Button btn_min;
     }
 }

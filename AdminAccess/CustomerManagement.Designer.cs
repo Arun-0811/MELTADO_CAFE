@@ -36,8 +36,11 @@
             grpbox_HistoryFeedback = new GroupBox();
             dtpLastVisit = new DateTimePicker();
             txtTotalSpend = new TextBox();
+            textBox3 = new TextBox();
             txtLastFeedback = new TextBox();
+            textBox2 = new TextBox();
             txtTotalVisits = new TextBox();
+            textBox1 = new TextBox();
             grpbox_LoyaltyInfo = new GroupBox();
             numPoints = new NumericUpDown();
             txtCardNo = new TextBox();
@@ -116,6 +119,7 @@
             grpbox_Address.BackColor = Color.FromArgb(255, 192, 192);
             grpbox_Address.Controls.Add(txtInstructions);
             grpbox_Address.Controls.Add(txtAddress);
+            grpbox_Address.Font = new Font("Georgia", 9F);
             grpbox_Address.Location = new Point(267, 236);
             grpbox_Address.Name = "grpbox_Address";
             grpbox_Address.Size = new Size(226, 212);
@@ -125,6 +129,7 @@
             // 
             // txtInstructions
             // 
+            txtInstructions.BorderStyle = BorderStyle.FixedSingle;
             txtInstructions.Location = new Point(17, 133);
             txtInstructions.Multiline = true;
             txtInstructions.Name = "txtInstructions";
@@ -134,6 +139,7 @@
             // 
             // txtAddress
             // 
+            txtAddress.BorderStyle = BorderStyle.FixedSingle;
             txtAddress.Location = new Point(17, 26);
             txtAddress.Multiline = true;
             txtAddress.Name = "txtAddress";
@@ -147,8 +153,12 @@
             grpbox_HistoryFeedback.BackColor = Color.FromArgb(255, 192, 192);
             grpbox_HistoryFeedback.Controls.Add(dtpLastVisit);
             grpbox_HistoryFeedback.Controls.Add(txtTotalSpend);
+            grpbox_HistoryFeedback.Controls.Add(textBox3);
             grpbox_HistoryFeedback.Controls.Add(txtLastFeedback);
+            grpbox_HistoryFeedback.Controls.Add(textBox2);
             grpbox_HistoryFeedback.Controls.Add(txtTotalVisits);
+            grpbox_HistoryFeedback.Controls.Add(textBox1);
+            grpbox_HistoryFeedback.Font = new Font("Georgia", 9F);
             grpbox_HistoryFeedback.Location = new Point(512, 14);
             grpbox_HistoryFeedback.Name = "grpbox_HistoryFeedback";
             grpbox_HistoryFeedback.Size = new Size(232, 434);
@@ -160,20 +170,29 @@
             // 
             dtpLastVisit.Location = new Point(20, 29);
             dtpLastVisit.Name = "dtpLastVisit";
-            dtpLastVisit.Size = new Size(189, 27);
+            dtpLastVisit.Size = new Size(189, 25);
             dtpLastVisit.TabIndex = 15;
             PopUptoolTip.SetToolTip(dtpLastVisit, "Your Last Visited Date");
             // 
             // txtTotalSpend
             // 
+            txtTotalSpend.BorderStyle = BorderStyle.FixedSingle;
             txtTotalSpend.Location = new Point(20, 114);
             txtTotalSpend.Name = "txtTotalSpend";
-            txtTotalSpend.Size = new Size(193, 27);
+            txtTotalSpend.Size = new Size(193, 25);
             txtTotalSpend.TabIndex = 17;
             PopUptoolTip.SetToolTip(txtTotalSpend, "Your Total Expence spent here");
             // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(-484, 113);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(193, 25);
+            textBox3.TabIndex = 3;
+            // 
             // txtLastFeedback
             // 
+            txtLastFeedback.BorderStyle = BorderStyle.FixedSingle;
             txtLastFeedback.Location = new Point(20, 160);
             txtLastFeedback.Multiline = true;
             txtLastFeedback.Name = "txtLastFeedback";
@@ -181,13 +200,28 @@
             txtLastFeedback.TabIndex = 18;
             PopUptoolTip.SetToolTip(txtLastFeedback, "Your Previous Feedback about this cafe");
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(-484, 67);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(193, 25);
+            textBox2.TabIndex = 2;
+            // 
             // txtTotalVisits
             // 
+            txtTotalVisits.BorderStyle = BorderStyle.FixedSingle;
             txtTotalVisits.Location = new Point(20, 71);
             txtTotalVisits.Name = "txtTotalVisits";
-            txtTotalVisits.Size = new Size(193, 27);
+            txtTotalVisits.Size = new Size(193, 25);
             txtTotalVisits.TabIndex = 16;
             PopUptoolTip.SetToolTip(txtTotalVisits, "Your Total Visits");
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(-484, 24);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(193, 25);
+            textBox1.TabIndex = 1;
             // 
             // grpbox_LoyaltyInfo
             // 
@@ -196,6 +230,7 @@
             grpbox_LoyaltyInfo.Controls.Add(numPoints);
             grpbox_LoyaltyInfo.Controls.Add(txtCardNo);
             grpbox_LoyaltyInfo.Controls.Add(cmbTier);
+            grpbox_LoyaltyInfo.Font = new Font("Georgia", 9F);
             grpbox_LoyaltyInfo.Location = new Point(18, 288);
             grpbox_LoyaltyInfo.Name = "grpbox_LoyaltyInfo";
             grpbox_LoyaltyInfo.Size = new Size(223, 160);
@@ -207,24 +242,27 @@
             // 
             numPoints.Location = new Point(10, 69);
             numPoints.Name = "numPoints";
-            numPoints.Size = new Size(193, 27);
+            numPoints.Size = new Size(193, 25);
             numPoints.TabIndex = 7;
             PopUptoolTip.SetToolTip(numPoints, "Select Reward Points");
             // 
             // txtCardNo
             // 
+            txtCardNo.BorderStyle = BorderStyle.FixedSingle;
             txtCardNo.Location = new Point(10, 29);
             txtCardNo.Name = "txtCardNo";
-            txtCardNo.Size = new Size(193, 27);
+            txtCardNo.Size = new Size(193, 25);
             txtCardNo.TabIndex = 6;
             PopUptoolTip.SetToolTip(txtCardNo, "Enter Your Loyalty Card Number");
             // 
             // cmbTier
             // 
+            cmbTier.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTier.FlatStyle = FlatStyle.Popup;
             cmbTier.FormattingEnabled = true;
             cmbTier.Location = new Point(10, 114);
             cmbTier.Name = "cmbTier";
-            cmbTier.Size = new Size(193, 28);
+            cmbTier.Size = new Size(193, 26);
             cmbTier.TabIndex = 8;
             PopUptoolTip.SetToolTip(cmbTier, "Select Your Membership Tier");
             // 
@@ -236,6 +274,7 @@
             grpbox_Preferences.Controls.Add(cmbTime);
             grpbox_Preferences.Controls.Add(cmbFavorites);
             grpbox_Preferences.Controls.Add(cmbDietary);
+            grpbox_Preferences.Font = new Font("Georgia", 9F);
             grpbox_Preferences.Location = new Point(258, 14);
             grpbox_Preferences.Name = "grpbox_Preferences";
             grpbox_Preferences.Size = new Size(230, 204);
@@ -245,35 +284,43 @@
             // 
             // cmbTable
             // 
+            cmbTable.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTable.FlatStyle = FlatStyle.Popup;
             cmbTable.FormattingEnabled = true;
             cmbTable.Location = new Point(20, 113);
             cmbTable.Name = "cmbTable";
-            cmbTable.Size = new Size(193, 28);
+            cmbTable.Size = new Size(193, 26);
             cmbTable.TabIndex = 12;
             // 
             // cmbTime
             // 
+            cmbTime.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTime.FlatStyle = FlatStyle.Popup;
             cmbTime.FormattingEnabled = true;
             cmbTime.Location = new Point(20, 155);
             cmbTime.Name = "cmbTime";
-            cmbTime.Size = new Size(193, 28);
+            cmbTime.Size = new Size(193, 26);
             cmbTime.TabIndex = 12;
             PopUptoolTip.SetToolTip(cmbTime, "Select Your Prefferable Time");
             // 
             // cmbFavorites
             // 
+            cmbFavorites.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFavorites.FlatStyle = FlatStyle.Popup;
             cmbFavorites.FormattingEnabled = true;
             cmbFavorites.Location = new Point(20, 28);
             cmbFavorites.Name = "cmbFavorites";
-            cmbFavorites.Size = new Size(193, 28);
+            cmbFavorites.Size = new Size(193, 26);
             cmbFavorites.TabIndex = 10;
             // 
             // cmbDietary
             // 
+            cmbDietary.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDietary.FlatStyle = FlatStyle.Popup;
             cmbDietary.FormattingEnabled = true;
             cmbDietary.Location = new Point(20, 69);
             cmbDietary.Name = "cmbDietary";
-            cmbDietary.Size = new Size(193, 28);
+            cmbDietary.Size = new Size(193, 26);
             cmbDietary.TabIndex = 10;
             PopUptoolTip.SetToolTip(cmbDietary, "Select Your Dietary(Food Preference)");
             // 
@@ -286,6 +333,7 @@
             grpbox_cusdetails.Controls.Add(txtEmail);
             grpbox_cusdetails.Controls.Add(txtPhone);
             grpbox_cusdetails.Controls.Add(txtName);
+            grpbox_cusdetails.Font = new Font("Georgia", 9F);
             grpbox_cusdetails.Location = new Point(15, 14);
             grpbox_cusdetails.Name = "grpbox_cusdetails";
             grpbox_cusdetails.Size = new Size(221, 259);
@@ -297,40 +345,45 @@
             // 
             dtpDOB.Location = new Point(17, 166);
             dtpDOB.Name = "dtpDOB";
-            dtpDOB.Size = new Size(189, 27);
+            dtpDOB.Size = new Size(189, 25);
             dtpDOB.TabIndex = 4;
             PopUptoolTip.SetToolTip(dtpDOB, "Select Your DOB");
             // 
             // cmbGender
             // 
+            cmbGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGender.FlatStyle = FlatStyle.Popup;
             cmbGender.FormattingEnabled = true;
             cmbGender.Location = new Point(13, 209);
             cmbGender.Name = "cmbGender";
-            cmbGender.Size = new Size(193, 28);
+            cmbGender.Size = new Size(193, 26);
             cmbGender.TabIndex = 5;
             PopUptoolTip.SetToolTip(cmbGender, "Select Your Gender");
             // 
             // txtEmail
             // 
+            txtEmail.BorderStyle = BorderStyle.FixedSingle;
             txtEmail.Location = new Point(13, 118);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(193, 27);
+            txtEmail.Size = new Size(193, 25);
             txtEmail.TabIndex = 3;
             PopUptoolTip.SetToolTip(txtEmail, "Enter Your Email");
             // 
             // txtPhone
             // 
+            txtPhone.BorderStyle = BorderStyle.FixedSingle;
             txtPhone.Location = new Point(13, 72);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(193, 27);
+            txtPhone.Size = new Size(193, 25);
             txtPhone.TabIndex = 2;
             PopUptoolTip.SetToolTip(txtPhone, "Enter Your PhoneNo");
             // 
             // txtName
             // 
+            txtName.BorderStyle = BorderStyle.FixedSingle;
             txtName.Location = new Point(13, 29);
             txtName.Name = "txtName";
-            txtName.Size = new Size(193, 27);
+            txtName.Size = new Size(193, 25);
             txtName.TabIndex = 1;
             PopUptoolTip.SetToolTip(txtName, "Enter Your Name");
             // 
@@ -415,9 +468,9 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(192, 192, 255);
+            label1.BackColor = Color.Transparent;
             label1.FlatStyle = FlatStyle.Popup;
             label1.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 0, 0);
@@ -433,33 +486,37 @@
             // 
             // txt_gendercmblist
             // 
+            txt_gendercmblist.BorderStyle = BorderStyle.FixedSingle;
             txt_gendercmblist.Location = new Point(15, 36);
             txt_gendercmblist.Name = "txt_gendercmblist";
-            txt_gendercmblist.Size = new Size(237, 27);
+            txt_gendercmblist.Size = new Size(237, 25);
             txt_gendercmblist.TabIndex = 6;
             PopUptoolTip.SetToolTip(txt_gendercmblist, "Enter Your Genter List");
             // 
             // txt_dietarylist
             // 
+            txt_dietarylist.BorderStyle = BorderStyle.FixedSingle;
             txt_dietarylist.Location = new Point(19, 26);
             txt_dietarylist.Name = "txt_dietarylist";
-            txt_dietarylist.Size = new Size(237, 27);
+            txt_dietarylist.Size = new Size(237, 25);
             txt_dietarylist.TabIndex = 6;
             PopUptoolTip.SetToolTip(txt_dietarylist, "Enter Your Dietary Preference List");
             // 
             // txt_usualtimelist
             // 
+            txt_usualtimelist.BorderStyle = BorderStyle.FixedSingle;
             txt_usualtimelist.Location = new Point(15, 42);
             txt_usualtimelist.Name = "txt_usualtimelist";
-            txt_usualtimelist.Size = new Size(237, 27);
+            txt_usualtimelist.Size = new Size(237, 25);
             txt_usualtimelist.TabIndex = 6;
             PopUptoolTip.SetToolTip(txt_usualtimelist, "Enter your Usual Time List");
             // 
             // txt_membershiptierlist
             // 
+            txt_membershiptierlist.BorderStyle = BorderStyle.FixedSingle;
             txt_membershiptierlist.Location = new Point(19, 42);
             txt_membershiptierlist.Name = "txt_membershiptierlist";
-            txt_membershiptierlist.Size = new Size(237, 27);
+            txt_membershiptierlist.Size = new Size(237, 25);
             txt_membershiptierlist.TabIndex = 6;
             PopUptoolTip.SetToolTip(txt_membershiptierlist, "Enter Your Membership Tier List");
             // 
@@ -477,6 +534,7 @@
             // 
             btn_btn_SAVE.BackColor = SystemColors.Highlight;
             btn_btn_SAVE.FlatStyle = FlatStyle.Popup;
+            btn_btn_SAVE.Font = new Font("Georgia", 9F);
             btn_btn_SAVE.Location = new Point(195, 791);
             btn_btn_SAVE.Name = "btn_btn_SAVE";
             btn_btn_SAVE.Size = new Size(134, 52);
@@ -489,6 +547,7 @@
             // 
             btn_btn_ADD.BackColor = Color.ForestGreen;
             btn_btn_ADD.FlatStyle = FlatStyle.Popup;
+            btn_btn_ADD.Font = new Font("Georgia", 9F);
             btn_btn_ADD.Location = new Point(38, 791);
             btn_btn_ADD.Name = "btn_btn_ADD";
             btn_btn_ADD.Size = new Size(121, 52);
@@ -501,6 +560,7 @@
             // 
             btn_btn_DELETE.BackColor = Color.Red;
             btn_btn_DELETE.FlatStyle = FlatStyle.Popup;
+            btn_btn_DELETE.Font = new Font("Georgia", 9F);
             btn_btn_DELETE.Location = new Point(367, 791);
             btn_btn_DELETE.Name = "btn_btn_DELETE";
             btn_btn_DELETE.Size = new Size(122, 52);
@@ -513,6 +573,7 @@
             // 
             btn_btn_CLEAR.BackColor = SystemColors.Info;
             btn_btn_CLEAR.FlatStyle = FlatStyle.Popup;
+            btn_btn_CLEAR.Font = new Font("Georgia", 9F);
             btn_btn_CLEAR.Location = new Point(524, 791);
             btn_btn_CLEAR.Name = "btn_btn_CLEAR";
             btn_btn_CLEAR.Size = new Size(136, 52);
@@ -525,6 +586,7 @@
             // 
             grpbox_cuscmbbox.BackColor = Color.FromArgb(255, 192, 192);
             grpbox_cuscmbbox.Controls.Add(txt_gendercmblist);
+            grpbox_cuscmbbox.Font = new Font("Georgia", 9F);
             grpbox_cuscmbbox.Location = new Point(36, 558);
             grpbox_cuscmbbox.Name = "grpbox_cuscmbbox";
             grpbox_cuscmbbox.Size = new Size(275, 88);
@@ -536,6 +598,7 @@
             // 
             groupBox1.BackColor = Color.FromArgb(255, 192, 192);
             groupBox1.Controls.Add(txt_dietarylist);
+            groupBox1.Font = new Font("Georgia", 9F);
             groupBox1.Location = new Point(385, 558);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(275, 88);
@@ -547,6 +610,7 @@
             // 
             groupBox2.BackColor = Color.FromArgb(255, 192, 192);
             groupBox2.Controls.Add(txt_usualtimelist);
+            groupBox2.Font = new Font("Georgia", 9F);
             groupBox2.Location = new Point(36, 662);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(275, 88);
@@ -558,6 +622,7 @@
             // 
             groupBox3.BackColor = Color.FromArgb(255, 192, 192);
             groupBox3.Controls.Add(txt_membershiptierlist);
+            groupBox3.Font = new Font("Georgia", 9F);
             groupBox3.Location = new Point(385, 662);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(275, 88);
@@ -569,7 +634,7 @@
             // 
             panelMain.AutoScroll = true;
             panelMain.AutoSize = true;
-            panelMain.BackColor = Color.FromArgb(192, 192, 255);
+            panelMain.BackColor = Color.Transparent;
             panelMain.Controls.Add(txtSearchCustomer);
             panelMain.Controls.Add(btn_btn_membershipclickload);
             panelMain.Controls.Add(btn_btn_usualtimeload);
@@ -600,6 +665,7 @@
             // 
             // txtSearchCustomer
             // 
+            txtSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
             txtSearchCustomer.Font = new Font("Georgia", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearchCustomer.Location = new Point(178, 403);
             txtSearchCustomer.Name = "txtSearchCustomer";
@@ -609,42 +675,54 @@
             // 
             // btn_btn_membershipclickload
             // 
+            btn_btn_membershipclickload.BackColor = Color.Snow;
+            btn_btn_membershipclickload.FlatStyle = FlatStyle.Popup;
+            btn_btn_membershipclickload.Font = new Font("Georgia", 9F);
             btn_btn_membershipclickload.Location = new Point(1261, 690);
             btn_btn_membershipclickload.Name = "btn_btn_membershipclickload";
             btn_btn_membershipclickload.Size = new Size(188, 44);
             btn_btn_membershipclickload.TabIndex = 7;
             btn_btn_membershipclickload.Text = "Membership Tier Load";
-            btn_btn_membershipclickload.UseVisualStyleBackColor = true;
+            btn_btn_membershipclickload.UseVisualStyleBackColor = false;
             btn_btn_membershipclickload.Click += btn_btn_membershipclickload_Click;
             // 
             // btn_btn_usualtimeload
             // 
+            btn_btn_usualtimeload.BackColor = Color.Snow;
+            btn_btn_usualtimeload.FlatStyle = FlatStyle.Popup;
+            btn_btn_usualtimeload.Font = new Font("Georgia", 9F);
             btn_btn_usualtimeload.Location = new Point(1088, 690);
             btn_btn_usualtimeload.Name = "btn_btn_usualtimeload";
             btn_btn_usualtimeload.Size = new Size(145, 44);
             btn_btn_usualtimeload.TabIndex = 7;
             btn_btn_usualtimeload.Text = "Usual Time Load";
-            btn_btn_usualtimeload.UseVisualStyleBackColor = true;
+            btn_btn_usualtimeload.UseVisualStyleBackColor = false;
             btn_btn_usualtimeload.Click += btn_btn_usualtimeload_Click;
             // 
             // btn_btn_dietaryclickload
             // 
+            btn_btn_dietaryclickload.BackColor = Color.Snow;
+            btn_btn_dietaryclickload.FlatStyle = FlatStyle.Popup;
+            btn_btn_dietaryclickload.Font = new Font("Georgia", 9F);
             btn_btn_dietaryclickload.Location = new Point(1261, 602);
             btn_btn_dietaryclickload.Name = "btn_btn_dietaryclickload";
             btn_btn_dietaryclickload.Size = new Size(188, 44);
             btn_btn_dietaryclickload.TabIndex = 7;
             btn_btn_dietaryclickload.Text = "Dietary Preference Load";
-            btn_btn_dietaryclickload.UseVisualStyleBackColor = true;
+            btn_btn_dietaryclickload.UseVisualStyleBackColor = false;
             btn_btn_dietaryclickload.Click += btn_btn_dietaryclickload_Click;
             // 
             // btn_btn_genderclickload
             // 
+            btn_btn_genderclickload.BackColor = Color.Snow;
+            btn_btn_genderclickload.FlatStyle = FlatStyle.Popup;
+            btn_btn_genderclickload.Font = new Font("Georgia", 9F);
             btn_btn_genderclickload.Location = new Point(1088, 602);
             btn_btn_genderclickload.Name = "btn_btn_genderclickload";
             btn_btn_genderclickload.Size = new Size(145, 44);
             btn_btn_genderclickload.TabIndex = 7;
             btn_btn_genderclickload.Text = "Gender Load";
-            btn_btn_genderclickload.UseVisualStyleBackColor = true;
+            btn_btn_genderclickload.UseVisualStyleBackColor = false;
             btn_btn_genderclickload.Click += btn_btn_genderclickload_Click;
             // 
             // btnRefresh
@@ -665,9 +743,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1471, 866);
             Controls.Add(label1);
             Controls.Add(panelMain);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "CustomerManagement";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerManagement";
@@ -752,5 +832,8 @@
         private ComboBox cmbFavorites;
         private ComboBox cmbTable;
         private Button btnRefresh;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private TextBox textBox1;
     }
 }

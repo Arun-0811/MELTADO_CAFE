@@ -66,6 +66,7 @@
             // 
             // txt_Description
             // 
+            txt_Description.BorderStyle = BorderStyle.FixedSingle;
             txt_Description.Location = new Point(33, 75);
             txt_Description.Multiline = true;
             txt_Description.Name = "txt_Description";
@@ -74,6 +75,8 @@
             // 
             // cmb_Category
             // 
+            cmb_Category.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_Category.FlatStyle = FlatStyle.Popup;
             cmb_Category.FormattingEnabled = true;
             cmb_Category.Location = new Point(33, 164);
             cmb_Category.Name = "cmb_Category";
@@ -93,6 +96,7 @@
             // 
             btn_addItems.BackColor = Color.ForestGreen;
             btn_addItems.FlatStyle = FlatStyle.Popup;
+            btn_addItems.Font = new Font("Georgia", 9F);
             btn_addItems.Location = new Point(315, 430);
             btn_addItems.Name = "btn_addItems";
             btn_addItems.Size = new Size(149, 44);
@@ -114,6 +118,7 @@
             // 
             // txt_price
             // 
+            txt_price.BorderStyle = BorderStyle.FixedSingle;
             txt_price.Location = new Point(33, 224);
             txt_price.Name = "txt_price";
             txt_price.Size = new Size(206, 27);
@@ -121,6 +126,7 @@
             // 
             // txt_ItemName
             // 
+            txt_ItemName.BorderStyle = BorderStyle.FixedSingle;
             txt_ItemName.Location = new Point(33, 23);
             txt_ItemName.Name = "txt_ItemName";
             txt_ItemName.Size = new Size(206, 27);
@@ -128,12 +134,15 @@
             // 
             // btn_uploadImage
             // 
+            btn_uploadImage.BackColor = Color.SkyBlue;
+            btn_uploadImage.FlatStyle = FlatStyle.Popup;
+            btn_uploadImage.Font = new Font("Georgia", 9F);
             btn_uploadImage.Location = new Point(33, 418);
             btn_uploadImage.Name = "btn_uploadImage";
             btn_uploadImage.Size = new Size(133, 35);
             btn_uploadImage.TabIndex = 3;
             btn_uploadImage.Text = "Image Upload";
-            btn_uploadImage.UseVisualStyleBackColor = true;
+            btn_uploadImage.UseVisualStyleBackColor = false;
             btn_uploadImage.Click += btn_uploadImage_Click;
             // 
             // MenuItems_gridView
@@ -150,6 +159,7 @@
             // 
             btn_saveItem.BackColor = SystemColors.Highlight;
             btn_saveItem.FlatStyle = FlatStyle.Popup;
+            btn_saveItem.Font = new Font("Georgia", 9F);
             btn_saveItem.Location = new Point(559, 430);
             btn_saveItem.Name = "btn_saveItem";
             btn_saveItem.Size = new Size(143, 42);
@@ -162,6 +172,7 @@
             // 
             btn_deleteItem.BackColor = Color.Red;
             btn_deleteItem.FlatStyle = FlatStyle.Popup;
+            btn_deleteItem.Font = new Font("Georgia", 9F);
             btn_deleteItem.Location = new Point(315, 527);
             btn_deleteItem.Name = "btn_deleteItem";
             btn_deleteItem.Size = new Size(149, 42);
@@ -174,6 +185,7 @@
             // 
             btn_clearItems.BackColor = SystemColors.Info;
             btn_clearItems.FlatStyle = FlatStyle.Popup;
+            btn_clearItems.Font = new Font("Georgia", 9F);
             btn_clearItems.Location = new Point(559, 527);
             btn_clearItems.Name = "btn_clearItems";
             btn_clearItems.Size = new Size(143, 42);
@@ -186,6 +198,7 @@
             // 
             btn_searchItems.BackgroundImageLayout = ImageLayout.Center;
             btn_searchItems.FlatStyle = FlatStyle.Popup;
+            btn_searchItems.Font = new Font("Georgia", 9F);
             btn_searchItems.Location = new Point(717, 222);
             btn_searchItems.Name = "btn_searchItems";
             btn_searchItems.Size = new Size(119, 42);
@@ -196,9 +209,10 @@
             // 
             // btn_btn_menuitems
             // 
+            btn_btn_menuitems.Font = new Font("Georgia", 9F, FontStyle.Bold);
             btn_btn_menuitems.Location = new Point(315, 99);
             btn_btn_menuitems.Name = "btn_btn_menuitems";
-            btn_btn_menuitems.Size = new Size(149, 44);
+            btn_btn_menuitems.Size = new Size(129, 44);
             btn_btn_menuitems.TabIndex = 9;
             btn_btn_menuitems.Text = "Menu Items Load";
             btn_btn_menuitems.UseVisualStyleBackColor = true;
@@ -208,6 +222,7 @@
             // 
             grpbox_cuscmbbox.BackColor = Color.FromArgb(255, 192, 192);
             grpbox_cuscmbbox.Controls.Add(txt_categorycmblist);
+            grpbox_cuscmbbox.Font = new Font("Georgia", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grpbox_cuscmbbox.Location = new Point(717, 319);
             grpbox_cuscmbbox.Name = "grpbox_cuscmbbox";
             grpbox_cuscmbbox.Size = new Size(256, 79);
@@ -217,6 +232,7 @@
             // 
             // txt_categorycmblist
             // 
+            txt_categorycmblist.BorderStyle = BorderStyle.FixedSingle;
             txt_categorycmblist.Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_categorycmblist.Location = new Point(15, 26);
             txt_categorycmblist.Name = "txt_categorycmblist";
@@ -225,9 +241,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(530, 99);
+            button1.Font = new Font("Georgia", 9F, FontStyle.Bold);
+            button1.Location = new Point(556, 99);
             button1.Name = "button1";
-            button1.Size = new Size(172, 44);
+            button1.Size = new Size(146, 44);
             button1.TabIndex = 9;
             button1.Text = "Menu Categories Load";
             button1.UseVisualStyleBackColor = true;
@@ -237,7 +254,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(192, 192, 255);
+            label1.BackColor = Color.WhiteSmoke;
             label1.FlatStyle = FlatStyle.Popup;
             label1.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 0, 0);
@@ -264,6 +281,7 @@
             // 
             // txtSearch
             // 
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Georgia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.Location = new Point(717, 176);
             txtSearch.Name = "txtSearch";
@@ -289,7 +307,7 @@
             groupBox1.Controls.Add(btn_ADDTable);
             groupBox1.Controls.Add(txtCapacity);
             groupBox1.Controls.Add(txt_tablenumber);
-            groupBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.Font = new Font("Georgia", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(1039, 331);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(372, 262);
@@ -299,9 +317,11 @@
             // 
             // btn_clearTable
             // 
-            btn_clearTable.Location = new Point(237, 201);
+            btn_clearTable.FlatStyle = FlatStyle.Popup;
+            btn_clearTable.Font = new Font("Georgia", 10.8F);
+            btn_clearTable.Location = new Point(262, 201);
             btn_clearTable.Name = "btn_clearTable";
-            btn_clearTable.Size = new Size(83, 37);
+            btn_clearTable.Size = new Size(86, 37);
             btn_clearTable.TabIndex = 8;
             btn_clearTable.Text = "CLEAR";
             btn_clearTable.UseVisualStyleBackColor = true;
@@ -309,18 +329,22 @@
             // 
             // cmb_status
             // 
+            cmb_status.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_status.FlatStyle = FlatStyle.Popup;
             cmb_status.FormattingEnabled = true;
             cmb_status.Items.AddRange(new object[] { "Reserved", "Available", "OutOfService", "Cancelled" });
             cmb_status.Location = new Point(23, 142);
             cmb_status.Name = "cmb_status";
-            cmb_status.Size = new Size(287, 33);
+            cmb_status.Size = new Size(287, 29);
             cmb_status.TabIndex = 1;
             // 
             // btn_UpdateTable
             // 
-            btn_UpdateTable.Location = new Point(131, 201);
+            btn_UpdateTable.FlatStyle = FlatStyle.Popup;
+            btn_UpdateTable.Font = new Font("Georgia", 10.8F);
+            btn_UpdateTable.Location = new Point(135, 201);
             btn_UpdateTable.Name = "btn_UpdateTable";
-            btn_UpdateTable.Size = new Size(85, 37);
+            btn_UpdateTable.Size = new Size(97, 37);
             btn_UpdateTable.TabIndex = 8;
             btn_UpdateTable.Text = "UPDATE";
             btn_UpdateTable.UseVisualStyleBackColor = true;
@@ -328,9 +352,11 @@
             // 
             // btn_ADDTable
             // 
+            btn_ADDTable.FlatStyle = FlatStyle.Popup;
+            btn_ADDTable.Font = new Font("Georgia", 10.8F);
             btn_ADDTable.Location = new Point(23, 201);
             btn_ADDTable.Name = "btn_ADDTable";
-            btn_ADDTable.Size = new Size(78, 37);
+            btn_ADDTable.Size = new Size(81, 37);
             btn_ADDTable.TabIndex = 8;
             btn_ADDTable.Text = "ADD";
             btn_ADDTable.UseVisualStyleBackColor = true;
@@ -338,16 +364,18 @@
             // 
             // txtCapacity
             // 
+            txtCapacity.BorderStyle = BorderStyle.FixedSingle;
             txtCapacity.Location = new Point(23, 92);
             txtCapacity.Name = "txtCapacity";
-            txtCapacity.Size = new Size(287, 31);
+            txtCapacity.Size = new Size(287, 28);
             txtCapacity.TabIndex = 6;
             // 
             // txt_tablenumber
             // 
+            txt_tablenumber.BorderStyle = BorderStyle.FixedSingle;
             txt_tablenumber.Location = new Point(23, 48);
             txt_tablenumber.Name = "txt_tablenumber";
-            txt_tablenumber.Size = new Size(287, 31);
+            txt_tablenumber.Size = new Size(287, 28);
             txt_tablenumber.TabIndex = 7;
             // 
             // MenuManagement
@@ -355,7 +383,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            BackColor = Color.FromArgb(192, 192, 255);
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1460, 705);
             Controls.Add(dataGridTables);
             Controls.Add(groupBox1);
@@ -371,6 +399,7 @@
             Controls.Add(btn_saveItem);
             Controls.Add(btn_addItems);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "MenuManagement";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MenuManagement";
