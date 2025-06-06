@@ -34,6 +34,8 @@
             txtComments = new TextBox();
             btnSubmitFeedback = new Button();
             label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudRating).BeginInit();
             SuspendLayout();
             // 
@@ -42,9 +44,9 @@
             cmbCustomer.FlatStyle = FlatStyle.Popup;
             cmbCustomer.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new Point(171, 170);
+            cmbCustomer.Location = new Point(317, 170);
             cmbCustomer.Name = "cmbCustomer";
-            cmbCustomer.Size = new Size(288, 28);
+            cmbCustomer.Size = new Size(220, 28);
             cmbCustomer.TabIndex = 0;
             // 
             // sqlCommand1
@@ -55,9 +57,9 @@
             // nudRating
             // 
             nudRating.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudRating.Location = new Point(172, 235);
+            nudRating.Location = new Point(317, 235);
             nudRating.Name = "nudRating";
-            nudRating.Size = new Size(287, 27);
+            nudRating.Size = new Size(220, 27);
             nudRating.TabIndex = 1;
             // 
             // txtComments
@@ -93,12 +95,34 @@
             label1.TabIndex = 4;
             label1.Text = "Customer Feedback Form";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(188, 173);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Customer  :";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Georgia", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(172, 237);
+            label3.Name = "label3";
+            label3.Size = new Size(111, 20);
+            label3.TabIndex = 5;
+            label3.Text = "Rating (1-5)  :";
+            // 
             // FeedbackForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(800, 592);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnSubmitFeedback);
             Controls.Add(txtComments);
@@ -107,6 +131,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FeedbackForm";
             Text = "FeedbackForm";
+            Load += FeedbackForm_Load;
             ((System.ComponentModel.ISupportInitialize)nudRating).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -120,5 +145,7 @@
         private TextBox txtComments;
         private Button btnSubmitFeedback;
         private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

@@ -634,7 +634,7 @@
             // 
             panelMain.AutoScroll = true;
             panelMain.AutoSize = true;
-            panelMain.BackColor = Color.Transparent;
+            panelMain.BackColor = Color.WhiteSmoke;
             panelMain.Controls.Add(txtSearchCustomer);
             panelMain.Controls.Add(btn_btn_membershipclickload);
             panelMain.Controls.Add(btn_btn_usualtimeload);

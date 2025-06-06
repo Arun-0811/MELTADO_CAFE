@@ -77,5 +77,9 @@ namespace MELTADO_CAFE.StaffAccess
             }
         }
 
+        private void FeedbackForm_Load(object sender, EventArgs e)
+        {
+            PlaceHolder_TextLoad();
+        }
     }
 }

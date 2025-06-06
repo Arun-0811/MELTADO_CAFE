@@ -93,7 +93,7 @@ namespace MELTADO_CAFE
 
                 cmbFavorites.DataSource = dt;
                 cmbFavorites.DisplayMember = "ItemName";  // Change to actual display column in MenuItem table
-                cmbFavorites.ValueMember = "ItemID";      // Change to actual ID column in MenuItem table
+                cmbFavorites.ValueMember = "ItemName";      // Change to actual ID column in MenuItem table
 
                 // Set DropDownStyle to DropDownList
                 cmbFavorites.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -262,7 +262,7 @@ namespace MELTADO_CAFE
                     string.IsNullOrWhiteSpace(txtPhone.Text) ||
                     string.IsNullOrWhiteSpace(txtEmail.Text))
                 {
-                    MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please fill in all required fields (Name, Phone Number, Email).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -834,17 +834,17 @@ namespace MELTADO_CAFE
                 txtPhone.Text = row.Cells["PhoneNumber"].Value.ToString();
                 txtEmail.Text = row.Cells["Email"].Value.ToString();
                 dtpDOB.Value = Convert.ToDateTime(row.Cells["DateOfBirth"].Value);
-                cmbGender.SelectedItem = row.Cells["Gender"].Value.ToString();
-                cmbFavorites.SelectedItem = row.Cells["FavoriteItems"].Value.ToString();
-                cmbDietary.SelectedItem = row.Cells["DietaryPreferences"].Value.ToString();
-                cmbTable.SelectedItem = row.Cells["PreferredTable"].Value.ToString();
-                cmbTime.SelectedItem = row.Cells["UsualVisitTime"].Value.ToString();
+                cmbGender.SelectedValue = row.Cells["Gender"].Value.ToString();//
+                cmbFavorites.SelectedValue = row.Cells["FavoriteItems"].Value.ToString();//changed
+                cmbDietary.SelectedValue = row.Cells["DietaryPreferences"].Value.ToString();//
+                cmbTable.SelectedValue = Convert.ToInt32(row.Cells["PreferredTable"].Value);//
+                cmbTime.SelectedValue = row.Cells["UsualVisitTime"].Value.ToString();//
                 txtTotalVisits.Text = row.Cells["TotalVisits"].Value.ToString();
                 dtpLastVisit.Value = Convert.ToDateTime(row.Cells["LastVisit"].Value);
                 txtTotalSpend.Text = row.Cells["TotalSpend"].Value.ToString();
                 txtCardNo.Text = row.Cells["LoyaltyCardNumber"].Value.ToString();
                 numPoints.Value = Convert.ToInt32(row.Cells["RewardPoints"].Value);
-                cmbTier.SelectedItem = row.Cells["MembershipTier"].Value.ToString();
+                cmbTier.SelectedValue = row.Cells["MembershipTier"].Value.ToString();//
                 txtLastFeedback.Text = row.Cells["LastFeedback"].Value.ToString();
                 txtAddress.Text = row.Cells["Address"].Value.ToString();
                 txtInstructions.Text = row.Cells["DeliveryInstructions"].Value.ToString();
@@ -1008,7 +1008,9 @@ namespace MELTADO_CAFE
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            LoadCustomers(); 
+            LoadCustomers();
         }
+
+        
     }
 }

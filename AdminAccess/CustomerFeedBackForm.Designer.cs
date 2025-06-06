@@ -33,9 +33,6 @@
             txtComments = new TextBox();
             button1 = new Button();
             label1 = new Label();
-            btn_close = new Button();
-            btn_max = new Button();
-            btn_min = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvFeedback).BeginInit();
             SuspendLayout();
             // 
@@ -92,51 +89,12 @@
             label1.TabIndex = 3;
             label1.Text = "Customer Feedback Details";
             // 
-            // btn_close
-            // 
-            btn_close.BackColor = Color.Red;
-            btn_close.FlatStyle = FlatStyle.Popup;
-            btn_close.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_close.Location = new Point(1083, 3);
-            btn_close.Name = "btn_close";
-            btn_close.Size = new Size(21, 19);
-            btn_close.TabIndex = 11;
-            btn_close.UseVisualStyleBackColor = false;
-            btn_close.Click += btn_close_Click;
-            // 
-            // btn_max
-            // 
-            btn_max.BackColor = Color.Lime;
-            btn_max.FlatStyle = FlatStyle.Popup;
-            btn_max.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_max.Location = new Point(1056, 3);
-            btn_max.Name = "btn_max";
-            btn_max.Size = new Size(21, 19);
-            btn_max.TabIndex = 12;
-            btn_max.UseVisualStyleBackColor = false;
-            btn_max.Click += btn_max_Click;
-            // 
-            // btn_min
-            // 
-            btn_min.BackColor = Color.Yellow;
-            btn_min.FlatStyle = FlatStyle.Popup;
-            btn_min.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_min.Location = new Point(1029, 3);
-            btn_min.Name = "btn_min";
-            btn_min.Size = new Size(21, 19);
-            btn_min.TabIndex = 13;
-            btn_min.UseVisualStyleBackColor = false;
-            btn_min.Click += btn_min_Click;
-            // 
             // CustomerFeedBackForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1102, 798);
-            Controls.Add(btn_close);
-            Controls.Add(btn_max);
-            Controls.Add(btn_min);
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(txtComments);
@@ -158,8 +116,5 @@
         private TextBox txtComments;
         private Button button1;
         private Label label1;
-        private Button btn_close;
-        private Button btn_max;
-        private Button btn_min;
     }
 }

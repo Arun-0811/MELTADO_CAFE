@@ -42,41 +42,49 @@ namespace MELTADO_CAFE
         private void btnCustomerManagement_Click(object sender, EventArgs e)
         {
             OpenChildForm(new CustomerManagement(), sender);
+            
         }
 
         private void btnMenuManagement_Click(object sender, EventArgs e)
         {
             OpenChildForm(new MenuManagement(), sender);
+            
         }
 
         private void btnInventoryManagment_Click(object sender, EventArgs e)
         {
             OpenChildForm(new InventoryManagementForm(), sender);
+            
         }
 
         private void btnStaffShedule_Click(object sender, EventArgs e)
         {
             OpenChildForm(new StaffScheduling(), sender);
+            
         }
 
         private void btnAddStaffs_Click(object sender, EventArgs e)
         {
             OpenChildForm(new SignUp_Page(), sender);
+           
         }
 
         private void btnReportingAnalytics_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Reporting_Analytics(), sender);
+            
         }
 
         private void btnIngredientDetails_Click(object sender, EventArgs e)
         {
             OpenChildForm(new IngredientDetailForm(), sender);
+            
         }
 
         private void btnCustomerFeedback_Click(object sender, EventArgs e)
         {
             OpenChildForm(new CustomerFeedBackForm(), sender);
+            
         }
 
         private void btn_min_Click(object sender, EventArgs e)
@@ -105,6 +113,14 @@ namespace MELTADO_CAFE
         private void btnAdminDashboard_Click(object sender, EventArgs e)
         {
             OpenChildForm(new AdminDashboardForm(), sender);
+            
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Login_Page login_Page = new Login_Page();
+            login_Page.Show();
+            this.Close();
         }
     }
 }

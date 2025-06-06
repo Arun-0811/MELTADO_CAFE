@@ -77,7 +77,7 @@ namespace MELTADO_CAFE
 
                 cmb_TimesOfDay.DataSource = dt;
                 cmb_TimesOfDay.DisplayMember = "TimeSlot";
-                cmb_TimesOfDay.ValueMember = "TimeSlot"; // ✅ Set ValueMember
+                cmb_TimesOfDay.ValueMember = "TimeSlot";  // ✅ So SelectedValue expects string
                 cmb_TimesOfDay.SelectedIndex = 0;
                 cmb_TimesOfDay.DropDownStyle = ComboBoxStyle.DropDownList;
             }
@@ -388,29 +388,27 @@ namespace MELTADO_CAFE
             if (TimeSpan.TryParse(row.Cells["ReservationTime"].Value?.ToString(), out TimeSpan resTime))
                 timePicker.Value = DateTime.Today.Add(resTime);
 
-            string timeOfDay = row.Cells["TimeOfDay"].Value?.ToString() ?? "";
+            //string timeOfDay = row.Cells["TimeOfDay"].Value?.ToString()?.Trim() ?? "";
+            cmb_TimesOfDay.SelectedValue = row.Cells["TimeOfDay"].Value.ToString();//changed
 
-            // Find matching index in the combo box items
-            int index = -1;
-            for (int i = 0; i < cmb_TimesOfDay.Items.Count; i++)
-            {
-                // Each item is a DataRowView because it's bound to DataTable
-                var drv = cmb_TimesOfDay.Items[i] as DataRowView;
-                if (drv != null)
-                {
-                    string timeSlot = drv["TimeSlot"].ToString();
-                    if (string.Equals(timeSlot, timeOfDay, StringComparison.OrdinalIgnoreCase))
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-            }
+            // Try setting SelectedValue directly
+            //cmb_TimesOfDay.SelectedValue = timeOfDay;
 
-            if (index >= 0)
-                cmb_TimesOfDay.SelectedIndex = index;  // Select matching item
-            else
-                cmb_TimesOfDay.SelectedIndex = 0;      // Default to "-- Select Usual Time --"
+            // If it doesn't find a match, fallback to index 0
+            //if (cmb_TimesOfDay.SelectedIndex <= 0)
+            //{
+            //    // Try manual match if needed
+            //    for (int i = 0; i < cmb_TimesOfDay.Items.Count; i++)
+            //    {
+            //        if (cmb_TimesOfDay.Items[i] is DataRowView drv &&
+            //            string.Equals(drv["TimeSlot"].ToString().Trim(), timeOfDay, StringComparison.OrdinalIgnoreCase))
+            //        {
+            //            cmb_TimesOfDay.SelectedIndex = i;
+            //            break;
+            //        }
+            //    }
+            //}
+
 
 
             // 7. Party Size

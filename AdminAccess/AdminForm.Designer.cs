@@ -46,6 +46,7 @@
             btnMenuManagement = new Button();
             btnCustomerManagement = new Button();
             fontDialog1 = new FontDialog();
+            btnLogout = new Button();
             PanelDesktop.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -61,7 +62,7 @@
             PanelDesktop.Dock = DockStyle.Fill;
             PanelDesktop.Location = new Point(233, 0);
             PanelDesktop.Name = "PanelDesktop";
-            PanelDesktop.Size = new Size(960, 714);
+            PanelDesktop.Size = new Size(960, 742);
             PanelDesktop.TabIndex = 5;
             // 
             // panel2
@@ -131,6 +132,7 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnCustomerFeedback);
             panel1.Controls.Add(btnReportingAnalytics);
@@ -143,7 +145,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(233, 714);
+            panel1.Size = new Size(233, 742);
             panel1.TabIndex = 3;
             // 
             // pictureBox1
@@ -252,12 +254,27 @@
             btnCustomerManagement.UseVisualStyleBackColor = false;
             btnCustomerManagement.Click += btnCustomerManagement_Click;
             // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.Red;
+            btnLogout.BackgroundImageLayout = ImageLayout.Center;
+            btnLogout.FlatStyle = FlatStyle.Popup;
+            btnLogout.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = SystemColors.ButtonHighlight;
+            btnLogout.Location = new Point(132, 690);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(94, 37);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1193, 714);
+            ClientSize = new Size(1193, 742);
             Controls.Add(PanelDesktop);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -292,5 +309,6 @@
         private Button btn_max;
         private Button btn_min;
         private Button btnAdminDashboard;
+        private Button btnLogout;
     }
 }

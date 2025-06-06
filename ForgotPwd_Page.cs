@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,7 +69,21 @@ namespace MELTADO_CAFE
                 pass = "xjrn gjre jwky liwh";
 
                 messagebox = "Your Verification OTP : " + randcode;
-                message.To.Add(to);
+                if (string.IsNullOrWhiteSpace(to))
+                {
+                    MessageBox.Show("Please enter email ID first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                try
+                {
+                    message.To.Add(to); // Only add if valid
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid email format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 message.From = new MailAddress(from);
                 message.Body = messagebox;
                 message.Subject = "OTP Verification";

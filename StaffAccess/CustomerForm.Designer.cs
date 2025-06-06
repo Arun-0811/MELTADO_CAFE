@@ -33,6 +33,7 @@
             pictureBox1 = new PictureBox();
             btnFeedback = new Button();
             btnInventoryManagment = new Button();
+            btnCusDetails = new Button();
             btnCustomerDashboard = new Button();
             btnTableReservation = new Button();
             btnOrderProcessing = new Button();
@@ -42,6 +43,7 @@
             btn_max = new Button();
             btn_min = new Button();
             PanelDesktop = new Panel();
+            btnLogout = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -50,9 +52,11 @@
             // panel1
             // 
             panel1.BackColor = Color.SkyBlue;
+            panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnFeedback);
             panel1.Controls.Add(btnInventoryManagment);
+            panel1.Controls.Add(btnCusDetails);
             panel1.Controls.Add(btnCustomerDashboard);
             panel1.Controls.Add(btnTableReservation);
             panel1.Controls.Add(btnOrderProcessing);
@@ -76,7 +80,7 @@
             // 
             btnFeedback.BackColor = Color.FromArgb(255, 192, 192);
             btnFeedback.Font = new Font("Georgia", 12F, FontStyle.Bold);
-            btnFeedback.Location = new Point(3, 430);
+            btnFeedback.Location = new Point(4, 484);
             btnFeedback.Name = "btnFeedback";
             btnFeedback.Size = new Size(228, 48);
             btnFeedback.TabIndex = 0;
@@ -88,13 +92,25 @@
             // 
             btnInventoryManagment.BackColor = Color.FromArgb(255, 192, 192);
             btnInventoryManagment.Font = new Font("Georgia", 12F, FontStyle.Bold);
-            btnInventoryManagment.Location = new Point(3, 368);
+            btnInventoryManagment.Location = new Point(4, 422);
             btnInventoryManagment.Name = "btnInventoryManagment";
             btnInventoryManagment.Size = new Size(228, 56);
             btnInventoryManagment.TabIndex = 0;
             btnInventoryManagment.Text = "Inventory Managment";
             btnInventoryManagment.UseVisualStyleBackColor = false;
             btnInventoryManagment.Click += btnInventoryManagment_Click;
+            // 
+            // btnCusDetails
+            // 
+            btnCusDetails.BackColor = Color.FromArgb(255, 192, 192);
+            btnCusDetails.Font = new Font("Georgia", 12F, FontStyle.Bold);
+            btnCusDetails.Location = new Point(7, 259);
+            btnCusDetails.Name = "btnCusDetails";
+            btnCusDetails.Size = new Size(225, 48);
+            btnCusDetails.TabIndex = 0;
+            btnCusDetails.Text = "Customer Details";
+            btnCusDetails.UseVisualStyleBackColor = false;
+            btnCusDetails.Click += btnCusDetails_Click;
             // 
             // btnCustomerDashboard
             // 
@@ -112,7 +128,7 @@
             // 
             btnTableReservation.BackColor = Color.FromArgb(255, 192, 192);
             btnTableReservation.Font = new Font("Georgia", 12F, FontStyle.Bold);
-            btnTableReservation.Location = new Point(6, 259);
+            btnTableReservation.Location = new Point(7, 313);
             btnTableReservation.Name = "btnTableReservation";
             btnTableReservation.Size = new Size(225, 48);
             btnTableReservation.TabIndex = 0;
@@ -124,7 +140,7 @@
             // 
             btnOrderProcessing.BackColor = Color.FromArgb(255, 192, 192);
             btnOrderProcessing.Font = new Font("Georgia", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOrderProcessing.Location = new Point(3, 313);
+            btnOrderProcessing.Location = new Point(4, 367);
             btnOrderProcessing.Name = "btnOrderProcessing";
             btnOrderProcessing.Size = new Size(228, 49);
             btnOrderProcessing.TabIndex = 0;
@@ -207,6 +223,21 @@
             PanelDesktop.Size = new Size(1015, 551);
             PanelDesktop.TabIndex = 2;
             // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.Red;
+            btnLogout.BackgroundImageLayout = ImageLayout.Center;
+            btnLogout.FlatStyle = FlatStyle.Popup;
+            btnLogout.Font = new Font("Georgia", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = SystemColors.ButtonHighlight;
+            btnLogout.Location = new Point(138, 552);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(94, 37);
+            btnLogout.TabIndex = 3;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -242,5 +273,7 @@
         private Button btn_max;
         private Button btn_min;
         private Button btnCustomerDashboard;
+        private Button btnCusDetails;
+        private Button btnLogout;
     }
 }
